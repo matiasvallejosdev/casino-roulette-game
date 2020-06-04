@@ -32,9 +32,4 @@ public class fichas_selected : MonoBehaviour
             _scManejadorFichas.num_ficha(aux);
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
