@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private Button _exitBtn;
-    [SerializeField] private Button _restartBtn;
-    [SerializeField] private Button _resumeBtn;
+    [SerializeField] private Button _exitBtn = null;
+    [SerializeField] private Button _restartBtn = null;
+    [SerializeField] private Button _resumeBtn = null;
 
     public Events.EventRestartGame OnRestartGame;
 

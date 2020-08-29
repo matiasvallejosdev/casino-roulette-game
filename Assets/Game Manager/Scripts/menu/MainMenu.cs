@@ -9,9 +9,9 @@ public class MainMenu : MonoBehaviour
     // Function that can receive animations events
     // Function to play fade in/out
 
-    [SerializeField] private Animation _mainMenuAnimator;
-    [SerializeField] private AnimationClip _fadeOutClip;
-    [SerializeField] private AnimationClip _fadeInClip;
+    [SerializeField] public Animation _mainMenuAnimator;
+    [SerializeField] public AnimationClip _fadeOutClip;
+    [SerializeField] public AnimationClip _fadeInClip;
 
     public Events.EventFadeComplete OnMainMenuFadeComplete;
 

@@ -8,34 +8,49 @@ public class PaymentController : Singlenton<PaymentController>
     // He actived when the roullete is finished and finded the number winner
     // Calculate the bet with the number winner and the equation of payment
 
-    [SerializeField] public List<GameObject> _fichasWinnerPlenos = new List<GameObject>();
-    [SerializeField] public List<GameObject> _fichasWinnerMedios = new List<GameObject>();
-    [SerializeField] public List<GameObject> _fichasLosted = new List<GameObject>();
-    [SerializeField] public List<GameObject> _fichasPrevious = new List<GameObject>();
+    public List<GameObject> _fichasWinnerPlenos = new List<GameObject>();
+    public List<GameObject> _fichasWinnerMedios = new List<GameObject>();
+    public List<GameObject> _fichasLosted = new List<GameObject>();
+    public List<GameObject> _fichasPrevious = new List<GameObject>();
 
-    [SerializeField] public int totalPaymentSystem;
-    [SerializeField] public int totalFichasWinner;
+    public int totalPaymentSystem;
+    public int totalFichasWinner;
 
+    /// <summary>
+    /// Execute the payment system.
+    /// </summary>
+    /// <param name="num"></param>
+    public void roundFinished(int num)
+    {
+        // Calculate payment
+        paymentSystem();
+        // Finished the rounded and display the new values
+        RoundController.Instance.onRoundFinished(totalPaymentSystem, num, _fichasPrevious.ToArray());
+    }
+    /// <summary>
+    /// Calculate all the payments winner and losted.
+    /// </summary>
     public void paymentSystem()
     {
         totalPaymentSystem = 0;
         totalFichasWinner = 0;
 
         int totalPaymentWinner = calculateTotalPaymentWinner();
-        Debug.Log("El total ganado es: " + totalPaymentWinner);
+        //Debug.Log("El total ganado es: " + totalPaymentWinner);
 
         int totalPaymentLosted = calculateTotalPaymentLosted();
-        Debug.Log("El total perdido es: " + totalPaymentLosted);
+       //Debug.Log("El total perdido es: " + totalPaymentLosted);
 
         int totalFichasWin = calculateTotalFichasWin();
-        Debug.Log("Fichas devueltas: " + totalFichasWinner);
+        //Debug.Log("Fichas devueltas: " + totalFichasWinner);
 
         totalPaymentSystem = totalPaymentWinner - (totalPaymentLosted * - 1);
         totalPaymentSystem = totalPaymentSystem + totalFichasWin;
 
-        Debug.Log("La casa paga: " + totalPaymentSystem);
+        //Debug.Log("La casa paga: " + totalPaymentSystem);
     }
-
+    
+    // Payment in plenos, in medios and the equation.
     private int paymentPlenos()
     {
         int total = 0;
@@ -78,20 +93,6 @@ public class PaymentController : Singlenton<PaymentController>
         }
         return total;
     }
-
-    private int equationPaymentNumeros(int cantidadNumerosAbarcados, int valueFicha)
-    {
-        int payment = 0;
-
-        // Calculate the multiply depending the numbers abarcated of the  ficha
-        int n = cantidadNumerosAbarcados;
-        int multiply = (36 - n) / n;
-        // Payment
-        payment = valueFicha * multiply;
-
-        return payment;
-    }
-
     private int paymentMedios()
     {
         int total = 0;
@@ -111,7 +112,20 @@ public class PaymentController : Singlenton<PaymentController>
         }
         return total;
     }
+    private int equationPaymentNumeros(int cantidadNumerosAbarcados, int valueFicha)
+    {
+        int payment = 0;
 
+        // Calculate the multiply depending the numbers abarcated of the  ficha
+        int n = cantidadNumerosAbarcados;
+        int multiply = (36 - n) / n;
+        // Payment
+        payment = valueFicha * multiply;
+
+        return payment;
+    }
+    
+    // Calculate and return the all values of payment.
     private int calculateTotalPaymentWinner()
     {
         int totalPayment = 0;
@@ -123,7 +137,6 @@ public class PaymentController : Singlenton<PaymentController>
 
         return totalPayment;
     }
-
     private int calculateTotalPaymentLosted()
     {
         int totalLost = 0;
@@ -135,22 +148,6 @@ public class PaymentController : Singlenton<PaymentController>
         }
         return totalLost;
     }
-
-    public void deleteFichasInPayment()
-    {
-        PaymentController.Instance._fichasWinnerPlenos.Clear();
-        PaymentController.Instance._fichasWinnerMedios.Clear();
-        PaymentController.Instance._fichasLosted.Clear();
-    }
-
-    public void roundFinished(int num)
-    {
-        // Calculate payment
-        paymentSystem();
-        // Finished the rounded and display the new values
-        RoundController.Instance.onRoundFinished(totalPaymentSystem, num);
-    }
-
     private int calculateTotalFichasWin()
     {
         int total = 0;
@@ -170,7 +167,20 @@ public class PaymentController : Singlenton<PaymentController>
         totalFichasWinner = total;
         return total;
     }
+    
+    /// <summary>
+    /// Delete the assiganed fichas in payment.
+    /// </summary>
+    public void deleteFichasInPayment()
+    {
+        PaymentController.Instance._fichasWinnerPlenos.Clear();
+        PaymentController.Instance._fichasWinnerMedios.Clear();
+        PaymentController.Instance._fichasLosted.Clear();
+    }
 
+    /// <summary>
+    /// Save all the fichas in the payment.
+    /// </summary>
     public void saveRounded()
     {
         List<GameObject> listAux = new List<GameObject>();

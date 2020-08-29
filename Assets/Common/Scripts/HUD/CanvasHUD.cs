@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class CanvasHUD : MonoBehaviour
 {
-    [SerializeField] Button PlayButtonUI;
 
-    [SerializeField] Text _txtSaldo;
-    [SerializeField] Text _txtApuestas;
+    public Text _txtSaldo;
+    public Text _txtApuestas;
 
-    [SerializeField] fichas _fichaAll;
+    public fichas _all;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +21,10 @@ public class CanvasHUD : MonoBehaviour
     void HandleRoundStateChanged(int saldoAnterior, int saldoNuevo)
     {
         _txtSaldo.text = saldoNuevo.ToString();
-        _fichaAll._valor = saldoNuevo;
+        _all._valor = saldoNuevo;
     }
     void HandleApuestaStateChanged(int apuestaAnterior, int apuestaNueva, int apuestaTotal)
     {
         _txtApuestas.text = apuestaTotal.ToString();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

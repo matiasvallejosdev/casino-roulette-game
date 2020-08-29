@@ -6,16 +6,15 @@ public class PlayButtonUI : MonoBehaviour
 {
     // Press play and start the roullete
 
-    [SerializeField] private manejador_ruleta _wheelRoulleteSc;
-
-    public void startRoullete()
+    public void onClick()
     {
-        _wheelRoulleteSc.start_giro(generateRandomNumber());
+        // StartRoullete
+        manejador_ruleta.Instance.start_giro(generateRandomNumber());
     }
 
     private int generateRandomNumber()
     {
-        int aux = 31;
+        int aux = 1;
         return aux;
     }
 }

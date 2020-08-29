@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,25 +7,33 @@ public class RoundController : Singlenton<RoundController>
 {
     [Header("Round Controller")]
     [SerializeField] private int betActual = 0;
-    [SerializeField] private int cashTotal = 120;
+    [SerializeField] private int cashTotal { get; set; }
+    [SerializeField] private GameObject[] oldRound { get; set; }
 
     public EventsRound.EventRoundState OnRoundChanged;
     public EventsRound.EventApuestaChanged OnApuestaChanged;
 
     [Header("Variables")]
-    [SerializeField] private GameObject magnetDestroyer;
-    [SerializeField] private manejador_fichas _scManejadorFichas;
+    public GameObject magnetDestroyer;
+    public manejador_fichas _scManejadorFichas = null;
     private GameObject[] _goButtons;
-
 
     private void Start()
     {
         _goButtons = GameObject.FindGameObjectsWithTag("Button");
 
-        OnRoundChanged.Invoke(0, cashTotal);
+        onGameOpened();
+        loadRound();
+
+        OnRoundChanged.Invoke(cashTotal, cashTotal);
         OnApuestaChanged.Invoke(0, 0, betActual);
     }
-
+    public int GetCashTotal() 
+    {
+        int c = 0;
+        c = cashTotal;
+        return c;
+    }
     public bool verficatedValueOfFicha(int valueFicha)
     {
         bool aux = true;
@@ -43,19 +52,26 @@ public class RoundController : Singlenton<RoundController>
 
     private void sumarCashTotal(int cashWinner)
     {
+        
         int aux = cashTotal;
         cashTotal += cashWinner;
-        OnRoundChanged.Invoke(aux, cashTotal);
+        OnRoundChanged.Invoke(cashTotal, cashTotal);
     }
+
     private void restarCashTotal(int cashLost)
     {
-        int aux = cashTotal;
+        if(cashLost < 0) 
+        {
+            cashLost = cashLost * -1;
+        }
         cashTotal -= cashLost;
-        if(cashTotal < 0)
+
+        if (cashTotal < 0)
         {
             cashTotal = 0;
         }
-        OnRoundChanged.Invoke(aux, cashTotal);
+
+        OnRoundChanged.Invoke(cashTotal, cashTotal);
     }
 
     private void sumarBet(int betSum)
@@ -79,17 +95,17 @@ public class RoundController : Singlenton<RoundController>
         resetButtons();
     }
 
-    public void onRoundFinished(int newCash, int num)
+    public void onRoundFinished(int newCash, int num, GameObject[] round)
     {
         // Sum Cash
-        if (newCash >= 0)
+        if (newCash > 0)
         {
             sumarCashTotal(newCash);
-            CanvasUI.Instance.turnWinOrLost("YOU WIN!", newCash.ToString(), true);
+            CanvasUI.Instance.turnWinOrLost("YOU WIN!", newCash.ToString(), true, 1);
         } else if (newCash < 0)
         {
             restarCashTotal(newCash * -1);
-            CanvasUI.Instance.turnWinOrLost("YOU LOST!", newCash.ToString(), false);
+            CanvasUI.Instance.turnWinOrLost("YOU LOST!", newCash.ToString(), false, 1);
         }
         // Delete fichas
         PaymentController.Instance.deleteFichasInPayment();
@@ -97,6 +113,38 @@ public class RoundController : Singlenton<RoundController>
         PaymentController.Instance.saveRounded();
         // Apuesta to zero
         restarBet(betActual);
+        // Guarda el archivo
+        saveRound(newCash, round);
+        // Carga el archivo
+        loadRound();
+    }
+
+    public void onGameClosed() 
+    {
+        // Save Rounded
+        PaymentController.Instance.saveRounded();
+        // Guarda el archivo
+        saveRound(cashTotal, PaymentController.Instance._fichasPrevious.ToArray());
+    }
+    public void onGameOpened() 
+    {
+        loadRound();
+        if (oldRound.Length > 0) 
+        {
+            // Charge the old round
+            RestorePreviousFichas(oldRound);
+        }
+    }
+    public void onRewardFinished(int newCash)
+    {
+        if (newCash > 0) 
+        {
+            sumarCashTotal(newCash);
+            // Guarda el archivo
+            saveCash(newCash);
+            // Carga el archivo
+            loadRound();
+        }
     }
 
     private void resetButtons()
@@ -115,77 +163,97 @@ public class RoundController : Singlenton<RoundController>
             btn.SetActive(isOn);
         }
     }
-    public void recoverPreviousFicha()
+
+    /// <summary>
+    /// Multiplier the fichas in the table when is possible.
+    /// </summary>
+    public void MultiplierFichasInTable()
     {
-        GameObject[] fichasPrevious = PaymentController.Instance._fichasPrevious.ToArray();
-        if (findIfIsPossibleDuplicate(fichasPrevious))
+        GameObject[] fichasInGame = GameObject.FindGameObjectsWithTag("Fichas");
+        if (FindIsPossibleToDuplicate(fichasInGame))
         {
             SoundContoller.Instance.fx_sound(4);
-            foreach (var ficha in PaymentController.Instance._fichasPrevious)
+            foreach (var ficha in fichasInGame)
             {
                 fichas _scFicha = ficha.GetComponent<fichas>();
-                if (verficatedValueOfFicha(_scFicha._valor))
-                {
-                    Debug.Log("Bet possible");
-                    // Get Options
-                    string clave = _scFicha.button.GetComponent<fx_button>().clave;
-                    int[] valor = _scFicha.button.GetComponent<fx_button>().valor;
-                    bool pleno = _scFicha.button.GetComponent<fx_button>().pleno;
-                    Vector2 pivot = _scFicha.button.GetComponent<fx_button>().GetSpritePivot(_scFicha.button.GetComponent<fx_button>()._spriteRender.sprite);
-                    bool _fichasTopBoolean = false;
-                    if (_scFicha.button.GetComponent<fx_button>()._fichasOnTop != 0)
-                    {
-                        _fichasTopBoolean = true;
-                    }
-                    Vector2 offset = _scFicha.button.GetComponent<fx_button>().GetOffsetFicha();
-                    // Ficha Nueva
-                    _scManejadorFichas.previous_ficha(pivot, _fichasTopBoolean, offset, ficha, clave, valor, pleno, _scFicha.button);
-                    // Sound Control
-                    SoundContoller.Instance.fx_sound(1);
-                }
-                else
-                {
-                    Debug.Log("Bet is not possible because the value of ficha is very high");
-                }
+                RecoverFicha(_scFicha);
             }
         }
         else
         {
             SoundContoller.Instance.fx_sound(3);
-        }  
-    }
-
-    private int getTotalPreviousRounded()
-    {
-        int t = 0;
-        List<GameObject> aux = PaymentController.Instance._fichasPrevious;
-        foreach (var ficha in aux)
-        {
-            t = t + ficha.GetComponent<fichas>()._valor;
         }
-        return t;
     }
 
-    public void deleteFichas()
+    /// <summary>
+    /// Restore group of fichas in the game.
+    /// </summary>
+    /// <param name="fichas"></param>
+    public void RestorePreviousFichas(GameObject[] fichas)
+    {
+        GameObject[] fichasPrevious = fichas;
+        if (FindIsPossibleToDuplicate(fichasPrevious))
+        {
+            foreach (var ficha in PaymentController.Instance._fichasPrevious)
+            {
+                fichas _scFicha = ficha.GetComponent<fichas>();
+                RecoverFicha(_scFicha);
+            }
+        } 
+    }
+    
+    /// <summary>
+    /// Restore specifc ficha in the game.
+    /// </summary>
+    /// <param name="fichaScript"></param>
+    private void RecoverFicha(fichas fichaScript) 
+    {
+        if (verficatedValueOfFicha(fichaScript._valor))
+        {
+            Debug.Log("Bet possible");
+            // Get Parameter
+            #region Parameters
+            string clave = fichaScript.button.GetComponent<fx_button>().clave;
+            int[] valor = fichaScript.button.GetComponent<fx_button>().valor;
+            bool pleno = fichaScript.button.GetComponent<fx_button>().pleno;
+            Vector2 pivot = fichaScript.button.GetComponent<fx_button>().GetSpritePivot(fichaScript.button.GetComponent<fx_button>()._spriteRender.sprite);
+            int fichaIndex = fichaScript.GetIndex();
+            bool _fichasTopBoolean = false;
+            if (fichaScript.button.GetComponent<fx_button>()._fichasOnTop != 0)
+            {
+                _fichasTopBoolean = true;
+            }
+            Vector2 offset = fichaScript.button.GetComponent<fx_button>().GetOffsetFicha();
+            #endregion
+            // Ficha Nueva
+            _scManejadorFichas.RecoverFichas(pivot, _fichasTopBoolean, offset, clave, valor, pleno, fichaScript.button, fichaIndex);
+            // Sound Control
+            SoundContoller.Instance.fx_sound(1);
+        }
+        else
+        {
+            Debug.Log("Bet is not possible because the value of ficha is very high");
+        }
+    }
+
+    public void DeleteFichasInTable()
     {
         resetButtons();
-
         int count = GameObject.FindGameObjectsWithTag("Fichas").Length;
         if(count > 0)
         {
             int aux = betActual;
             restarBet(betActual);
             sumarCashTotal(aux);
-
-            magnetDestroyerSystem(3.5f);
+            MagnetDestroyerFichas(3.5f);
         }
     }
-
-    public void magnetDestroyerSystem(float seg)
+    
+    // Destroyed all fichas in Table.
+    public void MagnetDestroyerFichas(float seg)
     {
         StartCoroutine(magnet(seg));
     }
-
     IEnumerator magnet(float seg)
     {
         activeButtons(false);
@@ -195,53 +263,10 @@ public class RoundController : Singlenton<RoundController>
         activeButtons(true);
     }
 
-    public void multiplierActualFichas()
+    // Search if is possible i will duplicate the new fichas
+    private bool FindIsPossibleToDuplicate(GameObject[] fichasInGame)
     {
-        GameObject[] fichasInGame = GameObject.FindGameObjectsWithTag("Fichas");
-
-        if (findIfIsPossibleDuplicate(fichasInGame))
-        {
-            // Duplicate
-            SoundContoller.Instance.fx_sound(4);
-
-            Debug.Log("Duplicando fichas en mesa");
-            foreach (var ficha in fichasInGame)
-            {
-                fichas _scFicha = ficha.GetComponent<fichas>();
-                if (verficatedValueOfFicha(_scFicha._valor))
-                {
-                    Debug.Log("Bet possible");
-                    // Get Options
-                    string clave = _scFicha.button.GetComponent<fx_button>().clave;
-                    int[] valor = _scFicha.button.GetComponent<fx_button>().valor;
-                    bool pleno = _scFicha.button.GetComponent<fx_button>().pleno;
-                    Vector2 pivot = _scFicha.button.GetComponent<fx_button>().GetSpritePivot(_scFicha.button.GetComponent<fx_button>()._spriteRender.sprite);
-                    bool _fichasTopBoolean = false;
-                    if (_scFicha.button.GetComponent<fx_button>()._fichasOnTop != 0)
-                    {
-                        _fichasTopBoolean = true;
-                    }
-                    Vector2 offset = _scFicha.button.GetComponent<fx_button>().GetOffsetFicha();
-                    // Ficha Nueva
-                    _scManejadorFichas.previous_ficha(pivot, _fichasTopBoolean, offset, ficha, clave, valor, pleno, _scFicha.button);
-                    // Sound Control
-                    SoundContoller.Instance.fx_sound(1);
-                }
-                else
-                {
-                    Debug.Log("Bet is not possible because the value of ficha is very high");
-                }
-            }
-        }
-        else
-        {
-            SoundContoller.Instance.fx_sound(3);
-        }
-    }
-
-    private bool findIfIsPossibleDuplicate(GameObject[] fichasInGame)
-    {
-        bool isPossible = false;
+        bool isPossible;
         int aux = 0;
         foreach(var ficha in fichasInGame)
         {
@@ -258,4 +283,30 @@ public class RoundController : Singlenton<RoundController>
         }
         return isPossible;
     }
+
+    #region Save Round System
+    private void saveCash(int cash) 
+    {
+        MoneySystemController.Instance._cashNew = cash;
+        MoneySystemController.Instance.savePlayerCash();
+    }
+    private void saveRound(int cash, GameObject[] round) 
+    {
+        MoneySystemController.Instance._cashNew = cash;
+        MoneySystemController.Instance._actualRound = round;
+
+        MoneySystemController.Instance.savePlayerCash();
+        MoneySystemController.Instance.savePlayerRound();
+    }
+    private void loadRound()
+    {
+        MoneySystemController.Instance.loadPlayerCash();
+        MoneySystemController.Instance.loadPlayerRound();
+
+        cashTotal = MoneySystemController.Instance._cashBack;
+        oldRound = MoneySystemController.Instance._lastRound;
+
+        OnRoundChanged.Invoke(cashTotal, cashTotal);
+    }
+    #endregion
 }

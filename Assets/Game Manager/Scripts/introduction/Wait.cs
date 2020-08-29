@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Wait : MonoBehaviour
 {
-    [SerializeField] private float waitTime;
+    [SerializeField] private float waitTime = 0;
 
     private void Start()
     {
@@ -15,6 +15,6 @@ public class Wait : MonoBehaviour
     IEnumerator waitSeconds()
     {
         yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Boot");
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class CanvasUI : Singlenton<CanvasUI>
 {
-    [SerializeField] Image shadowRoullete;
-    [SerializeField] WinOrLostUI _winOrLostSc;
+    [SerializeField] Image shadowRoullete = null;
+    [SerializeField] WinOrLostUI _winOrLostSc = null;
 
     private void Start()
     {
@@ -16,7 +16,6 @@ public class CanvasUI : Singlenton<CanvasUI>
 
     void HandleGameStateChanged(game_manager.GameState curentState, game_manager.GameState previous)
     {
-        RoundController.Instance.activeButtons(curentState == game_manager.GameState.PAUSED || curentState == game_manager.GameState.SHOP);
         shadowRoullete.gameObject.SetActive(curentState == game_manager.GameState.PAUSED || curentState == game_manager.GameState.SHOP);
     }
 
@@ -25,7 +24,7 @@ public class CanvasUI : Singlenton<CanvasUI>
         this.gameObject.SetActive(active);
     }
 
-    public void turnWinOrLost(string win, string number, bool isWin)
+    public void turnWinOrLost(string win, string number, bool isWin, int payment)
     {
         _winOrLostSc.winOrLost(win, number, isWin);
     }

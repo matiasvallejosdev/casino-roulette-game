@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -33,6 +36,8 @@ public class game_manager : Singlenton<game_manager>
 
     private string _currentLevelName = string.Empty;
 
+    private bool isShopInMenu;
+  
     public GameState CurrentGameState
     {
         get { return _currentGameState; }
@@ -41,6 +46,9 @@ public class game_manager : Singlenton<game_manager>
 
     private void Start() 
     {
+        Debug.Log(Application.persistentDataPath);
+        initializeGame();
+
         DontDestroyOnLoad(gameObject);
 
         _instanceSystemPrefabs = new List<GameObject>();
@@ -51,6 +59,30 @@ public class game_manager : Singlenton<game_manager>
         UIManager.Instance.OnGameRestart.AddListener(HandleRestart);
 
         UIManager.Instance.OnMainMenuFadeComplete.AddListener(HandleMainMenuFadeComplete);
+    }
+
+    private void initializeGame()
+    {
+        isShopInMenu = true;
+        string path = Application.persistentDataPath + "/roullete.data";
+
+        if (!File.Exists(path)) 
+        {
+            createNewPlayer();
+        } else 
+        {
+            Debug.Log("El archivo ya existe!");
+        }
+    }
+
+    private void createNewPlayer() 
+    {
+        int[] a = { 0, 0 };
+        GameObject[] r = { };
+        SaveSystem.SavePlayer(a, r, true);
+        PlayerPrefs.SetFloat("SecondsToWaitReward", 80);
+        PlayerPrefs.SetFloat("SecondsToWaitRewardVideo", 120);
+        Debug.Log("Generando archivos para iniciar por primera vez el juego.");
     }
 
     private void Update()
@@ -83,23 +115,6 @@ public class game_manager : Singlenton<game_manager>
         restarting.restartGame();
     }
 
-    void OnLoadOperationComplete(AsyncOperation ao)
-    {
-        if(_loadOperations.Contains(ao))
-        {
-            _loadOperations.Remove(ao);
-
-            if(_loadOperations.Count == 0)
-            {
-                UpdateState(GameState.RUNING);
-            }
-        }
-        Debug.Log("Load complete");
-    }
-    void OnUnloadOperationComplete(AsyncOperation ao)
-    {
-        Debug.Log("Unload complete");
-    }
     void InstantiateSystemPrefabs()
     {
         GameObject prefabsInstance;
@@ -108,29 +123,7 @@ public class game_manager : Singlenton<game_manager>
             prefabsInstance = Instantiate(SystemPrefabs[i]);
             _instanceSystemPrefabs.Add(prefabsInstance);
         }
-    }
-    public void loadLevel(string levelName)
-    {
-        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName,LoadSceneMode.Additive);
-        if(ao == null)
-        {
-            Debug.Log("[GameManager] Unable to load level" + levelName);
-            return;
-        }
-        ao.completed += OnLoadOperationComplete;
-        _loadOperations.Add(ao);
-        _currentLevelName = levelName;
-    }
-    public void unloadLevel(string levelName)
-    {
-        AsyncOperation ao = SceneManager.UnloadSceneAsync(levelName);
-        if(ao == null)
-        {
-            Debug.Log("[GameManager] Unable to unload level" + levelName);
-            return;
-        }
-        ao.completed += OnUnloadOperationComplete;
-    }
+    }  
 
     protected override void OnDestroy() 
     {
@@ -162,7 +155,7 @@ public class game_manager : Singlenton<game_manager>
                 Time.timeScale = 0.0f;
                 break;
             case GameState.SHOP:
-                Time.timeScale = 0.0f;
+                Time.timeScale = 1.0f;
                 break;
             default:
     
@@ -174,9 +167,9 @@ public class game_manager : Singlenton<game_manager>
 
     public void startGame()
     {
-        loadLevel("2_Game_Roullete");
+        loadLevel("0_Game_Reward");
     }
-
+    
     public void togglePause()
     {
         // condition ? true : false
@@ -199,5 +192,65 @@ public class game_manager : Singlenton<game_manager>
         // Implement features for quitting and save de game
         Debug.Log("Quiting game");
         Application.Quit();
+    }
+
+    #region LoadScene
+    // Functions
+    public string getCurrentLevel() 
+    {
+        return _currentLevelName;
+    }
+    // Levels
+    public void loadLevel(string levelName)
+    {
+        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+        if (ao == null)
+        {
+            Debug.Log("[GameManager] Unable to load level" + levelName);
+            return;
+        }
+        ao.completed += OnLoadOperationComplete;
+        _loadOperations.Add(ao);
+        _currentLevelName = levelName;
+    }
+    public void unloadLevel(string levelName)
+    {
+        AsyncOperation ao = SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(levelName));
+        if (ao == null)
+        {
+            Debug.Log("[GameManager] Unable to unload level" + levelName);
+            return;
+        }
+        ao.completed += OnUnloadOperationComplete;
+    }
+    // Operations before the load or unload
+    void OnLoadOperationComplete(AsyncOperation ao)
+    {
+        if (_loadOperations.Contains(ao))
+        {
+            _loadOperations.Remove(ao);
+
+            if (_loadOperations.Count == 0)
+            {
+                UpdateState(GameState.RUNING);
+                Scene sc = SceneManager.GetSceneByName(_currentLevelName);
+                SceneManager.SetActiveScene(sc);
+            }
+        }
+        Debug.Log("Load complete");
+    }
+    void OnUnloadOperationComplete(AsyncOperation ao)
+    {
+        Debug.Log("Unload complete");
+    }
+    #endregion
+    public bool getIsInMenu() 
+    {
+        Debug.Log("get in menu is: " + isShopInMenu);
+        return isShopInMenu;
+    }
+    public void setIsInMenu(bool set) 
+    {
+        isShopInMenu = set;
     }
 }

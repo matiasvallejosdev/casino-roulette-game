@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NewNumberEffectWinner : MonoBehaviour
 {
-    [SerializeField] private Animator _fxAnimNumber;
-    [SerializeField] private GameObject _numberContainer;
+    [SerializeField] private Animator _fxAnimNumber = null;
+    [SerializeField] private GameObject _numberContainer = null;
 
     //[SerializeField] private TextMeshProUGUI txtNumberNew;
 

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UIManager : Singlenton<UIManager>
 {
-    [SerializeField] private MainMenu _mainMenu;
-    [SerializeField] private PauseMenu _pauseMenu;
-    [SerializeField] private ShopMenu _shopMenu;
+    [SerializeField] private MainMenu _mainMenu = null;
+    [SerializeField] private PauseMenu _pauseMenu = null;
+    [SerializeField] private ShopMenu _shopMenu = null;
 
-    [SerializeField] private Camera _dummyCamera;
+    [SerializeField] private Camera _dummyCamera = null;
     private bool isBootOn = true;
 
     public Events.EventRestartGame OnGameRestart;
@@ -47,9 +47,14 @@ public class UIManager : Singlenton<UIManager>
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isBootOn)
+        if (Input.GetKeyDown(KeyCode.Space) && isBootOn )
         {
             game_manager.Instance.startGame();
+        }
+        if(Input.touchCount > 0) 
+        {
+            game_manager.Instance.startGame();
+            Touch touch = Input.GetTouch(0);
         }
     }
 

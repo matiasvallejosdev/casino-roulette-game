@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class WinOrLostUI : MonoBehaviour
 {
     public int _seg = 0;
-    [SerializeField] private Text _win;
-    [SerializeField] private Text _number;
+    [SerializeField] private Text _win = null;
+    [SerializeField] private Text _number =  null;
 
     public void winOrLost(string win, string number, bool isWin)
     {

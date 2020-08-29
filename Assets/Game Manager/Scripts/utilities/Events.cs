@@ -9,8 +9,6 @@ public class Events
     // Event when the game is restarting
     [System.Serializable] public class EventRestartGame : UnityEvent<bool> { }
 
-
-
     // Ej:
     // Podes añadir nuevos eventos 
     //  EJ: onFadeOutComplete
