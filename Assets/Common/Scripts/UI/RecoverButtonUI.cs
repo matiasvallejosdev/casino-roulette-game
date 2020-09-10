@@ -6,6 +6,6 @@ public class RecoverButtonUI : MonoBehaviour
 {
     public void recoverFichas()
     {
-        RoundController.Instance.RestorePreviousFichas(PaymentController.Instance._fichasPrevious.ToArray());
+        RoundFichas.RestorePreviousRound(PaymentController.Instance._fichasPrevious.ToArray());
     }
 }

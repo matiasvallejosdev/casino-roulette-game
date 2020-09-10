@@ -16,6 +16,7 @@ public class manejador_fichas : MonoBehaviour
     void Start()
     {
         find_fichas();
+        RoundController.Instance.OnGameOpened();
     }
     private void find_fichas()
     {
@@ -83,14 +84,18 @@ public class manejador_fichas : MonoBehaviour
     {
         _countNewFichas++;
         // Buscar el numero de la ficha seleccionada
-        GameObject prevFicha = (_fichas[fichaIndex]);
+        GameObject prevFicha = Instantiate(_fichas[fichaIndex]);
         // Inicializa la posicion de la ficha y el valor de las posiciones en memoria
         fichas f = prevFicha.GetComponent<fichas>();
+        if (_fichas[_fichaSelected].name == "ficha_all")
+        {
+            f.setValor(valueOfFichaAll);
+        }
         // Instancia una nueva
         GameObject shadow = prevFicha.transform.GetChild(0).gameObject;
         prevFicha.name = _countNewFichas.ToString();
         // Setea de hijo fichas nuevas
-        if (f._pleno)
+        if (pl)
         {
             prevFicha.transform.SetParent(GameObject.Find("Fichas_Nuevas").transform.GetChild(0).transform);
         }

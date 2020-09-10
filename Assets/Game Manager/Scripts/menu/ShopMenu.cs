@@ -53,7 +53,7 @@ public class ShopMenu : MonoBehaviour
         game_manager.Instance.toggleShop();
         if(!game_manager.Instance.getIsInMenu()) 
         {
-            RoundController.Instance.activeButtons(true);
+            RoundController.Instance.ActivateButtons(true);
         }
     }
     void HandleExitClick()

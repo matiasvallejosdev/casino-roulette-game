@@ -19,13 +19,12 @@ public class PaymentController : Singlenton<PaymentController>
     /// <summary>
     /// Execute the payment system.
     /// </summary>
-    /// <param name="num"></param>
-    public void roundFinished(int num)
+    public void roundFinished()
     {
         // Calculate payment
         paymentSystem();
         // Finished the rounded and display the new values
-        RoundController.Instance.onRoundFinished(totalPaymentSystem, num, _fichasPrevious.ToArray());
+        RoundController.Instance.OnRoundFinished(totalPaymentSystem, _fichasPrevious.ToArray());
     }
     /// <summary>
     /// Calculate all the payments winner and losted.

@@ -54,7 +54,7 @@ public class manejador_ruleta : Singlenton<manejador_ruleta>
             // Sound
             SoundContoller.Instance.fx_sound(5);
             // Intialize the rounded 
-            RoundController.Instance.onRoundIntialize();
+            RoundController.Instance.OnRoundIntialize();
             // Initialize the coroutine
             StartCoroutine(start_r(numero));
         }
@@ -117,7 +117,7 @@ public class manejador_ruleta : Singlenton<manejador_ruleta>
 
         // Active Buttons
         //RoundController.Instance.activeButtons(true);
-        PaymentController.Instance.roundFinished(num);
+        PaymentController.Instance.roundFinished();
     }
     
     /// <summary>

@@ -46,7 +46,6 @@ public class game_manager : Singlenton<game_manager>
 
     private void Start() 
     {
-        Debug.Log(Application.persistentDataPath);
         initializeGame();
 
         DontDestroyOnLoad(gameObject);
@@ -65,6 +64,7 @@ public class game_manager : Singlenton<game_manager>
     {
         isShopInMenu = true;
         string path = Application.persistentDataPath + "/roullete.data";
+        Debug.Log(path);
 
         if (!File.Exists(path)) 
         {
@@ -78,8 +78,10 @@ public class game_manager : Singlenton<game_manager>
     private void createNewPlayer() 
     {
         int[] a = { 0, 0 };
-        GameObject[] r = { };
+        FichasSave[] r = { };
+        
         SaveSystem.SavePlayer(a, r, true);
+
         PlayerPrefs.SetFloat("SecondsToWaitReward", 80);
         PlayerPrefs.SetFloat("SecondsToWaitRewardVideo", 120);
         Debug.Log("Generando archivos para iniciar por primera vez el juego.");
@@ -220,6 +222,10 @@ public class game_manager : Singlenton<game_manager>
         {
             Debug.Log("[GameManager] Unable to unload level" + levelName);
             return;
+        }
+        if(levelName == "2_Game_Roullete") 
+        {
+            RoundController.Instance.OnGameClosed();
         }
         ao.completed += OnUnloadOperationComplete;
     }

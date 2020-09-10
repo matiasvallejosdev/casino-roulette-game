@@ -14,7 +14,8 @@ public class MenuUi : Singlenton<MenuUi>
     }
     public void setMoneyUi() 
     {
-        _handlerMoney.loadPlayerCash();
+        _handlerMoney.LoadRound();
+        _handlerMoney.LoadPlayerCash();
         _cash.text = _handlerMoney._cashBack.ToString();
     }
     public void rewardVideoUiFinished(string win, string number, bool isWin)

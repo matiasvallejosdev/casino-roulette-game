@@ -23,7 +23,6 @@ public class fx_nuevoNumero : MonoBehaviour
         for(int i = 0; i < 37; i++)
         {
             numeros[i] = GameObject.Find("n_" + i);
-            Debug.Log(numeros[i].name);
         }
 
         for(int i = 0; i < 4; i++)

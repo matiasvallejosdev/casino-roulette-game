@@ -71,7 +71,7 @@ public class ChestRewardVideoInShop : MonoBehaviour
             Debug.Log("You win: $ " + _payment[_section]);
 
             MoneySystemController.Instance._cashNew = _payment[_section];
-            MoneySystemController.Instance.savePlayerCash();
+            MoneySystemController.Instance.SavePlayerCash();
 
             MenuUi.Instance.setMoneyUi();
         }
@@ -87,8 +87,8 @@ public class ChestRewardVideoInShop : MonoBehaviour
             Debug.Log("Reward the player!");
             Debug.Log("You win in game: $ " + _payment[_section]);
 
-            RoundController.Instance.onRewardFinished(_payment[_section]);
-            RoundController.Instance.activeButtons(true);
+            RoundController.Instance.OnRewardFinished(_payment[_section]);
+            RoundController.Instance.ActivateButtons(true);
         }
     }
     /// <summary>

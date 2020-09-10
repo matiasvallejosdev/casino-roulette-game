@@ -10,20 +10,23 @@ public class MoneySystemController : Singlenton<MoneySystemController>
     public int _cashNew = 0;
     public int _cashBack = 0;
 
-    public GameObject[] _actualRound;
-    public FichasSave[] _lastRound { get; private set; }
+    private PlayerData myPlayer;
+
+    public FichasSave[] _actualRound;
+    public FichasSave[] _lastRound;
 
     private int[] player = new int[1];
+    
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
     }
-
-    public void savePlayerCash() 
+    public void SavePlayerCash() 
     {
-        _cashBack = 0;
-        loadPlayerCash();
-
+        // Get the previous cash
+        LoadRound();
+        LoadPlayerCash();
+        // Verify the new cash and sum or rest depend the operator
         if(_cashNew > 0) 
         {
             Debug.Log(_cashNew + _cashBack);
@@ -31,49 +34,48 @@ public class MoneySystemController : Singlenton<MoneySystemController>
         } 
         else if(_cashNew < 0) 
         {
-            //Debug.Log("CN: " + _cashNew);
-            //Debug.Log("CB: " + _cashBack);
             _cashNew *= -1;
             player[0] = _cashBack - _cashNew;
         }
-        FichasSave[] r = SavePlayer.GetFichas();
-        SaveSystem.SavePlayer(player, r, false);
-        Debug.Log("Guardando " + player[0]);
+        // Save only the cash and set the round save in false
+        SaveSystem.SavePlayer(player, null, false);
+        Debug.Log("Guardando CASH del player: " + player[0]);
     }
-    public void savePlayerRound()
+    public void SavePlayerRound()
     {
-        _cashBack = 0;
-        loadPlayerCash();
-
-        if (_cashNew > 0)
-        {
-            //Debug.Log(_cashNew + _cashBack);
-            player[0] = _cashNew + _cashBack;
-        }
-        else if (_cashNew < 0)
-        {
-            //Debug.Log("CN: " + _cashNew);
-            //Debug.Log("CB: " + _cashBack);
-            _cashNew *= -1;
-            player[0] = _cashBack - _cashNew;
-        }
-
-        FichasSave[] r = SavePlayer.GetFichas();
+        // Get the previous rounded and cash
+        LoadRound();
+        LoadPlayerCash();
+        LoadPlayerRound();
+        // Set the values
+        player[0] = _cashBack;
+        FichasSave[] r = _actualRound;
+        // Save cash and round
         SaveSystem.SavePlayer(player, r, true);
-        Debug.Log("Guardando " + player[0]);
+        Debug.Log("Guardando ROUND del player: " + _actualRound.Length);
     }
-    public void loadPlayerCash() 
+    public void InitializeGameRound() 
     {
-        PlayerData player = SaveSystem.LoadPlayer();
-
-        _cashBack = player.cash;
+        LoadRound();
+        LoadPlayerCash();
+        LoadPlayerRound();
+    }
+    public void LoadRound()
+    {
+        myPlayer = SaveSystem.LoadPlayer();
+    }
+    public void LoadPlayerCash() 
+    {
+        _cashBack = myPlayer.cash;
+        player[0] = myPlayer.cash;
         Debug.Log("Asignando Moneda: " + _cashBack.ToString());   
     }
-    public void loadPlayerRound() 
+    public void LoadPlayerRound() 
     {
-        PlayerData player = SaveSystem.LoadPlayer();
-
-        _lastRound = player.round.fichas;
-        Debug.Log("Asignando Ronda Pasada: " + _lastRound.Length.ToString());
+        if(myPlayer.fichas != null) 
+        {
+            _lastRound = myPlayer.fichas;
+            Debug.Log("Asignando Ronda Pasada: " + myPlayer.fichas.Length.ToString());
+        }
     }
 }

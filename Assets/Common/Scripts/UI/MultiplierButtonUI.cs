@@ -6,6 +6,6 @@ public class MultiplierButtonUI : MonoBehaviour
 {
     public void multiplierClick()
     {
-        RoundController.Instance.MultiplierFichasInTable();
+        RoundFichas.MultiplierFichasInTable();
     }
 }

@@ -55,6 +55,7 @@ namespace GameServices
 
             UnityPurchasing.Initialize(this, builder);
         }
+        
         private bool IsInitialized()
         {
             // Only say we are initialized if both the Purchasing references are set.
@@ -81,7 +82,6 @@ namespace GameServices
         {
             BuyProductID(kProduct_C_5);
         }
-
         public void BuyNonAds()
         {
             BuyProductID(kProduct_NC_noads);
@@ -121,7 +121,7 @@ namespace GameServices
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
             // Purchasing has succeeded initializing. Collect our Purchasing references.
-            Debug.Log("OnInitialized: PASS");
+            //Debug.Log("OnInitialized: PASS");
 
             // Overall Purchasing system, configured with products for this application.
             m_StoreController = controller;

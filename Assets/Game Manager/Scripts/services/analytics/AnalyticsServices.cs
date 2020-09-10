@@ -10,19 +10,7 @@ namespace GameServices
         public void Initialize() 
         {
             AnalyticsEvent.GameStart();
-            Debug.Log("Analytic Service Manager booted up.");
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            //Debug.Log("Analytic Service Manager booted up.");
         }
     }
 }

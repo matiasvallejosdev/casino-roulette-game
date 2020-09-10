@@ -5,17 +5,16 @@ using System;
 
 public static class SaveSystem
 {
-    public static void SavePlayer(int[] player, FichasSave[] lastRound, bool editRound)
+    public static void SavePlayer(int[] player, FichasSave[] fichas, bool editRound)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/roullete.data";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerRound round = new PlayerRound(lastRound, editRound);
         System.Random r = new System.Random();
 
-        PlayerData data = new PlayerData(r.Next(0, 1000000),player, round);
+        PlayerData data = new PlayerData(r.Next(0, 1000), fichas, player[0], editRound);
 
         Debug.Log("Guardando: " + data.ToString());
 

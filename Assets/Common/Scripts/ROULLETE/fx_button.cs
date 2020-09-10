@@ -116,7 +116,7 @@ public class fx_button : MonoBehaviour
                 if (hit.collider.gameObject.name == this.gameObject.name)
                 {
                     // Find if is possible bet < totalWinner
-                    if (RoundController.Instance.verficatedValueOfFicha(_scManejadorFichas.valueFicha()))
+                    if (RoundController.Instance.CheckBetValue(_scManejadorFichas.valueFicha()))
                     {
                         // Animacion
                         fx_higlights();
@@ -162,7 +162,7 @@ public class fx_button : MonoBehaviour
                 if(hit.collider.gameObject.name == this.gameObject.name)
                 {
                     // Find if is possible bet < totalWinner
-                    if (RoundController.Instance.verficatedValueOfFicha(_scManejadorFichas.valueFicha()))
+                    if (RoundController.Instance.CheckBetValue(_scManejadorFichas.valueFicha()))
                     {
                         // Animacion
                         fx_higlights();

@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 [System.Serializable]
-public class FichasSave
+public class FichasSave 
 {
-    public Vector2 p;
+    public float[] positionXY;
     public string clave;
     public int[] valor;
     public bool pleno;
     public int index;
+    public int costo;
+    public string btn;
 
-    public FichasSave(Vector2 p, string clave, int[] valor, bool pleno, int index)
+    public FichasSave(float[] positionXY, string clave, int[] valor, bool pleno, int index, int costo, string btn)
     {
-        this.p = p;
+        this.positionXY = positionXY;
         this.clave = clave;
         this.valor = valor;
         this.pleno = pleno;
         this.index = index;
+        this.costo = costo;
+        this.btn = btn;
     }
 }

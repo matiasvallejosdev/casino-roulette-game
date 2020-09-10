@@ -28,7 +28,7 @@ namespace GameServices
         {
             #if UNITY_IOS || UNITY_ANDROID
             Initialize(playStoreID, isTestAd, false);
-            Debug.Log("Advertisment Service Manager booted up.");
+            //Debug.Log("Advertisment Service Manager booted up.");
             #else
             Debug.LogWarning("Current platform is not supported");
             #endif

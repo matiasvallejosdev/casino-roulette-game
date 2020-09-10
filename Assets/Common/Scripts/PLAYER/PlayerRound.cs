@@ -1,15 +1,13 @@
-﻿using System;
-using System.Runtime.Serialization;
-using UnityEngine;
-
-[Serializable]
+﻿
+[System.Serializable]
 public class PlayerRound
 {
-    [SerializeField]
+    public int cash;
     public FichasSave[] fichas;
 
-    public PlayerRound(FichasSave[] fichas, bool editRound)
+    public PlayerRound(int cash,FichasSave[] fichas, bool editRound)
     {
+        this.cash = cash;
         if (editRound)
         {
             this.fichas = fichas;

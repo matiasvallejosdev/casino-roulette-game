@@ -74,7 +74,7 @@ namespace GameServices
                 Debug.Log("You win: $ " + _payment[_section]);
 
                 MoneySystemController.Instance._cashNew = _payment[_section];
-                MoneySystemController.Instance.savePlayerCash();
+                MoneySystemController.Instance.SavePlayerCash();
 
                 MenuUi.Instance.setMoneyUi();
             } 
@@ -89,7 +89,7 @@ namespace GameServices
                 Debug.Log("You win in game: $ " + _payment[_section]);
 
                 MoneySystemController.Instance._cashNew = _payment[_section];
-                MoneySystemController.Instance.savePlayerCash();
+                MoneySystemController.Instance.SavePlayerCash();
             } 
             else if(!isInMenu && isInGame) 
             {
@@ -101,7 +101,7 @@ namespace GameServices
                 Debug.Log("Reward the player!");
                 Debug.Log("You win in game: $ " + _payment[_section]);
 
-                RoundController.Instance.onRewardFinished(_payment[_section]);
+                RoundController.Instance.OnRewardFinished(_payment[_section]);
             }
         }
         /// <summary>

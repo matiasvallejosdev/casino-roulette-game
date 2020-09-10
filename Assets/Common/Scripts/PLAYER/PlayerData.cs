@@ -1,15 +1,18 @@
 ﻿
 [System.Serializable]
-public class PlayerData 
+public class PlayerData
 {
     public int id;
     public int cash;
-    public PlayerRound round;
+    public FichasSave[] fichas;
 
-    public PlayerData(int id, int[] cash, PlayerRound round) 
+    public PlayerData(int id, FichasSave[] fichas, int cash, bool editRound) 
     {
         this.id = id;
-        this.cash = cash[0];
-        this.round = round;
+        this.cash = cash;
+        if (editRound)
+        {
+            this.fichas = fichas;
+        }
     }
 }

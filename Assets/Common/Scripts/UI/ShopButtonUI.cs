@@ -10,6 +10,6 @@ public class ShopButtonUI : MonoBehaviour
         SoundContoller.Instance.fx_sound(4);
         game_manager.Instance.toggleShop();
         game_manager.Instance.setIsInMenu(isMenu);
-        RoundController.Instance.activeButtons(false);
+        RoundController.Instance.ActivateButtons(false);
     }
 }
