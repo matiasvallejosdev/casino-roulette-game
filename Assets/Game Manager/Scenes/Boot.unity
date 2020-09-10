@@ -156,6 +156,7 @@ MonoBehaviour:
   - {fileID: 1368435504543104, guid: 54c97bc568a963f4d945c01fa1a75f19, type: 3}
   - {fileID: 6779181710543893904, guid: 86533c7424c163642b43134c26bcd4e2, type: 3}
   - {fileID: 3908544798220563990, guid: bd001d63a89eb824cb586e19af5e54ea, type: 3}
+  - {fileID: 4922030841355457996, guid: 5fd95ccc82b2b4448aa3fa8ade6b1ce5, type: 3}
   OnGameStateChanged:
     m_PersistentCalls:
       m_Calls: []

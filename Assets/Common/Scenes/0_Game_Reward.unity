@@ -618,7 +618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &430963539
 RectTransform:
   m_ObjectHideFlags: 0
@@ -633,12 +633,12 @@ RectTransform:
   - {fileID: 1621758390}
   - {fileID: 865352066}
   m_Father: {fileID: 829905263}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -437.8}
-  m_SizeDelta: {x: 426.99765, y: 80.08832}
+  m_AnchoredPosition: {x: 0, y: -440}
+  m_SizeDelta: {x: 426.99765, y: 84.48819}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430963540
 MonoBehaviour:
@@ -750,7 +750,6 @@ MonoBehaviour:
   _payment: 881300004c1d000010270000
   isInMenu: 0
   isInGame: 0
-  isInShop: 0
 --- !u!114 &430963544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,7 +1350,6 @@ GameObject:
   m_Component:
   - component: {fileID: 671803007}
   - component: {fileID: 671803006}
-  - component: {fileID: 671803005}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1359,14 +1357,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &671803005
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671803004}
-  m_Enabled: 1
 --- !u!20 &671803006
 Camera:
   m_ObjectHideFlags: 0
@@ -1745,8 +1735,8 @@ RectTransform:
   - {fileID: 1157563392}
   - {fileID: 776971394}
   - {fileID: 168335802}
-  - {fileID: 430963539}
   - {fileID: 1175766084}
+  - {fileID: 430963539}
   - {fileID: 445407981}
   - {fileID: 643688712}
   m_Father: {fileID: 1075539282}
@@ -2135,7 +2125,7 @@ RectTransform:
   m_Children:
   - {fileID: 1583810010}
   m_Father: {fileID: 829905263}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2247,7 +2237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df33bee91f85304ea6d0ec5920c4c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewardVideoButton: {fileID: 430963540}
+  rewardVideoButton: {fileID: 430963540}
   rewardTimer: {fileID: 1064008933}
   _fortuneSc: {fileID: 603343699}
 --- !u!114 &1175766089

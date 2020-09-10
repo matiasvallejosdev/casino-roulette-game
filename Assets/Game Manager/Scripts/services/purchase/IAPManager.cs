@@ -141,31 +141,31 @@ namespace GameServices
             {
                 Debug.Log(string.Format("ProcessPurchase: PASS. You've just bought C1. Product: '{0}'", args.purchasedProduct.definition.id));
                 ServiceManager.Instance.OnRewardShopFinished.Invoke(true, 100000);
-                game_manager.Instance.toggleShop();
+                GameManager.Instance.toggleShop();
             }
             else if (String.Equals(args.purchasedProduct.definition.id, kProduct_C_2, StringComparison.Ordinal))
             {
                 Debug.Log(string.Format("ProcessPurchase: PASS. You've just bought C2. Product: '{0}'", args.purchasedProduct.definition.id));
                 ServiceManager.Instance.OnRewardShopFinished.Invoke(true, 1000000);
-                game_manager.Instance.toggleShop();
+                GameManager.Instance.toggleShop();
             }
             else if (String.Equals(args.purchasedProduct.definition.id, kProduct_C_3, StringComparison.Ordinal))
             {
                 Debug.Log(string.Format("ProcessPurchase: PASS. You've just bought C3. Product: '{0}'", args.purchasedProduct.definition.id));
                 ServiceManager.Instance.OnRewardShopFinished.Invoke(true, 10000000);
-                game_manager.Instance.toggleShop();
+                GameManager.Instance.toggleShop();
             }
             else if (String.Equals(args.purchasedProduct.definition.id, kProduct_C_4, StringComparison.Ordinal))
             {
                 Debug.Log(string.Format("ProcessPurchase: PASS. You've just bought C4. Product: '{0}'", args.purchasedProduct.definition.id));
                 ServiceManager.Instance.OnRewardShopFinished.Invoke(true, 50000000);
-                game_manager.Instance.toggleShop();
+                GameManager.Instance.toggleShop();
             }
             else if (String.Equals(args.purchasedProduct.definition.id, kProduct_C_5, StringComparison.Ordinal))
             {
                 Debug.Log(string.Format("ProcessPurchase: PASS. You've just boughtc C5. Product: '{0}'", args.purchasedProduct.definition.id));
                 ServiceManager.Instance.OnRewardShopFinished.Invoke(true, 100000000);
-                game_manager.Instance.toggleShop();
+                GameManager.Instance.toggleShop();
             }
             // Or ... a non-consumable product has been purchased by this user.
             else if (String.Equals(args.purchasedProduct.definition.id, kProduct_NC_noads, StringComparison.Ordinal))

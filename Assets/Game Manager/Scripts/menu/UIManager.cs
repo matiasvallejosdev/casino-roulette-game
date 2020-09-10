@@ -16,7 +16,7 @@ public class UIManager : Singlenton<UIManager>
 
     private void Start()
     {
-        game_manager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
+        GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
 
         _mainMenu.OnMainMenuFadeComplete.AddListener(HandleMainMenuFadeComplete);
 
@@ -33,27 +33,27 @@ public class UIManager : Singlenton<UIManager>
         OnGameRestart.Invoke(restart);
     }
 
-    void HandleGameStateChanged(game_manager.GameState curentState, game_manager.GameState previous)
+    void HandleGameStateChanged(GameManager.GameState curentState, GameManager.GameState previous)
     {
-        _mainMenu.gameObject.SetActive(curentState == game_manager.GameState.PREGAME);
-        _pauseMenu.gameObject.SetActive(curentState == game_manager.GameState.PAUSED);
-        _shopMenu.gameObject.SetActive(curentState == game_manager.GameState.SHOP);       
+        _mainMenu.gameObject.SetActive(curentState == GameManager.GameState.PREGAME);
+        _pauseMenu.gameObject.SetActive(curentState == GameManager.GameState.PAUSED);
+        _shopMenu.gameObject.SetActive(curentState == GameManager.GameState.SHOP);       
     }
 
     private void Update()
     {
-        if(game_manager.Instance.CurrentGameState != game_manager.GameState.PREGAME)
+        if(GameManager.Instance.CurrentGameState != GameManager.GameState.PREGAME)
         {
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isBootOn )
         {
-            game_manager.Instance.startGame();
+            GameManager.Instance.startGame();
         }
         if(Input.touchCount > 0) 
         {
-            game_manager.Instance.startGame();
+            GameManager.Instance.startGame();
             Touch touch = Input.GetTouch(0);
         }
     }
