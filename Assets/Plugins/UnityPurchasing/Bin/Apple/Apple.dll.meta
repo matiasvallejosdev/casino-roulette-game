@@ -34,15 +34,15 @@ PluginImporter:
       settings:
         CPU: AnyCPU
     OSXIntel:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: None
     OSXIntel64:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: None
     OSXUniversal:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: None
     SamsungTV:

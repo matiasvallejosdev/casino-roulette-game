@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private Button _exitBtn = null;
-    [SerializeField] private Button _restartBtn = null;
-    [SerializeField] private Button _resumeBtn = null;
+    [SerializeField] private UnityEngine.UI.Button _exitBtn = null;
+    [SerializeField] private UnityEngine.UI.Button _restartBtn = null;
+    [SerializeField] private UnityEngine.UI.Button _resumeBtn = null;
 
     public Events.EventRestartGame OnRestartGame;
 
@@ -20,15 +20,15 @@ public class PauseMenu : MonoBehaviour
 
     void HandleResumeClick()
     {
-        game_manager.Instance.togglePause();
+        GameManager.Instance.togglePause();
     }
     void HandleRestartClick()
     {
         OnRestartGame.Invoke(true);
-        game_manager.Instance.restartGame();
+        GameManager.Instance.restartGame();
     }
     void HandleExitClick()
     {
-        game_manager.Instance.exitGame();
+        GameManager.Instance.exitGame();
     }
 }

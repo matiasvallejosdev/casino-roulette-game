@@ -41,8 +41,8 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         public int startingPanel = 0;
         public bool swipeGestures = true;
         public float minimumSwipeSpeed = 0f;
-        public Button previousButton = null;
-        public Button nextButton = null;
+        public UnityEngine.UI.Button previousButton = null;
+        public UnityEngine.UI.Button nextButton = null;
         public GameObject pagination = null;
         public bool toggleNavigation = true;
         public SnapTarget snapTarget = SnapTarget.Next;

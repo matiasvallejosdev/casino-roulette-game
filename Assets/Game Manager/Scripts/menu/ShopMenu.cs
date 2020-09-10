@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class ShopMenu : MonoBehaviour
 {
     [Header("Button UI")]
-    [SerializeField] private Button _exitBtn = null;
-    [SerializeField] private Button _resumeBtn = null;
+    [SerializeField] private UnityEngine.UI.Button _exitBtn = null;
+    [SerializeField] private UnityEngine.UI.Button _resumeBtn = null;
     
     [Header("Purchase UI")]
-    [SerializeField] private Button _C1 = null;
-    [SerializeField] private Button _C2 = null;
-    [SerializeField] private Button _C3 = null;
-    [SerializeField] private Button _C4 = null;
-    [SerializeField] private Button _C5 = null;
+    [SerializeField] private UnityEngine.UI.Button _C1 = null;
+    [SerializeField] private UnityEngine.UI.Button _C2 = null;
+    [SerializeField] private UnityEngine.UI.Button _C3 = null;
+    [SerializeField] private UnityEngine.UI.Button _C4 = null;
+    [SerializeField] private UnityEngine.UI.Button _C5 = null;
 
     private void Start()
     {
@@ -50,14 +50,14 @@ public class ShopMenu : MonoBehaviour
     }
     void HandleResumeClick()
     {
-        game_manager.Instance.toggleShop();
-        if(!game_manager.Instance.getIsInMenu()) 
+        GameManager.Instance.toggleShop();
+        if(!GameManager.Instance.getIsInMenu()) 
         {
             RoundController.Instance.ActivateButtons(true);
         }
     }
     void HandleExitClick()
     {
-        game_manager.Instance.exitGame();
+        GameManager.Instance.exitGame();
     }
 }
