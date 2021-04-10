@@ -658,3 +658,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore by me
+Library/
+[Ll]ibrary/
