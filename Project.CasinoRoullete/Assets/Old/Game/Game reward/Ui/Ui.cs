@@ -16,18 +16,11 @@ public class Ui : Singlenton<Ui>
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(5);
-        if (GameManager.Instance.getIsInMenu())
-        {
-            closeScene("1_Game_Menu");
-        }
-        else
-        {
-            closeScene("2_Game_Roullete");
-        }
+        closeScene("2_Game_Roullete");
     }
     public void closeScene(string sceneToOpen)
     {
-        GameManager.Instance.unloadLevel("0_Game_Reward");
-        GameManager.Instance.loadLevel(sceneToOpen);
+        GameManager.Instance.UnloadLevel("0_Game_Reward");
+        GameManager.Instance.LoadLevel(sceneToOpen);
     }
 }

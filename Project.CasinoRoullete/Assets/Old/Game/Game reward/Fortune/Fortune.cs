@@ -14,7 +14,7 @@ public class Fortune : MonoBehaviour
     public int _section;
     public int[] _payment;
 
-    public MoneySystemController moneySystem;
+    //public MoneySystemController moneySystem;
 
     private AudioSource _fortuneAudio;
 
@@ -74,8 +74,8 @@ public class Fortune : MonoBehaviour
         {
             Debug.Log("You win: $ " + _payment[_payment.Length - 1]);
             Ui.Instance.turnWinOrLost("Excelent!", _payment[_payment.Length - 1].ToString(), true, _payment[_payment.Length - 1]);
-            moneySystem._cashNew = _payment[_payment.Length - 1];
-            moneySystem.SavePlayerCash();
+            //moneySystem._cashNew = _payment[_payment.Length - 1];
+            //moneySystem.SavePlayerCash();
         } else 
         {
             for (int i = 0; i < _section; i++)
@@ -84,8 +84,8 @@ public class Fortune : MonoBehaviour
                 {
                     Debug.Log("You win: $ " + _payment[i]);
                     Ui.Instance.turnWinOrLost("Excelent!", _payment[i].ToString(), true, _payment[i]);
-                    moneySystem._cashNew = _payment[i];
-                    moneySystem.SavePlayerCash();
+                    //moneySystem._cashNew = _payment[i];
+                    //moneySystem.SavePlayerCash();
                 }
             }
         }

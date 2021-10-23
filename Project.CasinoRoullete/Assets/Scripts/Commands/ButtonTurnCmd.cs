@@ -35,14 +35,14 @@ namespace Commands
 
                 // Instiate New Chip Instance
                 bool HasFichasOnTop = buttonData.currentChipsOnTop > 0;
-                InstantiateFicha(chipGame, chipData, chipInstance, buttonData.currentSpritePivot, buttonData.GetCurrentOffset(), HasFichasOnTop);
+                InstantiateFicha(chipGame, chipData, chipInstance, buttonData.currentSpritePivot, buttonData.AddCurrentOffset(), HasFichasOnTop);
                 
                 // Top controller
                 buttonData.currentChipsOnTop++;
             }
             else
             {
-                chipGame.Destroy();
+                chipGame.DestroyMagnet();
                 Debug.Log("Bet is not possible because the value of ficha is very high");
             }
         }    
@@ -76,6 +76,8 @@ namespace Commands
 
                 chipGame.StartChip(chipData, position, buttonData);
             }
+
+            characterTable.currentTable.Add(chipGame.gameObject);
         }
     }
 }

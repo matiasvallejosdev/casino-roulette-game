@@ -7,7 +7,7 @@ public class MenuUi : Singlenton<MenuUi>
 {
     [SerializeField] private WinUI _winOrLostSc = null;
     [SerializeField] private Text _cash = null;
-    [SerializeField] private MoneySystemController _handlerMoney = null;
+    //[SerializeField] private MoneySystemController _handlerMoney = null;
 
     public GameObject[] panels;
     public UnityEngine.UI.Button btnVolver;
@@ -43,9 +43,9 @@ public class MenuUi : Singlenton<MenuUi>
     }
     public void SetMoneyUi() 
     {
-        _handlerMoney.LoadRound();
-        _handlerMoney.LoadPlayerCash();
-        _cash.text = _handlerMoney._cashBack.ToString();
+        //_handlerMoney.LoadRound();
+        //_handlerMoney.LoadPlayerCash();
+        //_cash.text = _handlerMoney._cashBack.ToString();
     }
     /// <summary>
     /// Set UI when reward finished.

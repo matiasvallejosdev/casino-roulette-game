@@ -15,6 +15,6 @@ MonoBehaviour:
   chipName: Chip 500
   chipkey: 4
   chipValue: 500
-  chipSprite: {fileID: -8724080149964747033, guid: f8a93430902ecce4ba36a6250581bbd8,
+  chipSprite: {fileID: -7358097402829794395, guid: f8a93430902ecce4ba36a6250581bbd8,
     type: 3}
   chipArray: 1

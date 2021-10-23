@@ -11,7 +11,7 @@ public class restart_game : MonoBehaviour
 
     public void restartGame()
     {
-        PaymentController.Instance.deleteFichasInPayment();
+        PlayerPayment.Instance.deleteFichasInPayment();
         deleteFichasInMesa();
     }
 

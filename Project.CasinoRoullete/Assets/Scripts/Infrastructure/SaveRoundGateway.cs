@@ -10,37 +10,38 @@ using System.IO;
 
 namespace Infrastructure
 {
-    public class GlobalGateway : ISaveRound
+    public class SaveRoundGateway : ISaveRound
     {
-        private protected string URL_PATH = Application.persistentDataPath + "/roullete.data";
+        private static protected readonly string FILE_NAME = "roulletedata";
         public Round roundData {get; set;}
 
-        public IObservable<Unit> RoundSequentialSave()
+        public IObservable<Unit> RoundSequentialSave(CharacterTable characterTable)
         {
-            return Observable.FromCoroutine<Unit>(observer => SavePlayer(observer))
-                                            .Do(_ => Debug.Log("Save round data in " + URL_PATH));
+            return Observable.FromCoroutine<Unit>(observer => SavePlayer(observer, characterTable));
         }
 
-        public IObservable<Unit> RoundSequentialLoad()
+        public IObservable<Unit> RoundSequentialLoad(CharacterTable characterTable)
         {
-            return Observable.FromCoroutine<Unit>(observer => LoadPlayer(observer))
-                                            .Do(_ => Debug.Log("Load round data in " + URL_PATH));
+            return Observable.FromCoroutine<Unit>(observer => LoadPlayer(observer));
         }
 
-        IEnumerator SavePlayer(IObserver<Unit> observer)//int[] player, FichasSave[] fichas, bool editRound)
+        IEnumerator SavePlayer(IObserver<Unit> observer, CharacterTable characterTable)
         {
-            string path = URL_PATH;
-            yield return new WaitForSeconds(0.01f);
+            roundData = new Round()
+            {
+                idPlayer = characterTable.tableName,
+                currentBet = characterTable.characterMoney.characterBet.Value,
+                currentMoney = characterTable.characterMoney.characterMoney.Value
+            };
 
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Create);
+            string path = GameManager.Instance.UrlDataPath + FILE_NAME;
+            string json = JsonUtility.ToJson(roundData);
 
-            //PlayerData data = new PlayerData(r.Next(0, 1000), fichas, player[0], editRound);
+            File.WriteAllText(path, json);
+            Debug.Log($"Saved data JSON with the table {roundData.idPlayer} with {json}");
 
-            Debug.Log("Saving data in: " + roundData.ToString());
-
-            formatter.Serialize(stream, roundData);
-            stream.Close();
+            yield return new WaitUntil(() => File.Exists(path));
+            
 
             observer.OnNext(Unit.Default); // push Unit or all buffer result.
             observer.OnCompleted();
@@ -48,23 +49,14 @@ namespace Infrastructure
 
         IEnumerator LoadPlayer(IObserver<Unit> observer) 
         {
-            string path = URL_PATH;
-            yield return new WaitForSeconds(0.01f);
+            string path = GameManager.Instance.UrlDataPath + FILE_NAME;
+            string saveString = File.ReadAllText(path);
 
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            if (File.Exists(path) && stream.Length > 0) 
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-
-                roundData = formatter.Deserialize(stream) as Round;
-                stream.Close();
-            }
-            else 
-            {
-                Debug.LogError("Save file not found in " + path);
-            }
+            yield return new WaitUntil(() => saveString != null);
             
+            roundData = JsonUtility.FromJson<Round>(saveString);
+            Debug.Log($"Loaded data JSON with the table {roundData.idPlayer} with {saveString}");
+
             observer.OnNext(Unit.Default); // push Unit or all buffer result.
             observer.OnCompleted();
         }

@@ -23,10 +23,16 @@ namespace ViewModel
         public ISubject<bool> OnWin = new Subject<bool>();    
         public ISubject<bool> OnPressed = new Subject<bool>();   
 
-        public Vector2 GetCurrentOffset()
+        public Vector2 AddCurrentOffset()
         {
             Vector2 v = new Vector2(0.01f,0.038f);
             currentOffset = currentOffset + v;
+            return currentOffset;
+        }
+        public Vector2 SubstractCurrentOffset()
+        {
+            Vector2 v = new Vector2(0.01f,0.038f);
+            currentOffset = currentOffset - v;
             return currentOffset;
         }
     }

@@ -15,9 +15,12 @@ namespace ViewModel
 
         public int currentTableCounter;
         public Chip currentChipSelected;
-        public List<ChipGame> currentTable = new List<ChipGame>();
+        public List<GameObject> currentTable = new List<GameObject>();
 
+        public ISubject<GameObject> OnDestroyChip = new Subject<GameObject>();
         public ISubject<bool> OnActiveButton = new Subject<bool>();
-        public ISubject<bool> OnRound = new Subject<bool>();
+        public ISubject<bool> OnRoundFinished = new Subject<bool>();
+        public ISubject<bool> OnSaveGame = new Subject<bool>();
+
     }
 }

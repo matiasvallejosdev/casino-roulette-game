@@ -23,9 +23,15 @@ namespace Components
             spriteRenderer.sprite = chipData.chipSprite;
         }
 
-        public void Destroy()
+        public void DestroyMagnet()
         {
             Destroy(this.gameObject);
+        }
+
+        void OnDestroy()
+        {
+            characterTable.OnDestroyChip
+                .OnNext(this.gameObject);
         }
     }
 }

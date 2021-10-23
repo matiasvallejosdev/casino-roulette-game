@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
+using Components;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+
 
 public class GameManager : Singlenton<GameManager>
 {
@@ -15,122 +17,133 @@ public class GameManager : Singlenton<GameManager>
     // Keep track of the game state
     // Generate other persitente systems. Example preferences users and store
 
-    // Pregame, Runing Roullete, Paused
-    public enum GameState
-    {
-        PREGAME,
-        MENU,
-        RUNING,
-        PAUSED,
-        SHOP
-    }
-
+    private protected string URL_PATH;
     public GameObject[] SystemPrefabs;
+
     //public Events.EventGameState OnGameStateChanged;
-    public Events.EventRestartGame OnRestartGame;
+    //public Events.EventRestartGame OnRestartGame;
     //public EventsRound.EventRoundState OnGameRoundChange;
-
-    List<GameObject> _instanceSystemPrefabs;
-    List<AsyncOperation> _loadOperations;
-    GameState _currentGameState = GameState.PREGAME;
-
+    
+    private List<GameObject> _instanceSystemPrefabs;
+    private List<AsyncOperation> _loadOperations;
+    private GameState _currentGameState = GameState.PREGAME;
     private string _currentLevelName = string.Empty;
-
-    private bool isShopInMenu;
   
+    public String CurrentLevelName
+    {
+        get { return _currentLevelName; }
+        private set { _currentLevelName = value; }
+    }
     public GameState CurrentGameState
     {
         get { return _currentGameState; }
         private set { _currentGameState = value; }
     }
+    public String UrlDataPath
+    {
+        get{ return URL_PATH;}
+    }
 
     private void Start() 
     {
-        initializeGame();
-
+        // Persistance instance
+        URL_PATH = Application.persistentDataPath + "/Saves/";
         DontDestroyOnLoad(gameObject);
 
+        // Start game manager
+        StartInstances();
+        StartRoulleteGame();
+    }
+
+    private void StartInstances()
+    {
         _instanceSystemPrefabs = new List<GameObject>();
         _loadOperations = new List<AsyncOperation>();
 
-        InstantiateSystemPrefabs();
-    }
-
-    private void initializeGame()
-    {
-        isShopInMenu = true;
-        string path = Application.persistentDataPath + "/roullete.data";
-        Debug.Log(path);
-
-        if (!File.Exists(path)) 
-        {
-            Debug.Log("El archivo del jugador esta siendo creado!");
-            createNewPlayer();
-        } else 
-        {
-            Debug.Log("El archivo ya existe!");
-        }
-    }
-
-    private void createNewPlayer() 
-    {
-        int[] a = { 0, 0 };
-        //FichasSave[] r = { };
-        
-        //SaveSystem.SavePlayer(a, r, true);
-
-        PlayerPrefs.SetString("lastRewardVideoOpen", DateTime.Now.Ticks.ToString());
-        PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
-        PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
-        PlayerPrefs.SetFloat("SecondsToWaitRewardVideo", 60);
-    }
-
-    private void Update()
-    {
-        if (_currentGameState == GameState.PREGAME)
-        {
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            togglePause();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            toggleShop();
-        }
-    }
-
-    void HandleMainMenuFadeComplete(bool fadeOut)
-    {
-        if (!fadeOut)
-        {
-            unloadLevel(_currentLevelName);
-        }
-    }
-
-    void HandleRestart(bool restart)
-    {
-        restart_game restarting = GameObject.Find("RestartGame").GetComponent<restart_game>();
-        restarting.restartGame();
-    }
-
-    void InstantiateSystemPrefabs()
-    {
         GameObject prefabsInstance;
+
         for(int i = 0; i < SystemPrefabs.Length;i++)
         {
             prefabsInstance = Instantiate(SystemPrefabs[i]);
             _instanceSystemPrefabs.Add(prefabsInstance);
         }
-    }  
-    protected void OnApplicationQuit() 
+    }
+
+    private void StartRoulleteGame()
     {
-        if (_currentLevelName == "2_Game_Roullete")
+        CheckDirectory();
+        CreateNewPlayer();
+    }
+
+    void CheckDirectory()
+    {
+        if(!Directory.Exists(URL_PATH))
         {
-            // Save game
-            //RoundController.Instance.OnGameClosed();
+            Directory.CreateDirectory(URL_PATH);
         }
+    }
+
+    private void CreateNewPlayer() 
+    {
+        PlayerSystem.Instance.characterTable.OnSaveGame
+            .OnNext(true);
+
+        PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
+        PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
+    }
+
+    // State controller
+    private void UpdateState(GameState state)
+    {
+        GameState previousGameState = _currentGameState;
+        _currentGameState = state;
+
+        switch (_currentGameState)
+        {
+            case GameState.PREGAME:
+                Time.timeScale = 1.0f;
+                break;
+            case GameState.RUNING:
+                Time.timeScale = 1.0f;
+                break;
+            case GameState.PAUSED:
+                Time.timeScale = 0.0f;
+                break;
+            case GameState.REWARD:
+                Time.timeScale = 1.0f;
+                break;
+            default:
+    
+                break;
+        }
+        //OnGameStateChanged.Invoke(_currentGameState, previousGameState);
+        // transitions between scenes
+    }
+
+    // Player event
+    public void TogglePauseGame()
+    {
+        // condition ? true : false
+        UpdateState(_currentGameState == GameState.RUNING ? GameState.PAUSED : GameState.RUNING);
+    }
+    public void ToggleRestartGame()
+    {
+        //OnRestartGame.Invoke(true);
+        //restart_game restarting = GameObject.Find("RestartGame").GetComponent<restart_game>();
+        //restarting.restartGame();
+        Debug.Log("Restarting game");
+    }
+    public void ToggleExitGame()
+    {
+        // Implement features for quitting and save de game
+        Debug.Log("Quiting game");
+        Application.Quit();
+    }
+
+    // Unity event
+    protected void OnApplicationQuit()
+    {
+        PlayerRound.Instance.OnGameClosed();
     }
     protected override void OnDestroy() 
     {
@@ -142,72 +155,8 @@ public class GameManager : Singlenton<GameManager>
         _instanceSystemPrefabs.Clear();
     }
 
-    private void UpdateState(GameState state)
-    {
-        GameState previousGameState = _currentGameState;
-        _currentGameState = state;
-
-        switch (_currentGameState)
-        {
-            case GameState.PREGAME:
-                Time.timeScale = 1.0f;
-                break;
-            case GameState.MENU:
-                Time.timeScale = 1.0f;
-                break;
-            case GameState.RUNING:
-                Time.timeScale = 1.0f;
-                break;
-            case GameState.PAUSED:
-                Time.timeScale = 0.0f;
-                break;
-            case GameState.SHOP:
-                Time.timeScale = 1.0f;
-                break;
-            default:
-    
-                break;
-        }
-        //OnGameStateChanged.Invoke(_currentGameState, previousGameState);
-        // transitions between scenes
-    }
-
-    public void startGame()
-    {
-        loadLevel("0_Game_Reward");
-    }
-    
-    public void togglePause()
-    {
-        // condition ? true : false
-        UpdateState(_currentGameState == GameState.RUNING ? GameState.PAUSED : GameState.RUNING);
-    }
-
-    public void toggleShop()
-    {
-        UpdateState(_currentGameState == GameState.RUNING ? GameState.SHOP : GameState.RUNING);
-    }
-
-    public void restartGame()
-    {
-        OnRestartGame.Invoke(true);
-        Debug.Log("Restarting game");
-    }
-
-    public void exitGame()
-    {
-        // Implement features for quitting and save de game
-        Debug.Log("Quiting game");
-        Application.Quit();
-    }
-
-    // Functions
-    public string getCurrentLevel() 
-    {
-        return _currentLevelName;
-    }
-    // Levels
-    public void loadLevel(string levelName)
+    // Loaders
+    public void LoadLevel(string levelName)
     {
         AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         if (ao == null)
@@ -219,7 +168,7 @@ public class GameManager : Singlenton<GameManager>
         _loadOperations.Add(ao);
         _currentLevelName = levelName;
     }
-    public void unloadLevel(string levelName)
+    public void UnloadLevel(string levelName)
     {
         AsyncOperation ao = SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(levelName));
         if (ao == null)
@@ -227,12 +176,9 @@ public class GameManager : Singlenton<GameManager>
             Debug.Log("[GameManager] Unable to unload level" + levelName);
             return;
         }
-        if(levelName == "2_Game_Roullete") 
-        {
-            //RoundController.Instance.OnGameClosed();
-        }
         ao.completed += OnUnloadOperationComplete;
     }
+
     // Operations before the load or unload
     void OnLoadOperationComplete(AsyncOperation ao)
     {
@@ -253,14 +199,13 @@ public class GameManager : Singlenton<GameManager>
     {
         Debug.Log("Unload complete");
     }
+}
 
-    public bool getIsInMenu() 
-    {
-        //Debug.Log("get in menu is: " + isShopInMenu);
-        return isShopInMenu;
-    }
-    public void setIsInMenu(bool set) 
-    {
-        isShopInMenu = set;
-    }
+// Pregame, Runing, Paused, Reward
+public enum GameState
+{
+    PREGAME,
+    RUNING,
+    PAUSED,
+    REWARD
 }

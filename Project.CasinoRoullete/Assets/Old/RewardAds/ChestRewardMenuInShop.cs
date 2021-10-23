@@ -80,10 +80,10 @@ public class ChestRewardMenuInShop : MonoBehaviour
     }
     public void rewardClick()
     {
-        GameManager.Instance.toggleShop();
+        //GameManager.Instance.toggleShop();
         rewardButton.interactable = false;
         // Open fortune roullete
-        GameManager.Instance.unloadLevel(GameManager.Instance.getCurrentLevel());
-        GameManager.Instance.loadLevel(fortuneRoullete);
+        //GameManager.Instance.UnloadLevel(GameManager.Instance.getCurrentLevel());
+        GameManager.Instance.LoadLevel(fortuneRoullete);
     }
 }

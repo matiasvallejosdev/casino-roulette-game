@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96896e3056c9e7144a7bbd5a787c5501, type: 3}
   m_Name: CharacterMoney
   m_EditorClassIdentifier: 
-  currentBet:
-    value: 2990
-  currentMoney:
+  characterBet:
+    value: 0
+  characterMoney:
+    value: 10000
+  currentPayment:
     value: 0

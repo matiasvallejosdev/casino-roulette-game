@@ -19,11 +19,11 @@ namespace Components
         // Start is called before the first frame update
         void Start()
         {
-            characterTable.characterMoney.currentBet
+            characterTable.characterMoney.characterBet
                 .Subscribe(OnChangeBet)
                 .AddTo(this);
 
-            characterTable.characterMoney.currentMoney
+            characterTable.characterMoney.characterMoney
                 .Subscribe(OnChangeMoney)
                 .AddTo(this);
 

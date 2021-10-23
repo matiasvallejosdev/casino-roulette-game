@@ -16,7 +16,7 @@ MonoBehaviour:
   chipPrefab: {fileID: 5255888387336823749, guid: 01ca1795e6eb20a4bb420f376c291f70,
     type: 3}
   characterMoney: {fileID: 11400000, guid: d71fec43bee6a054a908c6af7c5ae8a6, type: 2}
-  currentTableCounter: 54
+  currentTableCounter: 3
   currentChipSelected: {fileID: 11400000, guid: 5841550ec8d393049a93cd4b41af8b38,
     type: 2}
   currentTable: []

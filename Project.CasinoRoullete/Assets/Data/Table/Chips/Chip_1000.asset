@@ -15,6 +15,6 @@ MonoBehaviour:
   chipName: Chip 1000
   chipkey: 5
   chipValue: 1000
-  chipSprite: {fileID: 842874519943553434, guid: f8a93430902ecce4ba36a6250581bbd8,
+  chipSprite: {fileID: -3915038439420842363, guid: f8a93430902ecce4ba36a6250581bbd8,
     type: 3}
   chipArray: 1

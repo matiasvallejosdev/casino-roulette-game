@@ -8,49 +8,51 @@ namespace ViewModel
     [CreateAssetMenu(fileName = "New Character Money", menuName = "Scriptable/Character Money")]
     public class CharacterMoney : ScriptableObject
     {
-        public IntReactiveProperty currentBet;
-        public IntReactiveProperty currentMoney;
+        public IntReactiveProperty characterBet;
+        public IntReactiveProperty characterMoney;
+        public IntReactiveProperty currentPayment;
 
         public int GetCashTotal() 
         {
-            int c = currentMoney.Value;
+            int c = characterMoney.Value;
             return c;
         }
 
-        public void AddCash(int cashWinner)
+        void AddCash(int cashWinner)
         {
-            int aux = currentMoney.Value;
-            currentMoney.Value += cashWinner;
+            int aux = characterMoney.Value;
+            characterMoney.Value += cashWinner;
         }
-        public void SubstractCash(int cashLost)
+        void SubstractCash(int cashLost)
         {
             if(cashLost < 0) 
             {
                 cashLost = cashLost * -1;
             }
 
-            currentMoney.Value -= cashLost;
+            characterMoney.Value -= cashLost;
 
-            if (currentMoney.Value < 0)
+            if (characterMoney.Value < 0)
             {
-                currentMoney.Value = 0;
+                characterMoney.Value = 0;
             }
         }
 
-        public void AddBet(int betSum)
+        void AddBet(int betSum)
         {
-            int aux = currentBet.Value - betSum;
-            currentBet.Value  += betSum;
+            int aux = characterBet.Value - betSum;
+            characterBet.Value  += betSum;
         }
-        public void SubstractBet(int betRest)
+        void SubstractBet(int betRest)
         {
-            int aux = currentBet.Value ;
-            currentBet.Value  -= betRest;
+            int aux = characterBet.Value ;
+            characterBet.Value  -= betRest;
         }
+
         public bool CheckBetValue(int valueFicha)
         {
             bool aux = true;
-            if (valueFicha <= currentMoney.Value  && valueFicha != 0)
+            if (valueFicha <= characterMoney.Value  && valueFicha != 0)
             {
                 aux = true;
                 SubstractCash(valueFicha);
@@ -61,6 +63,11 @@ namespace ViewModel
                 aux = false;
             }
             return aux;
+        }
+        public void DeleteChip(int valueFicha)
+        {
+            SubstractBet(valueFicha);
+            AddCash(valueFicha);
         }
     }
 }

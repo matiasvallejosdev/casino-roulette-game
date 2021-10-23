@@ -14,7 +14,7 @@ namespace Components
 
         void Start()
         {
-            characterTable.OnRound
+            characterTable.OnRoundFinished
                 .Subscribe(MagnetDestroyerFichas)
                 .AddTo(this);
             
