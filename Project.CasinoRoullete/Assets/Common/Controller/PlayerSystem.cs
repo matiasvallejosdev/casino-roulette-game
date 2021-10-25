@@ -8,38 +8,41 @@ using UnityEngine;
 using ViewModel;
 using UniRx;
 
-public class PlayerSystem : Singlenton<PlayerSystem>
+namespace Controllers
 {
-    // Player save system
-    // Save game
-    // Load game
-
-    public CharacterTable characterTable;
-    public CharacterCmdFactory characterCmdFactory;
-
-    private void Start()
+    public class PlayerSystem : Singlenton<PlayerSystem>
     {
-        DontDestroyOnLoad(gameObject);
-        
-        characterTable.characterMoney.currentPayment.Value = 0;
+        // Player save system
+        // Save game
+        // Load game
 
-        characterTable.OnSaveGame
-            .Subscribe(SaveRound)
-            .AddTo(this);
+        public CharacterTable characterTable;
+        public CharacterCmdFactory characterCmdFactory;
 
-        // Load player round
-        LoadRound();
-    }
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+            
+            characterTable.characterMoney.currentPayment.Value = 0;
 
-    public void SaveRound(bool value) 
-    {
-        if(!value)
-            return;
+            characterTable.OnSaveGame
+                .Subscribe(SaveRound)
+                .AddTo(this);
 
-        characterCmdFactory.SavePlayer(characterTable).Execute();
-    }
-    public void LoadRound()
-    {   
-        characterCmdFactory.LoadPlayer(characterTable).Execute();
+            // Load player round
+            LoadRound();
+        }
+
+        public void SaveRound(bool value) 
+        {
+            if(!value)
+                return;
+
+            characterCmdFactory.SavePlayer(characterTable).Execute();
+        }
+        public void LoadRound()
+        {   
+            characterCmdFactory.LoadPlayer(characterTable).Execute();
+        }
     }
 }

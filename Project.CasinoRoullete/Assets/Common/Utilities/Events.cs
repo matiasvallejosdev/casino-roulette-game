@@ -8,8 +8,4 @@ public class Events
     [System.Serializable] public class EventFadeComplete : UnityEvent<bool> { }
     // Event when the game is restarting
     [System.Serializable] public class EventRestartGame : UnityEvent<bool> { }
-
-    // Ej:
-    // Podes añadir nuevos eventos 
-    //  EJ: onFadeOutComplete
 }

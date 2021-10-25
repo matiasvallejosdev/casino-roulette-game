@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Components;
 using UnityEngine;
 using ViewModel;
 
@@ -17,7 +18,15 @@ namespace Commands
         {
             return new PlayTurnCmd();
         }      
-        public ButtonTurnCmd ButtonTurnCmd(GameObject chipInstance, GameObject chipsContainer, CharacterTable characterTable, ButtonTable buttonData)
+        public ResetTurnCmd ResetTableTurn(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable)
+        {
+            return new ResetTurnCmd(magnetDestroyerDisplay, characterTable);
+        }      
+        public UndoTurnCmd UndoTableTurn()
+        {
+            return new UndoTurnCmd();
+        }      
+        public ButtonTurnCmd ButtonTableTurn(GameObject chipInstance, GameObject chipsContainer, CharacterTable characterTable, ButtonTable buttonData)
         {
             return new ButtonTurnCmd(chipInstance, chipsContainer, characterTable, buttonData);
         }    

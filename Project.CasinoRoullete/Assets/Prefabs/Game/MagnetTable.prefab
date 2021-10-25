@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7362006945444294875}
   - component: {fileID: 7362006945444294874}
   m_Layer: 0
-  m_Name: MagnetDestroyer
+  m_Name: MagnetTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
+  gameCmdFactory: {fileID: 11400000, guid: f7ba5b05108593e45a6a994947132d78, type: 2}
   magnetDestroyer: {fileID: 7362006946355028797}
-  magnetTime: 3.5
+  magnetTime: 4
 --- !u!1 &7362006945608341344
 GameObject:
   m_ObjectHideFlags: 0

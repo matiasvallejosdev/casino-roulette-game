@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using ViewModel;
 using System.Collections;
+using Managers;
 using UnityEngine.Networking;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;

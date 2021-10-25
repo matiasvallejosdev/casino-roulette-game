@@ -59,7 +59,7 @@ namespace Commands
 
         private void OnActiveButton(bool isActive)
         {
-            buttonTableData.isActive.Value = isActive;
+            _isActive = isActive;
             if(isActive)
             {
                 ResetButton();
@@ -68,9 +68,12 @@ namespace Commands
 
         public void Click()
         {
+            if(!_isActive)
+                return;
+                
             GameObject newChip = Instantiate(characterTable.chipPrefab);
             newChip.SetActive(false);
-            gameCmdFactory.ButtonTurnCmd(newChip, chipsContainer, characterTable, buttonTableData).Execute();
+            gameCmdFactory.ButtonTableTurn(newChip, chipsContainer, characterTable, buttonTableData).Execute();
         }
     }
 }

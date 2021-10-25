@@ -4,8 +4,10 @@ using UnityEngine;
 using ViewModel;
 using UniRx;
 using Commands;
+using Components;
+using Managers;
 
-namespace Components
+namespace Controllers
 {
     public class PlayerRound : Singlenton<PlayerRound>
     {
@@ -51,12 +53,13 @@ namespace Components
         }
         public void OnGameClosed() 
         {
-            Debug.Log("Game have been closed! Files was saved!");
+            Debug.Log("Game have been closed! Files was saved!");  
 
             PlayerSystem.Instance.characterTable.OnSaveGame
             .OnNext(true);
 
             ResetTable();
+            characterTable.currentNumbers.Clear();
         }
         public void OnGameOpened() 
         {
@@ -65,6 +68,7 @@ namespace Components
             characterTable.currentChipSelected = GameObject.Find("Selected_0").GetComponent<ChipSelected>().chipData;
 
             PlayerSystem.Instance.LoadRound();
+            characterTable.OnActiveButton.OnNext(true);
         }
         
         // Table Controller
@@ -87,7 +91,7 @@ namespace Components
             characterTable.currentTable.Remove(ficha);
             characterTable.currentTableCounter--;
         }   
-        private void ResetTable()
+        public void ResetTable()
         {
             characterTable.OnActiveButton.OnNext(true);
             characterTable.characterMoney.characterBet.Value = 0;
@@ -97,8 +101,8 @@ namespace Components
             {
                 Destroy(go);
             }
-            
+
             characterTable.currentTable.Clear();
-        }   
+        }
     }
 }

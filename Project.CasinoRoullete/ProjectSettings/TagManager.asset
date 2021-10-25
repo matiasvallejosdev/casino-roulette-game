@@ -55,3 +55,6 @@ TagManager:
   - name: Roullete
     uniqueID: 948227913
     locked: 0
+  - name: Shadow
+    uniqueID: 4281010685
+    locked: 0
