@@ -14,7 +14,6 @@ namespace Controllers
         // Player round controller
         // Control table
         // Control iteractions
-
         public CharacterTable characterTable;
         public GameCmdFactory gameCmdFactory;
 
@@ -75,7 +74,10 @@ namespace Controllers
         public void DestroyLastChip()
         {
             if(characterTable.currentTableCounter > 0)
+            {
+                Debug.Log("Undo chip of the table!");
                 Destroy(characterTable.currentTable[characterTable.currentTable.Count - 1]);
+            }
         }
         private void DestroyChipTable(GameObject ficha) 
         {
@@ -90,6 +92,8 @@ namespace Controllers
             chipGame.currentButton.SubstractCurrentOffset();
             characterTable.currentTable.Remove(ficha);
             characterTable.currentTableCounter--;
+
+            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
         }   
         public void ResetTable()
         {

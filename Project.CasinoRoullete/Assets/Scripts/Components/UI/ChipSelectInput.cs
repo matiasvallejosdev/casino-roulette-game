@@ -13,7 +13,7 @@ namespace Components
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.gameObject.CompareTag("FichaUI"))
+            if(other.gameObject.CompareTag("ChipSelectUI"))
             {
                 //SoundContoller.Instance.PlayFxSound(5);
                 ChipSelected chipSelected = other.gameObject.GetComponent<ChipSelected>();

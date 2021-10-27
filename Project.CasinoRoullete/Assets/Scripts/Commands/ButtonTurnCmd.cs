@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using ViewModel;
 using Components;
+using Controllers;
 
 namespace Commands
 {    
@@ -31,7 +32,7 @@ namespace Commands
             if(characterTable.characterMoney.CheckBetValue(chipData.chipValue))
             {
                 Debug.Log("Bet is possible!");
-                //SoundContoller.Instance.PlayFxSound(1);
+                PlayerSound.Instance.gameSound.OnSound.OnNext(1);
 
                 // Instiate New Chip Instance
                 bool HasFichasOnTop = buttonData.currentChipsOnTop > 0;

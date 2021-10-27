@@ -24,6 +24,11 @@ namespace Commands
         {
             // Delete chips of the table
             // Using MagnetDestroyerAnimation
+            PlayerSound.Instance.gameSound.OnSound.OnNext(0);
+
+            if(characterTable.currentTableCounter <= 0)
+                return;
+                
             Debug.Log(@"Destroying chips of the table!");
             magnetDestroyerDisplay.StartCoroutine(ActivateMagnetDestroyer(magnetDestroyerDisplay.magnetTime));
         }

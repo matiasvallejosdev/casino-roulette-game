@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using ViewModel;
+using Controllers;
 
 namespace Commands
 {    
@@ -20,6 +21,7 @@ namespace Commands
         public void Execute()
         {
             //Debug.Log($"New selection input in position: {chipData.name}");
+            PlayerSound.Instance.gameSound.OnSound.OnNext(3);
             characterTable.currentChipSelected = chipData;
         }
     }

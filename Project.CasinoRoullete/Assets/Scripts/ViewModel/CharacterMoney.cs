@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using Controllers;
 
 namespace ViewModel
 {
@@ -23,6 +24,7 @@ namespace ViewModel
             int aux = characterMoney.Value;
             characterMoney.Value += cashWinner;
         }
+
         void SubstractCash(int cashLost)
         {
             if(cashLost < 0) 

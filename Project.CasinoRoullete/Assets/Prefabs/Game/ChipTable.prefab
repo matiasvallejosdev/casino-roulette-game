@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5255888387336823746}
   - component: {fileID: 8453059800705662724}
   m_Layer: 0
-  m_Name: ChipGame
+  m_Name: ChipTable
   m_TagString: Chip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,6 +146,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
   spriteRenderer: {fileID: 5255888387336823750}
-  chipData: {fileID: 0}
-  currentPosition: {x: 0, y: 0}
-  currentButton: {fileID: 0}

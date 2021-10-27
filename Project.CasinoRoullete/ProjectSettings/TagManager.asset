@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Numeros_Ruleta
-  - Fichas
   - Button
-  - FichaUI
   - Chip
+  - AnchorRoullete
+  - ChipSelectUI
   layers:
   - Default
   - TransparentFX

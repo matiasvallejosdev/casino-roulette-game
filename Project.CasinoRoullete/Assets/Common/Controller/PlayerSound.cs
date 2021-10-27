@@ -1,56 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ViewModel;
+using UniRx;
+using System;
 
 namespace Controllers
 {
     public class PlayerSound : Singlenton<PlayerSound>
     {
-        [Header("Effect Sounds")]
-        public AudioClip[] fx;
-        public AudioClip[] music;
-
-        private AudioSource _fx;
-        private AudioSource _music;
+        public GameSound gameSound;
+        public AudioSource _audioSourceFx;
+        public AudioSource _audioSourceMusic;
+        
+        public bool IsFxOn
+        {
+            get{ return gameSound.isFxOn.Value; }
+            set{ gameSound.isFxOn.Value = value; }
+        }
+        public bool IsMusicOn
+        {
+            get{ return gameSound.isMusicOn.Value; }
+            set{ gameSound.isMusicOn.Value = value; }
+        }
 
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
+            
+            gameSound.OnSound
+                .Subscribe(OnSound)
+                .AddTo(this);
 
-            _music = this.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<AudioSource>();
-            _fx = this.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
-        }
+            gameSound.OnMusic
+                .Subscribe(OnMusic)
+                .AddTo(this);
+            
+            gameSound.isFxOn
+                .Subscribe(OnFxIs)
+                .AddTo(this);
+            
+            gameSound.isMusicOn
+                .Subscribe(OnMusicIs)
+                .AddTo(this);
 
-        public bool GetMusicStatus()
-        {
-            return _music.mute;
-        }
-        public bool GetSoundStatus() 
-        {
-            return _fx.mute;
-        }
-
-        public void SetMusicMute(bool status) 
-        {
-            _music.mute = status;
-        }
-        public void SetSoundMute(bool status) 
-        {
-            _fx.mute = status;    
+            OnGameOpened();
         }
 
-        public void PlayFxSound(int pos)
+        // Sound events
+        private void OnMusicIs(bool value)
         {
-            _fx.clip = fx[pos];
-            _fx.loop = false;
-            _fx.Play();
+            _audioSourceMusic.mute = !value;
+        }
+        private void OnFxIs(bool value)
+        {
+            _audioSourceFx.mute = !value;
         }
 
-        public void PlayMusic(int pos) 
+        private void OnMusic(int pos)
         {
-            _music.clip = music[pos];
-            _music.loop = true;
-            _music.Play();
+            _audioSourceMusic.clip = gameSound.musicFx[pos];
+            _audioSourceMusic.loop = true;
+            _audioSourceMusic.Play();
+        }
+        private void OnSound(int pos)
+        {
+            _audioSourceFx.clip = gameSound.soundFx[pos];
+            _audioSourceFx.loop = false;
+            _audioSourceFx.Play();
+        }
+
+        private void OnGameOpened()
+        {
+            IsMusicOn = true;
+            IsFxOn = true;
+
+            gameSound.OnMusic.OnNext(0);
         }
     }
 }

@@ -7,7 +7,7 @@ using Controllers;
 
 namespace Commands
 {    
-    public class PlayTurnCmd : ICommand
+    public class RestoreTurnCmd : ICommand
     {
         public void Execute()
         {

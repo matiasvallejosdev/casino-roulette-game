@@ -11,7 +11,7 @@ namespace Commands
     {
         public void Execute()
         {
-            Debug.Log("Undo chip table!");
+            PlayerSound.Instance.gameSound.OnSound.OnNext(0);
             PlayerRound.Instance.DestroyLastChip();
         }
     }
