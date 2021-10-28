@@ -78,7 +78,7 @@ namespace Commands
                 chipGame.StartChip(chipData, position, buttonData);
             }
 
-            characterTable.currentTable.Add(chipGame.gameObject);
+            characterTable.currentTable.Add(chipGame);
         }
     }
 }

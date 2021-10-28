@@ -76,20 +76,20 @@ namespace Controllers
             if(characterTable.currentTableCounter > 0)
             {
                 Debug.Log("Undo chip of the table!");
-                Destroy(characterTable.currentTable[characterTable.currentTable.Count - 1]);
+                Destroy(characterTable.currentTable[characterTable.currentTable.Count - 1].gameObject);
             }
         }
-        private void DestroyChipTable(GameObject ficha) 
+        private void DestroyChipTable(ChipGame ficha) 
         {
             if(characterTable.currentTableCounter <= 0)
                 return;
 
-            ChipGame chipGame = ficha.GetComponent<ChipGame>();
-            if(chipGame.currentChipData.chipValue > 0)
+            if(ficha.currentChipData.chipValue > 0)
             {
-                characterTable.characterMoney.DeleteChip(chipGame.currentChipData.chipValue);
-            }    
-            chipGame.currentButton.SubstractCurrentOffset();
+                characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue);
+            }   
+
+            ficha.currentButton.SubstractCurrentOffset();
             characterTable.currentTable.Remove(ficha);
             characterTable.currentTableCounter--;
 
@@ -101,9 +101,9 @@ namespace Controllers
             characterTable.characterMoney.characterBet.Value = 0;
             characterTable.currentTableCounter = 0;
 
-            foreach(GameObject go in characterTable.currentTable)
+            foreach(ChipGame go in characterTable.currentTable)
             {
-                Destroy(go);
+                Destroy(go.gameObject);
             }
 
             characterTable.currentTable.Clear();

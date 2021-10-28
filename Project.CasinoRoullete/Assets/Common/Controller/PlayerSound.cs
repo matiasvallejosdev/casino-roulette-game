@@ -13,17 +13,6 @@ namespace Controllers
         public AudioSource _audioSourceFx;
         public AudioSource _audioSourceMusic;
         
-        public bool IsFxOn
-        {
-            get{ return gameSound.isFxOn.Value; }
-            set{ gameSound.isFxOn.Value = value; }
-        }
-        public bool IsMusicOn
-        {
-            get{ return gameSound.isMusicOn.Value; }
-            set{ gameSound.isMusicOn.Value = value; }
-        }
-
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
@@ -51,10 +40,12 @@ namespace Controllers
         private void OnMusicIs(bool value)
         {
             _audioSourceMusic.mute = !value;
+            _audioSourceMusic.volume = gameSound.musicVolume;
         }
         private void OnFxIs(bool value)
         {
             _audioSourceFx.mute = !value;
+            _audioSourceFx.volume = gameSound.fxVolume;
         }
 
         private void OnMusic(int pos)
@@ -72,8 +63,8 @@ namespace Controllers
 
         private void OnGameOpened()
         {
-            IsMusicOn = true;
-            IsFxOn = true;
+            gameSound.isMusicOn.Value = true;
+            gameSound.isFxOn.Value = true;
 
             gameSound.OnMusic.OnNext(0);
         }

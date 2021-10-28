@@ -8,8 +8,8 @@ namespace Components
 {
     public class ChipGame : MonoBehaviour
     {
-        public CharacterTable characterTable;
-        public SpriteRenderer spriteRenderer;
+        [SerializeField] private CharacterTable characterTable;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         public Chip currentChipData {get; private set;}
         public Vector2 currentPosition {get; private set;}
         public ButtonTable currentButton {get; private set;}
@@ -31,7 +31,7 @@ namespace Components
         void OnDestroy()
         {
             characterTable.OnDestroyChip
-                .OnNext(this.gameObject);
+                .OnNext(this);
         }
     }
 }

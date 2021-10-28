@@ -17,13 +17,13 @@ namespace ViewModel
         [Header("Runtime Execution")]
         public int currentTableCounter;
         public Chip currentChipSelected;
-        public List<GameObject> currentTable = new List<GameObject>();
+        public List<ChipGame> currentTable = new List<ChipGame>();
         public List<int> currentNumbers = new List<int>();
         public IntReactiveProperty lastNumber;
         public List<GameObject> lastTable = new List<GameObject>();
 
         // Events observables
-        public ISubject<GameObject> OnDestroyChip = new Subject<GameObject>();
+        public ISubject<ChipGame> OnDestroyChip = new Subject<ChipGame>();
         public ISubject<bool> OnActiveButton = new Subject<bool>();
         public ISubject<bool> OnRoundFinished = new Subject<bool>();
         public ISubject<bool> OnSaveGame = new Subject<bool>();

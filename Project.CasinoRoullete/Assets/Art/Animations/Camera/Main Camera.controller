@@ -9,12 +9,12 @@ AnimatorController:
   m_Name: Main Camera
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Mover
+  - m_Name: Play
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -81,7 +81,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Mover
+    m_ConditionEvent: Play
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102551027375617246}
@@ -89,9 +89,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 4.5240946
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.5552132
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -106,7 +106,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Mover
+    m_ConditionEvent: Play
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102294067503068508}
@@ -124,12 +124,12 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1102 &1102294067503068508
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Camera_r
+  m_Name: Camera_Static
   m_Speed: 0.1
   m_CycleOffset: 0
   m_Transitions:
@@ -151,12 +151,12 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102551027375617246
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Camera_Mover
+  m_Name: Camera_Play
   m_Speed: 0.47
   m_CycleOffset: 0
   m_Transitions:
@@ -178,7 +178,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1107 &1107803361247367928
 AnimatorStateMachine:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -187,10 +187,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102294067503068508}
-    m_Position: {x: 192, y: -132, z: 0}
+    m_Position: {x: 190, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102551027375617246}
-    m_Position: {x: 432, y: 108, z: 0}
+    m_Position: {x: 430, y: 110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
