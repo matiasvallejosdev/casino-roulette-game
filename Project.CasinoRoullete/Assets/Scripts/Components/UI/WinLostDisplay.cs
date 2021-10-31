@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using ViewModel;
 using UniRx;
 using System;
+using Controllers;
 
 namespace Components
 {
@@ -61,6 +62,7 @@ namespace Components
 
             yield return new WaitForSeconds(secInScreen);
 
+            PlayerSound.Instance.gameSound.OnSound.OnNext(4);
             characterTable.characterMoney.currentPayment.Value = 0;
             winLostContainer.SetActive(false);
         }

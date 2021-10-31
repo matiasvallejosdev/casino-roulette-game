@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96896e3056c9e7144a7bbd5a787c5501, type: 3}
-  m_Name: CharacterMoney
+  m_Script: {fileID: 11500000, guid: ef3c2c1291e1992409e922ee5d0414fe, type: 3}
+  m_Name: GameRoullete
   m_EditorClassIdentifier: 
-  characterBet:
-    value: 0
-  characterMoney:
-    value: 260
-  currentPayment:
-    value: 0
+  sphere: {fileID: 1563967196799418755, guid: aa0b78b09b63ba9468b43937953f00e7, type: 3}
+  defaultSpeed: 35
+  currentSpeed: 35
+  currentNumber:
+    value: 11

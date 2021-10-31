@@ -16,14 +16,17 @@ namespace Components
 
         void Start()
         {
-            characterTable.OnRoundFinished
+            characterTable.OnRound
                 .Subscribe(MagnetDestroyer)
                 .AddTo(this);
         }
 
-        public void MagnetDestroyer(bool value)
+        public void MagnetDestroyer(bool isRound)
         {
-            gameCmdFactory.ResetTableTurn(this, characterTable);  
+            if(isRound)
+                return;
+
+            gameCmdFactory.ResetTableTurn(this, characterTable, 5).Execute();  
         }
     }
 }

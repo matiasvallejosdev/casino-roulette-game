@@ -15,6 +15,7 @@ namespace Controllers
         // Control table
         // Control iteractions
         public CharacterTable characterTable;
+        public GameRoullete gameRoullete;
         public GameCmdFactory gameCmdFactory;
 
         private void Start()
@@ -25,39 +26,36 @@ namespace Controllers
                 .Subscribe(DestroyChipTable)
                 .AddTo(this);
             
+            characterTable.OnRound
+                .Subscribe(OnRoundFinish)
+                .AddTo(this);
+            
             OnGameOpened();
         }
         
         // Events
-        public void OnRoundFinished(int newCash)
+        public void OnPayment(int value)
         {
-        /*
-            // Sum Cash
-            if (newCash > 0)
-            {
-                characterTable.characterMoney.AddCash(newCash);
-                //CanvasUI.Instance.turnWinOrLost("YOU WIN!", newCash.ToString(), true, 1);
-            } else if (newCash < 0)
-            {
-                characterTable.characterMoney.SubstractCash(newCash * -1);
-                //CanvasUI.Instance.turnWinOrLost("YOU LOST!", newCash.ToString(), false, 1);
-            }
-            // Delete fichas
-            PaymentController.Instance.deleteFichasInPayment();
-            // Save Rounded
-            PaymentController.Instance.saveRounded();
-            // Apuesta to zero
-            characterTable.characterMoney.SubstractBet(characterTable.characterMoney.currentBet.Value);
-        */
+            characterTable.characterMoney.currentPayment.Value = value;
+            characterTable.characterMoney.RoundFinish(value);
+        }
+        public void OnRoundFinish(bool isRound)
+        {
+            if(isRound)
+                return;
+            
+            characterTable.lastNumber.Value = gameRoullete.currentNumber.Value;
+            characterTable.currentNumbers.Add(characterTable.lastNumber.Value);
+            ResetTable(false);
         }
         public void OnGameClosed() 
         {
             Debug.Log("Game have been closed! Files was saved!");  
 
             PlayerSystem.Instance.characterTable.OnSaveGame
-            .OnNext(true);
+                .OnNext(true);
 
-            ResetTable();
+            ResetTable(true);
             characterTable.currentNumbers.Clear();
         }
         public void OnGameOpened() 
@@ -65,6 +63,8 @@ namespace Controllers
             characterTable.currentTableCounter = 0;
             characterTable.currentTable.Clear();
             characterTable.currentChipSelected = GameObject.Find("Selected_0").GetComponent<ChipSelected>().chipData;
+            characterTable.currentNumbers.Clear();
+            //characterTable.lastTable.Clear();
 
             PlayerSystem.Instance.LoadRound();
             characterTable.OnActiveButton.OnNext(true);
@@ -79,33 +79,38 @@ namespace Controllers
                 Destroy(characterTable.currentTable[characterTable.currentTable.Count - 1].gameObject);
             }
         }
+
         private void DestroyChipTable(ChipGame ficha) 
         {
-            if(characterTable.currentTableCounter <= 0)
+            if(ficha == null)
                 return;
-
-            if(ficha.currentChipData.chipValue > 0)
+            
+            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
+            
+            if(ficha.currentChipData.chipValue > 0 && characterTable.currentTableCounter > 0)
             {
-                characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue);
+                characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue); // Delete money
+                characterTable.currentTableCounter--;
             }   
 
             ficha.currentButton.SubstractCurrentOffset();
             characterTable.currentTable.Remove(ficha);
-            characterTable.currentTableCounter--;
-
-            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
         }   
-        public void ResetTable()
+
+        public void ResetTable(bool destroyChips)
         {
-            characterTable.OnActiveButton.OnNext(true);
             characterTable.characterMoney.characterBet.Value = 0;
             characterTable.currentTableCounter = 0;
+
+            if(!destroyChips)
+                return;
 
             foreach(ChipGame go in characterTable.currentTable)
             {
                 Destroy(go.gameObject);
             }
 
+            characterTable.OnActiveButton.OnNext(true);
             characterTable.currentTable.Clear();
         }
     }

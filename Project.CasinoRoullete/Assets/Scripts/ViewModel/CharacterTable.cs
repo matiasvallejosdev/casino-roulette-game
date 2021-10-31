@@ -15,18 +15,21 @@ namespace ViewModel
         public CharacterMoney characterMoney;
         
         [Header("Runtime Execution")]
+        // Current round
         public int currentTableCounter;
         public Chip currentChipSelected;
         public List<ChipGame> currentTable = new List<ChipGame>();
         public List<int> currentNumbers = new List<int>();
+
+        // Last round
         public IntReactiveProperty lastNumber;
-        public List<GameObject> lastTable = new List<GameObject>();
+        //public List<ChipGame> lastTable = new List<ChipGame>();
 
         // Events observables
         public ISubject<ChipGame> OnDestroyChip = new Subject<ChipGame>();
         public ISubject<bool> OnActiveButton = new Subject<bool>();
-        public ISubject<bool> OnRoundFinished = new Subject<bool>();
         public ISubject<bool> OnSaveGame = new Subject<bool>();
+        public ISubject<bool> OnRound = new Subject<bool>();
 
     }
 }

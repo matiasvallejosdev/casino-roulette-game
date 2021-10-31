@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Components;
+using Infrastructure;
+using Managers;
 using UnityEngine;
 using ViewModel;
 
@@ -14,13 +16,13 @@ namespace Commands
         {
             return new ChipSelectTurnCmd(characterTable, arrayValue);
         }      
-        public PlayTurnCmd PlayTurn()
+        public PlayTurnCmd PlayTurn(CharacterTable characterTable, GameRoullete gameRoullete)
         {
-            return new PlayTurnCmd();
+            return new PlayTurnCmd(GameManager.Instance, characterTable, gameRoullete, new PlayRoundGateway());
         }      
-        public ResetTurnCmd ResetTableTurn(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable)
+        public ResetTurnCmd ResetTableTurn(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable, int delayTime = 0)
         {
-            return new ResetTurnCmd(magnetDestroyerDisplay, characterTable);
+            return new ResetTurnCmd(magnetDestroyerDisplay, characterTable, delayTime);
         }      
         public UndoTurnCmd UndoTableTurn()
         {

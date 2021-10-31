@@ -13,11 +13,13 @@ namespace Commands
         private MagnetDestroyerDisplay magnetDestroyerDisplay;
         private float magnetTime;
         private CharacterTable characterTable;
+        private int delayTime;
 
-        public ResetTurnCmd(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable)
+        public ResetTurnCmd(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable, int delayTime)
         {
             this.magnetDestroyerDisplay = magnetDestroyerDisplay;
             this.characterTable = characterTable;
+            this.delayTime = delayTime;
         }
 
         public void Execute()
@@ -36,6 +38,7 @@ namespace Commands
         IEnumerator ActivateMagnetDestroyer(float seg)
         {
             characterTable.OnActiveButton.OnNext(false);
+            yield return new WaitForSeconds(delayTime);
             magnetDestroyerDisplay.magnetDestroyer.SetActive(true);
             yield return new WaitForSeconds(seg);
             magnetDestroyerDisplay.magnetDestroyer.SetActive(false);

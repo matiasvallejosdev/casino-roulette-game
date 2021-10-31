@@ -51,7 +51,6 @@ namespace Components
             }
 
             AddNumber(value);   
-            characterTable.currentNumbers.Add(value);
             _onScreen++;
         }
 

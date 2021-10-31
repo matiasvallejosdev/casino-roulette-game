@@ -1,5 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1425421817044854550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8111117991834568982}
+  m_Layer: 0
+  m_Name: SphereContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8111117991834568982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425421817044854550}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8648596727049511954}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7956991914623940168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6963858340534191855}
+  - component: {fileID: 8349406111653466392}
+  m_Layer: 0
+  m_Name: NumberWinnerAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6963858340534191855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956991914623940168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8648596727683782939}
+  m_Father: {fileID: 8648596726870118075}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8349406111653466392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956991914623940168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a191215a133b645a7e5bfb0972bd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameRoullete: {fileID: 11400000, guid: 5f1534f4ae4382f4eb50fc96bf3e998f, type: 2}
+  numberContainer: {fileID: 1598952540353666213, guid: be8fdad7ddae0e04d8fb9f834ee17b5b,
+    type: 3}
+  goContainer: {fileID: 8648596727683782938}
+  anchorPos: {fileID: 8648596727064370381}
+  anchorSprite: {fileID: 8648596727064370378}
+  _secondToDisplay: 5
 --- !u!1 &8648596726392941690
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +93,7 @@ GameObject:
   - component: {fileID: 8648596726392941688}
   m_Layer: 0
   m_Name: handler_32
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +175,7 @@ GameObject:
   - component: {fileID: 8648596726483224175}
   m_Layer: 0
   m_Name: handler_1
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,7 +340,7 @@ GameObject:
   - component: {fileID: 8648596726559874780}
   m_Layer: 0
   m_Name: handler_5
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,7 +422,7 @@ GameObject:
   - component: {fileID: 8648596726576608697}
   m_Layer: 0
   m_Name: handler_27
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,89 +492,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &8648596726597094679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8648596726597094676}
-  - component: {fileID: 8648596726597094677}
-  m_Layer: 0
-  m_Name: 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8648596726597094676
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596726597094679}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.026801666, y: 0.027966669, z: 0}
-  m_LocalScale: {x: 0.7044711, y: 0.72632843, z: 0}
-  m_Children: []
-  m_Father: {fileID: 8648596727064370376}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &8648596726597094677
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596726597094679}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 948227913
-  m_SortingLayer: 3
-  m_SortingOrder: 11
-  m_Sprite: {fileID: 8465440263872079559, guid: 98c63a80eef53904cb151ab0a69e619d,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.7218006, y: 2.7099998}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &8648596726628235897
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +504,7 @@ GameObject:
   - component: {fileID: 8648596726628235879}
   m_Layer: 0
   m_Name: handler_11
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,7 +586,7 @@ GameObject:
   - component: {fileID: 8648596726765266173}
   m_Layer: 0
   m_Name: handler_24
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,7 +668,7 @@ GameObject:
   - component: {fileID: 8648596726834664336}
   m_Layer: 0
   m_Name: handler_36
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -749,9 +747,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8648596726870118075}
-  - component: {fileID: 8648596726870118072}
+  - component: {fileID: 597251387}
   m_Layer: 0
-  m_Name: Roullete
+  m_Name: RoulleteTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -764,18 +762,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8648596726870118074}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.35000032, y: 5.170811, z: 0}
-  m_LocalScale: {x: 1.1999999, y: 1.2, z: 1.30086}
+  m_LocalScale: {x: 1.1999999, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 8648596728038825078}
-  - {fileID: 8648596727683782939}
-  - {fileID: 8648596727360621544}
+  - {fileID: 6963858340534191855}
   - {fileID: 8648596727049511954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8648596726870118072
+--- !u!114 &597251387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -784,9 +781,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8648596726870118074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6658a66f5aa2e3e4fa2c9a566299213f, type: 3}
+  m_Script: {fileID: 11500000, guid: b3faaa77b49f0514ba36edb20e417115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameRoullete: {fileID: 11400000, guid: 5f1534f4ae4382f4eb50fc96bf3e998f, type: 2}
+  ballRotator: {fileID: 8648596726526907313}
+  wheelRotator: {fileID: 8648596727049511957}
 --- !u!1 &8648596726940388855
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ GameObject:
   - component: {fileID: 8648596726940388853}
   m_Layer: 0
   m_Name: handler_28
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 8648596726955238741}
   m_Layer: 0
   m_Name: handler_35
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 8648596726998554626}
   m_Layer: 0
   m_Name: handler_14
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 8648596727033503602}
   m_Layer: 0
   m_Name: handler_8
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,7 +1125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8648596727049511954}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: RotatorRoullete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1142,12 +1142,12 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.23000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8648596727921817442}
+  - {fileID: 8648596727758346827}
   - {fileID: 8648596726526907326}
   - {fileID: 8648596728318129884}
-  - {fileID: 8648596727758346827}
+  - {fileID: 8111117991834568982}
   m_Father: {fileID: 8648596726870118075}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8648596727057398806
 GameObject:
@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 8648596727057398804}
   m_Layer: 0
   m_Name: handler_29
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1240,7 +1240,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8648596727064370376}
-  - component: {fileID: 8648596727064370379}
   - component: {fileID: 8648596727064370378}
   m_Layer: 5
   m_Name: Effect
@@ -1258,32 +1257,11 @@ Transform:
   m_GameObject: {fileID: 8648596727064370381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.01, y: 0, z: 0}
-  m_LocalScale: {x: 0.8581547, y: 0.8581547, z: 0.8581547}
-  m_Children:
-  - {fileID: 8648596726597094676}
-  - {fileID: 8648596727962344898}
+  m_LocalScale: {x: 0.9004617, y: 0.9004617, z: 0.9004617}
+  m_Children: []
   m_Father: {fileID: 8648596727561898775}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8648596727064370379
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727064370381}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 90ac207784fd7214d916b7f4d1415c7c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &8648596727064370378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1325,7 +1303,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 95536a7810238db4abb5c02d9b700c92, type: 3}
-  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0.69411767}
+  m_Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0.69411767}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1347,7 +1325,7 @@ GameObject:
   - component: {fileID: 8648596727157662857}
   m_Layer: 0
   m_Name: handler_19
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,7 +1407,7 @@ GameObject:
   - component: {fileID: 8648596727243812039}
   m_Layer: 0
   m_Name: handler_3
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1511,7 +1489,7 @@ GameObject:
   - component: {fileID: 8648596727244748835}
   m_Layer: 0
   m_Name: handler_9
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1593,7 +1571,7 @@ GameObject:
   - component: {fileID: 8648596727296692063}
   m_Layer: 0
   m_Name: handler_6
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1675,7 +1653,7 @@ GameObject:
   - component: {fileID: 8648596727318940779}
   m_Layer: 0
   m_Name: handler_22
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1756,7 +1734,7 @@ GameObject:
   - component: {fileID: 8648596727330105169}
   - component: {fileID: 8648596727330105168}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: SphereDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1770,7 +1748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8648596727330105171}
   m_LocalRotation: {x: -0, y: -0, z: 0.000000029802312, w: 1}
-  m_LocalPosition: {x: -48.66112, y: 64.52711, z: 0}
+  m_LocalPosition: {x: -48.661125, y: 64.52711, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8648596726526907326}
@@ -1827,121 +1805,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &8648596727360621547
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8648596727360621544}
-  - component: {fileID: 8648596727360621526}
-  - component: {fileID: 8648596727360621545}
-  - component: {fileID: 8648596727360621527}
-  m_Layer: 0
-  m_Name: ShadowFocus
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8648596727360621544
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727360621547}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: -3.83, z: 0}
-  m_LocalScale: {x: 0.12841886, y: 0.29893774, z: 0.4475077}
-  m_Children: []
-  m_Father: {fileID: 8648596726870118075}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8648596727360621526
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727360621547}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 948227913
-  m_SortingLayer: 3
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 2bf59900dc3d3ad44b7896caf0f62c79, type: 3}
-  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0.6509804}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 58.339996, y: 40.849392}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!95 &8648596727360621545
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727360621547}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3a4b071970855124790adaec03cde299, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8648596727360621527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727360621547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f5ae06a5431234f9b3a37fd0455dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8648596727409967353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,7 +1817,7 @@ GameObject:
   - component: {fileID: 8648596727409967335}
   m_Layer: 0
   m_Name: handler_21
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2036,7 +1899,7 @@ GameObject:
   - component: {fileID: 8648596727486467099}
   m_Layer: 0
   m_Name: handler_4
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2201,7 +2064,7 @@ GameObject:
   - component: {fileID: 8648596727651394227}
   m_Layer: 0
   m_Name: handler_10
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2283,7 +2146,7 @@ GameObject:
   - component: {fileID: 8648596727652829210}
   m_Layer: 0
   m_Name: handler_15
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2365,7 +2228,7 @@ GameObject:
   - component: {fileID: 8648596727674073152}
   m_Layer: 0
   m_Name: handler_26
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2444,7 +2307,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8648596727683782939}
-  - component: {fileID: 8648596727683782936}
   m_Layer: 5
   m_Name: NumberWinner
   m_TagString: Untagged
@@ -2461,31 +2323,17 @@ RectTransform:
   m_GameObject: {fileID: 8648596727683782938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0076171877, y: 0.0076171863, z: 0.0070266016}
+  m_LocalScale: {x: 0.0076171877, y: 0.007617186, z: 0.0070266016}
   m_Children:
   - {fileID: 8648596727561898775}
-  m_Father: {fileID: 8648596726870118075}
-  m_RootOrder: 1
+  m_Father: {fileID: 6963858340534191855}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.016666442, y: -0.3590088}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8648596727683782936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727683782938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e610f34d5d625314bb56db7a71d6dd0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fxAnimNumber: {fileID: 8648596727064370379}
-  _numberContainer: {fileID: 0}
 --- !u!1 &8648596727746003725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,7 +2346,7 @@ GameObject:
   - component: {fileID: 8648596727746003723}
   m_Layer: 0
   m_Name: handler_13
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2579,7 +2427,7 @@ GameObject:
   - component: {fileID: 8648596727758346827}
   - component: {fileID: 8648596727758346824}
   m_Layer: 0
-  m_Name: ArtNumbers
+  m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2598,7 +2446,7 @@ Transform:
   m_Children:
   - {fileID: 8648596727798523236}
   m_Father: {fileID: 8648596727049511954}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8648596727758346824
 SpriteRenderer:
@@ -2663,7 +2511,7 @@ GameObject:
   - component: {fileID: 8648596727779959094}
   m_Layer: 0
   m_Name: handler_7
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2745,7 +2593,7 @@ GameObject:
   - component: {fileID: 8648596727785528248}
   m_Layer: 0
   m_Name: handler_0
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2909,7 +2757,7 @@ GameObject:
   - component: {fileID: 8648596727856313505}
   m_Layer: 0
   m_Name: handler_34
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2991,7 +2839,7 @@ GameObject:
   - component: {fileID: 8648596727889906587}
   m_Layer: 0
   m_Name: handler_18
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3073,7 +2921,7 @@ GameObject:
   - component: {fileID: 8648596727904450762}
   m_Layer: 0
   m_Name: handler_12
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3143,123 +2991,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &8648596727921817445
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8648596727921817442}
-  - component: {fileID: 8648596727921817443}
-  m_Layer: 0
-  m_Name: InstanceSphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8648596727921817442
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727921817445}
-  m_LocalRotation: {x: -0, y: -0, z: 0.17631172, w: 0.98433447}
-  m_LocalPosition: {x: -2.92, y: 0.74, z: 0}
-  m_LocalScale: {x: 0.016940001, y: 0.016940001, z: 0.01837}
-  m_Children: []
-  m_Father: {fileID: 8648596727049511954}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8648596727921817443
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727921817445}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 948227913
-  m_SortingLayer: 3
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 947de611e2c7b67448303f1c0f17c732, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9, y: 8.79}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!1 &8648596727962344901
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8648596727962344898}
-  m_Layer: 5
-  m_Name: Letter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &8648596727962344898
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648596727962344901}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.93205345, y: 0.93205345, z: 0.93205345}
-  m_Children: []
-  m_Father: {fileID: 8648596727064370376}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.538372, y: -6.7326975}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8648596728036760386
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,7 +3003,7 @@ GameObject:
   - component: {fileID: 8648596728036760384}
   m_Layer: 0
   m_Name: handler_33
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3353,7 +3084,7 @@ GameObject:
   - component: {fileID: 8648596728038825078}
   - component: {fileID: 8648596728038825079}
   m_Layer: 0
-  m_Name: Base
+  m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3436,7 +3167,7 @@ GameObject:
   - component: {fileID: 8648596728038988581}
   m_Layer: 0
   m_Name: handler_2
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3518,7 +3249,7 @@ GameObject:
   - component: {fileID: 8648596728048818027}
   m_Layer: 0
   m_Name: handler_30
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3600,7 +3331,7 @@ GameObject:
   - component: {fileID: 8648596728117568227}
   m_Layer: 0
   m_Name: handler_16
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3682,7 +3413,7 @@ GameObject:
   - component: {fileID: 8648596728194249263}
   m_Layer: 0
   m_Name: handler_20
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3764,7 +3495,7 @@ GameObject:
   - component: {fileID: 8648596728195676733}
   m_Layer: 0
   m_Name: handler_31
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3846,7 +3577,7 @@ GameObject:
   - component: {fileID: 8648596728265469793}
   m_Layer: 0
   m_Name: handler_23
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3928,7 +3659,7 @@ GameObject:
   - component: {fileID: 8648596728282870349}
   m_Layer: 0
   m_Name: handler_17
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4007,9 +3738,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8648596728318129884}
-  - component: {fileID: 8648596728318129885}
+  - component: {fileID: 1570662113}
   m_Layer: 0
-  m_Name: Handler ball
+  m_Name: ControllerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4066,7 +3797,7 @@ Transform:
   m_Father: {fileID: 8648596727049511954}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8648596728318129885
+--- !u!114 &1570662113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4075,9 +3806,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 8648596728318129887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de093674562b8547bff0f8e7b039014, type: 3}
+  m_Script: {fileID: 11500000, guid: b211477c0eb75ba46b278e922cf388e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
+  gameRoullete: {fileID: 11400000, guid: 5f1534f4ae4382f4eb50fc96bf3e998f, type: 2}
+  _anchorNumbers:
+  - {fileID: 8648596727785528250}
+  - {fileID: 8648596726483224161}
+  - {fileID: 8648596728038988583}
+  - {fileID: 8648596727243812057}
+  - {fileID: 8648596727486467101}
+  - {fileID: 8648596726559874782}
+  - {fileID: 8648596727296692049}
+  - {fileID: 8648596727779959240}
+  - {fileID: 8648596727033503604}
+  - {fileID: 8648596727244748837}
+  - {fileID: 8648596727651394229}
+  - {fileID: 8648596726628235897}
+  - {fileID: 8648596727904450764}
+  - {fileID: 8648596727746003725}
+  - {fileID: 8648596726998554628}
+  - {fileID: 8648596727652829212}
+  - {fileID: 8648596728117568229}
+  - {fileID: 8648596728282870351}
+  - {fileID: 8648596727889906589}
+  - {fileID: 8648596727157662859}
+  - {fileID: 8648596728194249249}
+  - {fileID: 8648596727409967353}
+  - {fileID: 8648596727318940781}
+  - {fileID: 8648596728265469795}
+  - {fileID: 8648596726765266175}
+  - {fileID: 8648596728454106495}
+  - {fileID: 8648596727674073154}
+  - {fileID: 8648596726576608699}
+  - {fileID: 8648596726940388855}
+  - {fileID: 8648596727057398806}
+  - {fileID: 8648596728048818029}
+  - {fileID: 8648596728195676735}
+  - {fileID: 8648596726392941690}
+  - {fileID: 8648596728036760386}
+  - {fileID: 8648596727856313507}
+  - {fileID: 8648596726955238743}
+  - {fileID: 8648596726834664338}
+  sphereContainer: {fileID: 1425421817044854550}
+  sphereDefault: {fileID: 8648596727330105171}
 --- !u!1 &8648596728454106495
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,7 +3863,7 @@ GameObject:
   - component: {fileID: 8648596728454106493}
   m_Layer: 0
   m_Name: handler_25
-  m_TagString: Numeros_Ruleta
+  m_TagString: AnchorRoullete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

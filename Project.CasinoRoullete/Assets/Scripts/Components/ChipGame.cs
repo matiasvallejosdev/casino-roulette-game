@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ViewModel;
+using System.Linq;
 using UniRx;
 
 namespace Components
@@ -21,6 +22,11 @@ namespace Components
             this.currentButton = buttonPressed;
 
             spriteRenderer.sprite = chipData.chipSprite;
+        }
+
+        public bool HasNumber(int num)
+        {
+            return currentButton.buttonValue.Contains(num);
         }
 
         public void DestroyMagnet()

@@ -71,5 +71,16 @@ namespace ViewModel
             SubstractBet(valueFicha);
             AddCash(valueFicha);
         }
+        public void RoundFinish(int payment)
+        {
+            Debug.Log($"Character player money is now being refresh with payment {payment}!");
+            characterBet.Value = 0;
+
+            if(payment > 0)
+                AddCash(payment);
+            
+            if(payment < 0)
+                SubstractCash(payment);
+        }
     }
 }
