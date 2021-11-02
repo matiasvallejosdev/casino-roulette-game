@@ -3,62 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using ViewModel;
 using UniRx;
+using System;
+using System.Linq;
 
 namespace Components
 {
     public class ButtonTableFxDisplay : MonoBehaviour
     {
+        public CharacterTable characterTable;
         public ButtonTable buttonData;
-        public SpriteRenderer spriteRenderer;
+        public Animator animatorButton;
 
         void Start()
         {
-            buttonData.OnPress
-                .Subscribe(FxFicha)
+            characterTable.OnWinButton
+                .Subscribe(OnWin)
                 .AddTo(this);
 
-            buttonData.OnWin
-                .Subscribe(FxNumberWinner)
-                .AddTo(this);
-                
-            buttonData.OnPressed
-                .Subscribe(FxButtonPressed)
+            characterTable.OnPressedButton
+                .Subscribe(OnPressed)
                 .AddTo(this);
         }
 
-        public void FxFicha(bool parameter)
+        private void OnWin(int num)
         {
-            if(parameter)
+            bool containNumber = buttonData.buttonValue.Contains(num);
+            
+            if(containNumber)
             {
-                spriteRenderer.color = new Color(255,255,255,0.58f);
+                FxWin();
             } 
-            else
-            {
-                spriteRenderer.color = new Color(255,255,255,0);
-            }
+        }
+        public void OnPressed(LongPress longPress) 
+        {
+            if(CheckIfIsLongPressed(longPress.values))          
+                FxPressed(longPress.isPressed);
+        }
+        public bool CheckIfIsLongPressed(int[] longPressValues)
+        {
+            if(buttonData.buttonValue.Count() > 1)
+                return false;
+            
+            return longPressValues.Contains(buttonData.buttonValue[0]);
         }
 
-        public void FxNumberWinner(bool parameter)
-        {
-            if (parameter)
-            {
-                spriteRenderer.color = new Color(233, 191, 9, 0.58f);
-            }
-            else
-            {
-                spriteRenderer.color = new Color(233, 191, 9, 0);
-            }
-        }
 
-        public void FxButtonPressed(bool isPress) 
+        public void FxWin()
         {
-            // Activate this button
-            this.FxFicha(isPress);
-            // Activate the parent buttons
-            foreach(ButtonTable btn in buttonData.buttonParent) 
-            {
-                btn.OnPress.OnNext(isPress);
-            }
+            animatorButton.SetTrigger("Win");
+        }
+        public void FxPressed(bool isPress)
+        {
+            animatorButton.SetBool("IsPressed", isPress);
         }
     }
 }

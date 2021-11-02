@@ -5,21 +5,32 @@ using UnityEngine;
 using ViewModel;
 using UniRx;
 using System;
+using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Commands
 {
-    public class ButtonTableInput : MonoBehaviour
+    [RequireComponent (typeof(Button))]
+    public class ButtonTableInput : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         public GameCmdFactory gameCmdFactory;
         public CharacterTable characterTable;
-        public ButtonTable buttonTableData;
+        public ButtonTable buttonData;
         public GameObject chipsContainer;
         public GameObject centerPivot;
 
-        private Boolean _isActive;
+        [Tooltip ("Hold duration in seconds")]
+        [Range (0.3f, 5f)] public float holdDuration = 0.5f ;
+        public Button button;
+
+        private bool isPointerDown = false ;
+        private bool isLongPressed = false ;
+        private float elapsedTime = 0f;
+
+        private bool _isActive;
 
         private float startTime, endTime;
-        public bool isLongPressed {get; private set; }
         bool _isPressed; 
 
         
@@ -28,7 +39,7 @@ namespace Commands
             get
             {
                 bool _fichasTopBoolean = false;
-                if (buttonTableData.currentChipsOnTop != 0)
+                if (buttonData.currentChipsOnTop != 0)
                 {
                     _fichasTopBoolean = true;
                 }   
@@ -48,9 +59,9 @@ namespace Commands
 
         void ResetButton()
         {
-            buttonTableData.currentSpritePivot = centerPivot.transform.position;
-            buttonTableData.currentChipsOnTop = 0;
-            buttonTableData.currentOffset = new Vector2(0, 0);
+            buttonData.currentSpritePivot = centerPivot.transform.position;
+            buttonData.currentChipsOnTop = 0;
+            buttonData.currentOffset = new Vector2(0, 0);
         
             startTime = 0;
             endTime = 0;
@@ -73,7 +84,49 @@ namespace Commands
                 
             GameObject newChip = Instantiate(characterTable.chipPrefab);
             newChip.SetActive(false);
-            gameCmdFactory.ButtonTableTurn(newChip, chipsContainer, characterTable, buttonTableData).Execute();
+            gameCmdFactory.ButtonTableTurn(newChip, chipsContainer, characterTable, buttonData).Execute();
+        }
+
+        public void OnPointerDown (PointerEventData eventData) 
+        {
+            isPointerDown = true ;
+            
+        }
+
+        private void Update () {
+            if (isPointerDown && !isLongPressed) {
+                elapsedTime += Time.deltaTime ;
+                if (elapsedTime >= holdDuration) {
+                    isLongPressed = true ;
+                    elapsedTime = 0f ;
+                    if (button.interactable)
+                    {
+                        LongPress longPress = new LongPress()
+                        {
+                            isPressed = true,
+                            values = buttonData.buttonValue
+                        };
+
+                        characterTable.OnPressedButton.OnNext(longPress);
+                    }
+                }
+            }
+        }
+
+        public  void OnPointerUp (PointerEventData eventData) 
+        {
+            isPointerDown = false ;
+            isLongPressed = false ;
+            elapsedTime = 0f ;
+
+            Click();
+
+            LongPress longPress = new LongPress()
+            {
+                isPressed = false,
+                values = buttonData.buttonValue
+            };
+            characterTable.OnPressedButton.OnNext(longPress);
         }
     }
 }

@@ -29,6 +29,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1ce86a9b1167c86429f977a7cb35897c, type: 3}
   - {fileID: 8300000, guid: 02554c15be8fba1418333c54c38f9dee, type: 3}
   musicFx:
-  - {fileID: 8300000, guid: 0faa7290853ae7a4c987d976fd639a26, type: 3}
+  - {fileID: 8300000, guid: f0a0a21e52623c448be6f7df19b6a7d5, type: 3}
   fxVolume: 0.85
-  musicVolume: 0.2
+  musicVolume: 0.15

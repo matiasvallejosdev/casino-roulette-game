@@ -28,7 +28,7 @@ namespace Components
 
         private void OnPaymentDisplay(int value)
         {
-            bool display = value > 0 ? false : true;
+            bool display = value > 0 || value < 0 ? false : true;
             canvasUi.SetActive(display);
             lastAnchor.SetActive(display);
             moneyAnchor.SetActive(display);

@@ -15,6 +15,6 @@ MonoBehaviour:
   characterBet:
     value: 0
   characterMoney:
-    value: 260
+    value: 100
   currentPayment:
     value: 0

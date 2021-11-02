@@ -60,14 +60,13 @@ namespace Commands
             yield return new WaitForSeconds(1.5f);
             gameRoullete.currentSpeed = 240f;
             yield return new WaitForSeconds(1.5f);
-            gameRoullete.currentSpeed = 145;
             // Ball position
+            gameRoullete.currentSpeed = 145;
             gameRoullete.currentNumber.Value = num;
+
             yield return new WaitForSeconds(1.8f);
             gameRoullete.currentSpeed = 75f;
-            // Fx table buttons
-            //_scFxNewNumber.fxNewNumber(4,randomNumber);
-            
+   
             yield return new WaitForSeconds(5.0f);
             // Finish round
             gameRoullete.currentSpeed = gameRoullete.defaultSpeed;
@@ -76,6 +75,7 @@ namespace Commands
             // Intialize the payment system and display the news values
             PlayerPayment.Instance.PaymentSystem(characterTable)
                 .Do(_ => PlayerRound.Instance.OnPayment(PlayerPayment.Instance.PaymentValue))
+                .Do(_ => characterTable.OnWinButton.OnNext(num))
                 .Subscribe();
         }
         // Before to call OnRound you have to call ResetTable

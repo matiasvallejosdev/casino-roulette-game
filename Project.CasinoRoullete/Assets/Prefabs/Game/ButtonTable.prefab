@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4705962744074163708}
   - component: {fileID: 334401579025965854}
   - component: {fileID: 9194825869094601145}
+  - component: {fileID: 6600448673299681579}
   m_Layer: 0
   m_Name: ButtonTable
   m_TagString: Button
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.11372549}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.6784314}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -121,19 +122,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4829351850859975172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 334401579025965854}
-        m_TargetAssemblyTypeName: Commands.ButtonTableInput, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &334401579025965854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,9 +137,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameCmdFactory: {fileID: 11400000, guid: f7ba5b05108593e45a6a994947132d78, type: 2}
   characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
-  buttonTableData: {fileID: 0}
+  buttonData: {fileID: 0}
   chipsContainer: {fileID: 0}
   centerPivot: {fileID: 0}
+  holdDuration: 0.3
+  button: {fileID: 4705962744074163708}
 --- !u!114 &9194825869094601145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +154,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c62413da6c9874092933b412959b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
   buttonData: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  animatorButton: {fileID: 6600448673299681579}
+--- !u!95 &6600448673299681579
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573781864618821487}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 745685da96c0f3f448f81d424ff3c2d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

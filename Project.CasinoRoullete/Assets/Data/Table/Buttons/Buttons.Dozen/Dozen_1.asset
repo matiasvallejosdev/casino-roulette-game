@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Dozen_1
   m_EditorClassIdentifier: 
   buttonValue: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
-  buttonParent:
-  - {fileID: 0}
+  buttonParent: []
   buttonKey: 3
   isPleno: 1
   currentChipsOnTop: 0
