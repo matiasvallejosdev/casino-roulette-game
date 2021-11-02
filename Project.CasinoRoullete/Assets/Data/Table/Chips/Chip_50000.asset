@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fe930825304044681e5adafa7d0a4b, type: 3}
   m_Name: Chip_50000
   m_EditorClassIdentifier: 
-  chipName: Chip 50000
+  chipName: Chip 50K
   chipkey: 8
   chipValue: 50000
   chipSprite: {fileID: 4941053950020714056, guid: f8a93430902ecce4ba36a6250581bbd8,

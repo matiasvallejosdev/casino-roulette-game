@@ -1544,6 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
+  gameRoullete: {fileID: 11400000, guid: 5f1534f4ae4382f4eb50fc96bf3e998f, type: 2}
   numberContainer: {fileID: 1598952540353666213, guid: be8fdad7ddae0e04d8fb9f834ee17b5b,
     type: 3}
   anchorNumbers:

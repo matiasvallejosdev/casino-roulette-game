@@ -13,7 +13,7 @@ namespace Components
         public GameObject canvasUi;
         public GameObject lastAnchor;
         public GameObject moneyAnchor;
-        public GameObject shadowGame;
+        public Animator shadowGame;
 
         void Start()
         {
@@ -36,10 +36,14 @@ namespace Components
 
         public void DisplayInterface(bool isRound)
         {
+            shadowGame.SetBool("Shadow", isRound);
+            
+            if(!isRound)
+                return;
+            
             canvasUi.SetActive(!isRound);
             lastAnchor.SetActive(!isRound);
             moneyAnchor.SetActive(!isRound);
-            shadowGame.SetActive(isRound);
         }
     }
 }

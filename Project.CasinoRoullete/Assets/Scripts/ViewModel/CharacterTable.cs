@@ -22,7 +22,7 @@ namespace ViewModel
         public List<int> currentNumbers = new List<int>();
 
         // Last round
-        public IntReactiveProperty lastNumber;
+        public int lastNumber;
         //public List<ChipGame> lastTable = new List<ChipGame>();
 
         // Events observables
@@ -34,6 +34,5 @@ namespace ViewModel
 
         public ISubject<bool> OnSaveGame = new Subject<bool>();
         public ISubject<bool> OnRound = new Subject<bool>();
-
     }
 }

@@ -18,6 +18,8 @@ namespace Controllers
         public GameRoullete gameRoullete;
         public GameCmdFactory gameCmdFactory;
 
+        public int _lastNumber = 0;
+
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
@@ -44,8 +46,8 @@ namespace Controllers
             if(isRound)
                 return;
             
-            characterTable.lastNumber.Value = gameRoullete.currentNumber.Value;
-            characterTable.currentNumbers.Add(characterTable.lastNumber.Value);
+            characterTable.lastNumber = _lastNumber;
+            characterTable.currentNumbers.Add(characterTable.lastNumber);
             ResetTable(false);
         }
         public void OnGameClosed() 

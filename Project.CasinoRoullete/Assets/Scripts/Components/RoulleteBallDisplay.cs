@@ -18,15 +18,14 @@ namespace Components
 
         private GameObject _sphere;
         private Vector3 _ballPosition;
-        private bool _preventStart = true;
-
+        
         void Start()
         {
             characterTable.OnRound
                 .Subscribe(OnRound)
                 .AddTo(this);
 
-            gameRoullete.currentNumber
+            gameRoullete.OnNumber
                 .Subscribe(SetBallInRoullete)
                 .AddTo(this);
         }
@@ -41,13 +40,7 @@ namespace Components
         }
 
         public void SetBallInRoullete(int num)
-        {
-            if(_preventStart)
-            {
-                _preventStart = false;
-                return;
-            }
-            
+        {    
             sphereDefault.SetActive(false);
             DestroyLastSphere();
 
@@ -66,7 +59,7 @@ namespace Components
         void DestroyLastSphere()
         {
             if(sphereContainer.transform.childCount > 0)
-                Destroy(sphereContainer.transform.GetChild(0).gameObject);
+                Destroy(_sphere);
         }
     }
 }

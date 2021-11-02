@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9070475183329322481}
   - component: {fileID: 9070475183329322487}
-  - component: {fileID: 9070475183329322480}
   m_Layer: 5
   m_Name: WinLostContainer
   m_TagString: Untagged
@@ -125,36 +124,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9070475183329322482}
   m_CullTransparentMesh: 0
---- !u!114 &9070475183329322480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9070475183329322482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0.7176471}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bf59900dc3d3ad44b7896caf0f62c79, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &9070475183344016304
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +254,7 @@ MonoBehaviour:
   secInScreen: 4
   tittleLabel: {fileID: 9070475182622332912}
   valueLabel: {fileID: 9070475183644834140}
+  shadowAnim: {fileID: 0}
 --- !u!1 &9070475183644834142
 GameObject:
   m_ObjectHideFlags: 0

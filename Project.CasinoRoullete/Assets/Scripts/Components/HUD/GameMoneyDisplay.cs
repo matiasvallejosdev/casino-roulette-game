@@ -5,6 +5,7 @@ using UnityEngine;
 using UniRx;
 using ViewModel;
 using System;
+using Controllers;
 
 namespace Components
 {
@@ -15,8 +16,6 @@ namespace Components
 
         public CharacterTable characterTable;
 
-
-        // Start is called before the first frame update
         void Start()
         {
             characterTable.characterMoney.characterBet
@@ -26,9 +25,6 @@ namespace Components
             characterTable.characterMoney.characterMoney
                 .Subscribe(OnChangeMoney)
                 .AddTo(this);
-
-            //RoundController.Instance.OnRoundChanged.AddListener(HandleRoundStateChanged);
-            //RoundController.Instance.OnApuestaChanged.AddListener(HandleApuestaStateChanged);
         }
 
         private void OnChangeBet(int value)

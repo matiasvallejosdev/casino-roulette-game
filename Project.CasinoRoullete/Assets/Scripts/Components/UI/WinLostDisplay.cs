@@ -17,6 +17,7 @@ namespace Components
         public int secInScreen = 0;
         public Text tittleLabel = null;
         public Text valueLabel =  null;
+        public Animator shadowAnim;
 
         private int _delayInitialization = 3;
 
@@ -53,6 +54,7 @@ namespace Components
             tittleLabel.text = isWin ? "You win!" : "You lost!";
             valueLabel.text = number.ToString();
 
+            shadowAnim.SetBool("Shadow", true);
             winLostContainer.SetActive(true);
 
             if (isWin)
@@ -64,6 +66,8 @@ namespace Components
 
             PlayerSound.Instance.gameSound.OnSound.OnNext(4);
             characterTable.characterMoney.currentPayment.Value = 0;
+
+            shadowAnim.SetBool("Shadow", false);
             winLostContainer.SetActive(false);
         }
     }

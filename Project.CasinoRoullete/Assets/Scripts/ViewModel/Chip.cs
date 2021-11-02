@@ -12,21 +12,22 @@ namespace ViewModel
         public KeyFicha chipkey;
         public int chipValue;
         public Sprite chipSprite;
-        public int chipArray;
     }
 
     public enum KeyFicha
     {
-        Ficha10,
-        Ficha20,
-        Ficha50,
-        Ficha100,
-        Ficha500,
-        Ficha1000,
-        Ficha5000,
-        Ficha10000,
-        Ficha50000,
-        Ficha100000,
-        FichaAll
+        Chip10,
+        Chip20,
+        Chip50,
+        Chip100,
+        Chip500,
+        Chip1000,
+        Chip5000,
+        Chip10000,
+        Chip50000,
+        Chip100000,
+        Chip500000,
+        Chip1000000,
+        ChipAll
     }
 }

@@ -12,6 +12,8 @@ namespace Components
     public class LastTableNumberDisplay : MonoBehaviour
     {
         public CharacterTable characterTable;
+        public GameRoullete gameRoullete;
+
         public GameObject numberContainer;
         public GameObject[] anchorNumbers;
 
@@ -22,25 +24,18 @@ namespace Components
         public Vector3 _biggerScale;
 
         private int _onScreen;
-        private bool _preventFirst = true;
 
         void Start()
         {
-            characterTable.lastNumber
+            gameRoullete.OnNumber
                 .Subscribe(LastNumberDisplay)
                 .AddTo(this);
-            
+
             Reset();
         }
 
         private void LastNumberDisplay(int value)
-        {
-            if(_preventFirst)
-            {
-                _preventFirst = false;
-                return;
-            }   
-              
+        {       
             if(_onScreen >= (_smallerPosition + _biggerPosition))
             {
                 Reset();

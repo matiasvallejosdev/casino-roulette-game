@@ -31,4 +31,4 @@ MonoBehaviour:
   musicFx:
   - {fileID: 8300000, guid: f0a0a21e52623c448be6f7df19b6a7d5, type: 3}
   fxVolume: 0.85
-  musicVolume: 0.15
+  musicVolume: 0.1

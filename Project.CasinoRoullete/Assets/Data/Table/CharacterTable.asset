@@ -21,6 +21,4 @@ MonoBehaviour:
     type: 2}
   currentTable: []
   currentNumbers: 
-  lastNumber:
-    value: 1
-  lastTable: []
+  lastNumber: 1

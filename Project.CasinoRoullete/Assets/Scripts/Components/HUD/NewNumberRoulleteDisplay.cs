@@ -15,25 +15,17 @@ namespace Components
         public GameObject anchorPos;
         public SpriteRenderer anchorSprite;
         public int _secondToDisplay;
-
-        private bool _preventStart = true;
-        private int _delay = 4;
+        private int _delay = 3;
 
         void Start()
         {
-            gameRoullete.currentNumber
+            gameRoullete.OnNumber
                 .Subscribe(FxNewNumber)
                 .AddTo(this);
         }
 
         private void FxNewNumber(int num)
         {
-            if(_preventStart)
-            {
-                _preventStart = false;
-                return;
-            }
-
             StartCoroutine(FxNumber(_secondToDisplay, num));
         }
 
@@ -42,10 +34,14 @@ namespace Components
             yield return new WaitForSeconds(_delay);
             goContainer.SetActive(true);
             GameObject goNum = Instantiate(numberContainer.transform.GetChild(num).gameObject);
-            goNum.SetActive(true);
-            goNum.transform.position = anchorPos.transform.position;
+            if(num == 0)
+            {
+                goNum.transform.GetChild(0).transform.localPosition = new Vector3(-0.08f, 0.19f, 0);
+            }
+            goNum.transform.localPosition = anchorPos.transform.position;
+            goNum.GetComponent<LeanTweenScale>()._scaleXYZ = new Vector3(0.87f,0.87f,0.87f);
             goNum.transform.SetParent(anchorPos.transform);
-            goNum.GetComponent<LeanTweenScale>()._scaleXYZ = new Vector3(0.9f,0.9f,0.9f);
+            goNum.SetActive(true);
             yield return new WaitForSeconds(seg);
             Destroy(goNum);
             goContainer.SetActive(false);

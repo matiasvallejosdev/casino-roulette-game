@@ -27,6 +27,12 @@ namespace Commands
         {
             Chip chipData = characterTable.currentChipSelected;
             ChipGame chipGame = chipInstance.GetComponent<ChipGame>();
+
+            // Detect if is all in one
+            if(chipData.chipkey == KeyFicha.ChipAll)
+            {
+                chipData.chipValue = characterTable.characterMoney.characterMoney.Value;
+            }
             
             // Find if is possible bet < totalWinner
             if(characterTable.characterMoney.CheckBetValue(chipData.chipValue))
@@ -43,7 +49,6 @@ namespace Commands
             }
             else
             {
-                chipGame.DestroyMagnet();
                 Debug.Log("Bet is not possible because the value of ficha is very high");
             }
         }    

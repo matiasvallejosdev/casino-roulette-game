@@ -34,7 +34,7 @@ namespace Controllers
         {
             Debug.Log($"Payment system is being executed in {characterTable.tableName}");
             _payment = 0;
-            _number = characterTable.lastNumber.Value;
+            _number = characterTable.lastNumber;
 
             _chipsWinner = characterTable.currentTable.Where(chip => chip.HasNumber(_number));
             _chipsLosted = characterTable.currentTable.Where(chip => !chip.HasNumber(_number));

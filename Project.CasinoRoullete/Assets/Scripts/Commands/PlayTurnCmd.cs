@@ -5,6 +5,7 @@ using UniRx;
 using ViewModel;
 using Controllers;
 using Infrastructure;
+using System;
 
 namespace Commands
 {    
@@ -35,6 +36,7 @@ namespace Commands
 
             roundGateway.PlayTurn()
                 .Do(_ => monoBehaviour.StartCoroutine(RoulleteGame(roundGateway.randomNumber)))
+                .Do(_ => PlayerRound.Instance._lastNumber = roundGateway.randomNumber)
                 .Subscribe();
                 
         }
@@ -62,7 +64,7 @@ namespace Commands
             yield return new WaitForSeconds(1.5f);
             // Ball position
             gameRoullete.currentSpeed = 145;
-            gameRoullete.currentNumber.Value = num;
+            gameRoullete.OnNumber.OnNext(num);
 
             yield return new WaitForSeconds(1.8f);
             gameRoullete.currentSpeed = 75f;
@@ -74,8 +76,10 @@ namespace Commands
 
             // Intialize the payment system and display the news values
             PlayerPayment.Instance.PaymentSystem(characterTable)
+                .Delay(TimeSpan.FromSeconds(3))
                 .Do(_ => PlayerRound.Instance.OnPayment(PlayerPayment.Instance.PaymentValue))
                 .Do(_ => characterTable.OnWinButton.OnNext(num))
+                .Do(_ => PlayerSound.Instance.gameSound.OnSound.OnNext(4))
                 .Subscribe();
         }
         // Before to call OnRound you have to call ResetTable
