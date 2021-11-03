@@ -86,9 +86,16 @@ namespace Controllers
         {
             if(ficha == null)
                 return;
-            
-            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
-            
+                
+            try
+            {
+                PlayerSound.Instance.gameSound.OnSound.OnNext(2);
+            }
+            catch
+            {
+                Debug.Log("Player sound instance is not in scene!");
+            }
+
             if(ficha.currentChipData.chipValue > 0 && characterTable.currentTableCounter > 0)
             {
                 characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue); // Delete money

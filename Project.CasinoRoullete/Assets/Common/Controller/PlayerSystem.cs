@@ -28,9 +28,6 @@ namespace Controllers
             characterTable.OnSaveGame
                 .Subscribe(SaveRound)
                 .AddTo(this);
-
-            // Load player round
-            LoadRound();
         }
 
         public void SaveRound(bool value) 

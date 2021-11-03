@@ -82,59 +82,5 @@ namespace Commands
                 .Do(_ => PlayerSound.Instance.gameSound.OnSound.OnNext(4))
                 .Subscribe();
         }
-        // Before to call OnRound you have to call ResetTable
-        
-        /* 
-        IEnumerator StartRotationRoullete(int randomNumber)
-        {
-            sphere.SetActive(true);
-            
-            speed = 35f;
-            
-            FxFocusFoundedRoullete(true);
-            _cameraAnimator.SetBool("Mover", true);
-        
-            FxCanvas(false);
-            //fx_focus(true);
-
-            yield return new WaitForSeconds(2.0f);
-            speed = 75f;
-            yield return new WaitForSeconds(1.0f);
-            speed = 145f;
-            SoundContoller.Instance.PlayFxSound(8);
-            yield return new WaitForSeconds(0.5f);
-            speed = 240f;
-            yield return new WaitForSeconds(1.2f);
-            speed = 245f;
-            yield return new WaitForSeconds(2.0f);
-            speed = 265;
-            yield return new WaitForSeconds(3.8f);
-            speed = 245;
-            yield return new WaitForSeconds(1.5f);
-            speed = 240f;
-            sphere.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
-            speed = 145;
-
-            // Ball position
-            handlerBallScript.SetBallInWheel(randomNumber);
-            yield return new WaitForSeconds(1.8f);
-            FxFocusFoundedRoullete(false);
-            speed = 75f;
-            // Fx
-            _scFxNewNumber.fxNewNumber(4,randomNumber);
-            yield return new WaitForSeconds(5.0f);
-            speed = 35f;
-            _cameraAnimator.SetBool("Mover", false);
-            FxCanvas(true);
-
-            // Intialize the payment system and display the news values
-            // Finished the rounded 
-
-            // Active Buttons
-            RoundController.Instance.ActivateButtons(true);
-            PaymentController.Instance.roundFinished();
-        }
-        */
     }
 }

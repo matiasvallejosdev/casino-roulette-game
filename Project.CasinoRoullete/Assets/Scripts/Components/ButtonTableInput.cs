@@ -21,7 +21,7 @@ namespace Commands
         public GameObject centerPivot;
 
         [Tooltip ("Hold duration in seconds")]
-        [Range (0.3f, 5f)] public float holdDuration = 0.5f ;
+        [Range (0.1f, 5f)] public float holdDuration = 0.5f ;
         public Button button;
 
         private bool isPointerDown = false ;

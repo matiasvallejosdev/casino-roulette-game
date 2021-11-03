@@ -18,7 +18,7 @@ namespace Infrastructure
 
         public IObservable<Unit> PlayTurn()
         {
-            randomNumber = 0;
+            randomNumber = Random.Range(0, 37);
             return Observable.Return(Unit.Default)
                     .Do(_ => Debug.Log($"Generating number {randomNumber} for the roullete game round!"));
         }

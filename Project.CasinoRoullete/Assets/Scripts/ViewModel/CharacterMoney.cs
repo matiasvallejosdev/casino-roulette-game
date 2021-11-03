@@ -13,18 +13,12 @@ namespace ViewModel
         public IntReactiveProperty characterMoney;
         public IntReactiveProperty currentPayment;
 
-        public int GetCashTotal() 
-        {
-            int c = characterMoney.Value;
-            return c;
-        }
-
+        // Operations in player money
         void AddCash(int cashWinner)
         {
             int aux = characterMoney.Value;
             characterMoney.Value += cashWinner;
         }
-
         void SubstractCash(int cashLost)
         {
             if(cashLost < 0) 
@@ -40,6 +34,7 @@ namespace ViewModel
             }
         }
 
+        // Operations in player bet
         void AddBet(int betSum)
         {
             int aux = characterBet.Value - betSum;
@@ -51,8 +46,10 @@ namespace ViewModel
             characterBet.Value  -= betRest;
         }
 
+        // Public methods
         public bool CheckBetValue(int valueFicha)
         {
+            // Check if the bet is possible
             bool aux = true;
             if (valueFicha <= characterMoney.Value  && valueFicha != 0)
             {
@@ -68,6 +65,7 @@ namespace ViewModel
         }
         public void DeleteChip(int valueFicha)
         {
+            // Delete ficha of the table
             SubstractBet(valueFicha);
             AddCash(valueFicha);
         }
@@ -75,14 +73,12 @@ namespace ViewModel
         {      
             characterBet.Value = 0;
 
+            // If the player win when the round finish game will pay.
+            // If not win it will stay with the same money without the bet.
             if(payment > 0)
                 AddCash(payment);
-            
-            if(payment < 0)
-                SubstractCash(payment);
                 
             Debug.Log($"Character player money is now being refresh with payment {payment}!");
-            Debug.Log($"Character current money is now {characterMoney}!");
         }
     }
 }

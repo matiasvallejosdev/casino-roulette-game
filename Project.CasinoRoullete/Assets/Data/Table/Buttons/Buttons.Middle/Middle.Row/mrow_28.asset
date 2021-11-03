@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3c2c1291e1992409e922ee5d0414fe, type: 3}
-  m_Name: GameRoullete
+  m_Script: {fileID: 11500000, guid: 6c3c7ad8e369e7e4ba39829fe06781ef, type: 3}
+  m_Name: mrow_28
   m_EditorClassIdentifier: 
-  sphere: {fileID: 1563967196799418755, guid: aa0b78b09b63ba9468b43937953f00e7, type: 3}
-  defaultSpeed: 30
-  currentSpeed: 30
+  buttonValue: 190000001c000000
+  buttonKey: 1
+  isPleno: 0
+  currentChipsOnTop: 0
+  currentSpritePivot: {x: 0, y: 0}
+  currentOffset: {x: 0, y: 0}

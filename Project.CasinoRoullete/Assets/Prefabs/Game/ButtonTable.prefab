@@ -140,7 +140,7 @@ MonoBehaviour:
   buttonData: {fileID: 0}
   chipsContainer: {fileID: 0}
   centerPivot: {fileID: 0}
-  holdDuration: 0.3
+  holdDuration: 0.13
   button: {fileID: 4705962744074163708}
 --- !u!114 &9194825869094601145
 MonoBehaviour:
