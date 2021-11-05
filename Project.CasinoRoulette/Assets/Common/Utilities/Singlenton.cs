@@ -18,8 +18,9 @@ public class Singlenton<T> : MonoBehaviour where T : Singlenton<T>
     {
         if(instance != null)
         {
-            Debug.LogError("[Singleton] Trying to instantiate a sceond instance of a singleton class.");
-        } else 
+            //Debug.LogError("[Singleton] Trying to instantiate a sceond instance of a singleton class.");
+        } 
+        else 
         {
             instance = (T) this;
         }

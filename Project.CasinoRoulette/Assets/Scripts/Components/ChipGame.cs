@@ -4,6 +4,7 @@ using UnityEngine;
 using ViewModel;
 using System.Linq;
 using UniRx;
+using Controllers;
 
 namespace Components
 {
@@ -38,6 +39,8 @@ namespace Components
         {
             characterTable.OnDestroyChip
                 .OnNext(this);
+                
+            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
         }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Chip
   - AnchorRoullete
   - ChipSelectUI
+  - AnchorSelectUI
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ namespace Commands
     [CreateAssetMenu(fileName = "New GameCmdFactory", menuName = "Factory/Game Command Factory")]
     public class GameCmdFactory : ScriptableObject
     {   
-        // Game roullete        
+        // Game roullete events      
         public ButtonTurnCmd ButtonTableTurn(GameObject chipInstance, GameObject chipsContainer, CharacterTable characterTable, ButtonTable buttonData)
         {
             return new ButtonTurnCmd(chipInstance, chipsContainer, characterTable, buttonData);
@@ -25,15 +25,11 @@ namespace Commands
             return new PlayTurnCmd(GameManager.Instance, characterTable, gameRoullete, new PlayRoundGateway());
         }
 
-        public RewardTurnCmd RewardTurn()
-        {
-            return new RewardTurnCmd();
-        }      
+        // Table events
         public MusicTurnCmd MusicTurnCmd(GameSound gameSound, bool isOn, float value = 0)
         {
             return new MusicTurnCmd(gameSound, isOn, value);
         }    
-
         public ResetTurnCmd ResetTableTurn(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable, int delayTime = 0)
         {
             return new ResetTurnCmd(magnetDestroyerDisplay, characterTable, delayTime);
@@ -46,5 +42,19 @@ namespace Commands
         {
             return new RestoreTurnCmd();
         } 
+
+        // Reward 
+        public RewardTurnCmd RewardTurn(string rewardScene)
+        {
+            return new RewardTurnCmd(rewardScene);
+        }      
+        public FortuneTurnCmd FortuneTurn(RewardFortune rewardFortune, int finalPosition)
+        {
+            return new FortuneTurnCmd(rewardFortune, finalPosition);
+        }      
+        public FortuneRewardTurnCmd FortuneRewardTurn(RewardFortune rewardFortune)
+        {
+            return new FortuneRewardTurnCmd(rewardFortune);
+        }      
     }
 }

@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using Commands;
+using Managers;
 using UnityEngine;
 using ViewModel;
 
 namespace Components
 {
-    public class GameRewardInput : MonoBehaviour
+    public class GameRewardCloseInput : MonoBehaviour
     {
         public GameCmdFactory gameCmdFactory;
         
-        public void OnClick(string scene)
+        public void OnClick()
         {
-            gameCmdFactory.RewardTurn(scene).Execute();
+            GameManager.Instance.ToggleRewardSystem();
+            GameManager.Instance.LoadLevel("Game");
         }
     }
 }

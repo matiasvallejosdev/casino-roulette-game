@@ -66,7 +66,6 @@ namespace Controllers
             characterTable.currentTable.Clear();
             characterTable.currentChipSelected = GameObject.Find("Selected_0").GetComponent<ChipSelected>().chipData;
             characterTable.currentNumbers.Clear();
-            //characterTable.lastTable.Clear();
 
             PlayerSystem.Instance.LoadRound();
             characterTable.OnActiveButton.OnNext(true);
@@ -87,15 +86,6 @@ namespace Controllers
             if(ficha == null)
                 return;
                 
-            try
-            {
-                PlayerSound.Instance.gameSound.OnSound.OnNext(2);
-            }
-            catch
-            {
-                Debug.Log("Player sound instance is not in scene!");
-            }
-
             if(ficha.currentChipData.chipValue > 0 && characterTable.currentTableCounter > 0)
             {
                 characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue); // Delete money

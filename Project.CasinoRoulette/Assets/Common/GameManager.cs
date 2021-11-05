@@ -8,57 +8,45 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Controllers;
+using System.Linq;
 
 namespace Managers
 {
     public class GameManager : Singlenton<GameManager>
     {
-        // What the roullete game is currently in
+        // What the roullete game is currently
         // What the preferences of the user and the pass rounds
         // Load and unload roulletes
         // Keep track of the game state
-        // Generate other persitente systems. Example preferences users and store
+        // Generate other persitente systems.
 
         private protected string URL_PATH;
         public GameObject[] SystemPrefabs;
-
-        //public Events.EventGameState OnGameStateChanged;
-        //public Events.EventRestartGame OnRestartGame;
-        //public EventsRound.EventRoundState OnGameRoundChange;
         
         private List<GameObject> _instanceSystemPrefabs;
         private List<AsyncOperation> _loadOperations;
         private GameState _currentGameState = GameState.PREGAME;
         private string _currentLevelName = string.Empty;
     
-        public String CurrentLevelName
-        {
-            get { return _currentLevelName; }
-            private set { _currentLevelName = value; }
-        }
-        public GameState CurrentGameState
-        {
-            get { return _currentGameState; }
-            private set { _currentGameState = value; }
-        }
         public String UrlDataPath
         {
             get{ return URL_PATH;}
         }
 
-        private void Start() 
+        void Start() 
         {
             // Persistance instance
             URL_PATH = Application.persistentDataPath + "/Saves/";
             DontDestroyOnLoad(gameObject);
 
             // Start game manager
-            StartInstances();
-            StartRoulleteGame();
+            StartRouletteInstance();
+            StartRouletteGame();
         }
 
-        private void StartInstances()
-        {
+        private void StartRouletteInstance()
+        {   
+            // Create game instance undestroyable.
             _instanceSystemPrefabs = new List<GameObject>();
             _loadOperations = new List<AsyncOperation>();
 
@@ -70,31 +58,29 @@ namespace Managers
                 _instanceSystemPrefabs.Add(prefabsInstance);
             }
         }
-
-        private void StartRoulleteGame()
+        private void StartRouletteGame()
         {
+            // Initialize game components
             CheckDirectory();
-            CreateNewPlayer();
+            CreateNewPlayer("Matias");
         }
 
         void CheckDirectory()
         {
+            // Check if the save directory exists
             if(!Directory.Exists(URL_PATH))
             {
                 Directory.CreateDirectory(URL_PATH);
             }
         }
-
-        private void CreateNewPlayer() 
+        private void CreateNewPlayer(string playerName) 
         {
-            PlayerSystem.Instance.characterTable.OnSaveGame
-                .OnNext(true);
-
+            // Create new player instance
             PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
             PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
         }
 
-        // State controller
+        // States controller
         private void UpdateState(GameState state)
         {
             GameState previousGameState = _currentGameState;
@@ -105,7 +91,7 @@ namespace Managers
                 case GameState.PREGAME:
                     Time.timeScale = 1.0f;
                     break;
-                case GameState.RUNING:
+                case GameState.RUNNING:
                     Time.timeScale = 1.0f;
                     break;
                 case GameState.PAUSED:
@@ -114,32 +100,17 @@ namespace Managers
                 case GameState.REWARD:
                     Time.timeScale = 1.0f;
                     break;
-                default:
-        
-                    break;
             }
-            //OnGameStateChanged.Invoke(_currentGameState, previousGameState);
-            // transitions between scenes
         }
 
         // Player event
         public void TogglePauseGame()
         {
-            // condition ? true : false
-            UpdateState(_currentGameState == GameState.RUNING ? GameState.PAUSED : GameState.RUNING);
+            UpdateState(_currentGameState == GameState.RUNNING ? GameState.PAUSED : GameState.RUNNING);
         }
-        public void ToggleRestartGame()
+        public void ToggleRewardSystem()
         {
-            //OnRestartGame.Invoke(true);
-            //restart_game restarting = GameObject.Find("RestartGame").GetComponent<restart_game>();
-            //restarting.restartGame();
-            Debug.Log("Restarting game");
-        }
-        public void ToggleExitGame()
-        {
-            // Implement features for quitting and save de game
-            Debug.Log("Quiting game");
-            Application.Quit();
+            UpdateState(_currentGameState == GameState.RUNNING ? GameState.REWARD : GameState.RUNNING);
         }
 
         // Unity event
@@ -160,7 +131,7 @@ namespace Managers
         // Loaders
         public void LoadLevel(string levelName)
         {
-            AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+            AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Single);
             if (ao == null)
             {
                 Debug.Log("[GameManager] Unable to load level" + levelName);
@@ -187,13 +158,6 @@ namespace Managers
             if (_loadOperations.Contains(ao))
             {
                 _loadOperations.Remove(ao);
-
-                if (_loadOperations.Count == 0)
-                {
-                    UpdateState(GameState.RUNING);
-                    Scene sc = SceneManager.GetSceneByName(_currentLevelName);
-                    SceneManager.SetActiveScene(sc);
-                }
             }
             Debug.Log("Load complete");
         }
@@ -207,7 +171,7 @@ namespace Managers
     public enum GameState
     {
         PREGAME,
-        RUNING,
+        RUNNING,
         PAUSED,
         REWARD
     }
