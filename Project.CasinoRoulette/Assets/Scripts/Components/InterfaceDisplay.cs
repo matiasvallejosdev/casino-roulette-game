@@ -10,9 +10,14 @@ namespace Components
     public class InterfaceDisplay : MonoBehaviour
     {    
         public CharacterTable characterTable;
-        public GameObject canvasUi;
-        public GameObject lastAnchor;
-        public GameObject moneyAnchor;
+
+        // UI Anchor
+        public GameObject optionsAnchor;
+        public GameObject bottomAnchor;
+        public GameObject leftAnchor;
+        public GameObject rewardAnchor;
+        
+        // Shadow Background
         public Animator shadowGame;
 
         void Start()
@@ -29,9 +34,11 @@ namespace Components
         private void OnPaymentDisplay(int value)
         {
             bool display = value > 0 || value < 0 ? false : true;
-            canvasUi.SetActive(display);
-            lastAnchor.SetActive(display);
-            moneyAnchor.SetActive(display);
+
+            optionsAnchor.SetActive(display);
+            bottomAnchor.SetActive(display);
+            leftAnchor.SetActive(display);
+            rewardAnchor.SetActive(display);
         }
 
         public void DisplayInterface(bool isRound)
@@ -41,9 +48,10 @@ namespace Components
             if(!isRound)
                 return;
             
-            canvasUi.SetActive(!isRound);
-            lastAnchor.SetActive(!isRound);
-            moneyAnchor.SetActive(!isRound);
+            optionsAnchor.SetActive(!isRound);
+            bottomAnchor.SetActive(!isRound);
+            leftAnchor.SetActive(!isRound);
+            rewardAnchor.SetActive(!isRound);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace ViewModel
     public class Round
     {
         public string idPlayer;
-        public int currentBet;
-        public int currentMoney;
+        public int playerMoney;
     }
 }

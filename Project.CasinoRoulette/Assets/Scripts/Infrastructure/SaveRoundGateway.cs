@@ -31,8 +31,7 @@ namespace Infrastructure
             roundData = new Round()
             {
                 idPlayer = characterTable.tableName,
-                currentBet = characterTable.characterMoney.characterBet.Value,
-                currentMoney = characterTable.characterMoney.characterMoney.Value
+                playerMoney = characterTable.characterMoney.characterMoney.Value
             };
 
             string path = GameManager.Instance.UrlDataPath + FILE_NAME;
@@ -43,7 +42,6 @@ namespace Infrastructure
 
             yield return new WaitUntil(() => File.Exists(path));
             
-
             observer.OnNext(Unit.Default); // push Unit or all buffer result.
             observer.OnCompleted();
         }

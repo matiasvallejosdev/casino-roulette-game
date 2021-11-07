@@ -21,8 +21,7 @@ namespace Commands
         public void Execute()
         {
             loadRoundGateway.RoundSequentialLoad(characterTable)
-                .Do(_ => characterTable.characterMoney.characterBet.Value = loadRoundGateway.roundData.currentBet)
-                .Do(_ => characterTable.characterMoney.characterMoney.Value = loadRoundGateway.roundData.currentMoney)
+                .Do(_ => characterTable.characterMoney.characterMoney.Value = loadRoundGateway.roundData.playerMoney)
                 .Subscribe();
         }
     }
