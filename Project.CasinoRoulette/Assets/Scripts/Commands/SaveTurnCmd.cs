@@ -20,7 +20,21 @@ namespace Commands
 
         public void Execute()
         {
-            saveRoundGateway.RoundSequentialSave(characterTable)
+            Table table = new Table()
+            {
+                buttonChips = characterTable.currentTableInGame
+            };
+
+            string json = JsonUtility.ToJson(table);
+            
+            Round roundData = new Round()
+            {
+                idPlayer = characterTable.tableName,
+                playerMoney = characterTable.characterMoney.characterMoney.Value + characterTable.characterMoney.characterBet.Value,
+                playerTable = json
+            };
+            
+            saveRoundGateway.RoundSequentialSave(roundData)
                 .Subscribe();
         }
     }

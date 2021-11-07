@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using ViewModel;
 using Infrastructure;
+using Controllers;
 
 namespace Commands
 {    
@@ -20,9 +21,18 @@ namespace Commands
 
         public void Execute()
         {
-            loadRoundGateway.RoundSequentialLoad(characterTable)
+            loadRoundGateway.RoundSequentialLoad()
                 .Do(_ => characterTable.characterMoney.characterMoney.Value = loadRoundGateway.roundData.playerMoney)
+                .Do(_ => LoadTable(loadRoundGateway.roundData))
                 .Subscribe();
+        }
+
+        void LoadTable(Round roundData)
+        {
+            Table table = JsonUtility.FromJson<Table>(roundData.playerTable);
+            Debug.Log($"Loading current player table {roundData.playerTable}");
+            PlayerRound.Instance.RestoreTable(table);
+            //Debug.Log()
         }
     }
 }

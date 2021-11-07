@@ -30,17 +30,27 @@ namespace Components
             return currentButton.buttonValue.Contains(num);
         }
 
-        public void DestroyMagnet()
+        public void DestroyChip()
         {
             Destroy(this.gameObject);
         }
 
         void OnDestroy()
         {
+            if(currentChipData == null)
+                return;
+
             characterTable.OnDestroyChip
                 .OnNext(this);
-                
-            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
+            
+            try
+            {
+                PlayerSound.Instance.gameSound.OnSound.OnNext(2);
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

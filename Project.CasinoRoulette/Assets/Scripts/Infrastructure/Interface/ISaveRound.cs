@@ -8,8 +8,8 @@ namespace Infrastructure
 {
     public interface ISaveRound 
     {
-        IObservable<Unit> RoundSequentialSave(CharacterTable characterTable);
-        IObservable<Unit> RoundSequentialLoad(CharacterTable characterTable);
+        IObservable<Unit> RoundSequentialSave(Round roundData);
+        IObservable<Unit> RoundSequentialLoad();
         public Round roundData {get; set;}    
     }
 }

@@ -7634,7 +7634,7 @@ GameObject:
   - component: {fileID: 1274877128}
   m_Layer: 0
   m_Name: ChipsContainer
-  m_TagString: Untagged
+  m_TagString: ChipContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9299,6 +9299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6a9893e3230df438a87a2115e53e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
   gameCmdFactory: {fileID: 11400000, guid: f7ba5b05108593e45a6a994947132d78, type: 2}
 --- !u!114 &1546804424
 MonoBehaviour:
@@ -9344,8 +9345,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1006151034}
-        m_TargetAssemblyTypeName: Components.GameUndoInput, Assembly-CSharp
+      - m_Target: {fileID: 1546804423}
+        m_TargetAssemblyTypeName: Components.GameRestoreInput, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -13798,7 +13799,7 @@ PrefabInstance:
     - target: {fileID: 6338564779127134687, guid: 6748b8c543cee4f44a52a74ad184bed1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1081.0935
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 6338564779127134687, guid: 6748b8c543cee4f44a52a74ad184bed1,
         type: 3}

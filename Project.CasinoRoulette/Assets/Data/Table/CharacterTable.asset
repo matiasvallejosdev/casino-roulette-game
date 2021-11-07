@@ -12,13 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013a23b77d9117346a3939b37bb4c656, type: 3}
   m_Name: CharacterTable
   m_EditorClassIdentifier: 
-  tableName: Main Table
+  tableName: Matias
   chipPrefab: {fileID: 5255888387336823749, guid: 01ca1795e6eb20a4bb420f376c291f70,
     type: 3}
   characterMoney: {fileID: 11400000, guid: d71fec43bee6a054a908c6af7c5ae8a6, type: 2}
-  currentTableCounter: 0
-  currentChipSelected: {fileID: 11400000, guid: 5841550ec8d393049a93cd4b41af8b38,
-    type: 2}
+  chipData:
+  - {fileID: 11400000, guid: 5841550ec8d393049a93cd4b41af8b38, type: 2}
+  - {fileID: 11400000, guid: 0c16d42c42b849b4190892026e49a109, type: 2}
+  - {fileID: 11400000, guid: 42eb277fa0dec6745be9c55f0e8601e7, type: 2}
+  - {fileID: 11400000, guid: 58c44dbadf6f9494e91bf95b3fb69560, type: 2}
+  - {fileID: 11400000, guid: 3a1991c6ad8ed3f4c9a006d0c69fc46b, type: 2}
+  - {fileID: 11400000, guid: cb060aa6c6e3cf64bb8974584779c662, type: 2}
+  - {fileID: 11400000, guid: aa0b9ef13ded13b4ea5425cfbf76a346, type: 2}
+  - {fileID: 11400000, guid: 6304debbfa729d648bb0f74669849245, type: 2}
+  - {fileID: 11400000, guid: edb8f7de11d555642b1b4ff928c71412, type: 2}
+  - {fileID: 11400000, guid: f8e250fce25739f4fbbdfa1847cdd1c0, type: 2}
+  - {fileID: 11400000, guid: 893c8cdc2a98bd34a99d914e54693e10, type: 2}
+  - {fileID: 11400000, guid: 499bd284c2a7c1140a20e6a7ce51cf65, type: 2}
+  - {fileID: 11400000, guid: b510a157f7c11b6438da552042f54282, type: 2}
+  currentTableCount: 0
   currentTable: []
+  currentTableInGame: []
   currentNumbers: 
-  lastNumber: 1
+  currentChipSelected: {fileID: 11400000, guid: 42eb277fa0dec6745be9c55f0e8601e7,
+    type: 2}
+  lastNumber: 35
+  lastTable: []

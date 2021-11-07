@@ -9,9 +9,24 @@ namespace Commands
 {    
     public class RestoreTurnCmd : ICommand
     {
+        private CharacterTable characterTable;
+
+        public RestoreTurnCmd(CharacterTable characterTable)
+        {
+            this.characterTable = characterTable;
+        }
+
         public void Execute()
         {
             PlayerSound.Instance.gameSound.OnSound.OnNext(0);
+            if(characterTable.currentTableCount > 0)
+                return;
+            
+            // Execute this only if the table is before round finished
+            Table table = new Table(){
+                buttonChips = characterTable.lastTable
+            };
+            PlayerRound.Instance.RestoreTable(table);
         }
     }
 }

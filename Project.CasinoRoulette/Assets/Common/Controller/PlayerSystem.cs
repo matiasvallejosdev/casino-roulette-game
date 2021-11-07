@@ -7,6 +7,7 @@ using Commands;
 using UnityEngine;
 using ViewModel;
 using UniRx;
+using Managers;
 
 namespace Controllers
 {
@@ -22,9 +23,9 @@ namespace Controllers
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
-            
+    
             characterTable.characterMoney.currentPayment.Value = 0;
-
+            
             characterTable.OnSaveGame
                 .Subscribe(SaveRound)
                 .AddTo(this);

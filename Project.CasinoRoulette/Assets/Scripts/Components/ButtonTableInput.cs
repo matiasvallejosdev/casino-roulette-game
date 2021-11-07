@@ -84,7 +84,7 @@ namespace Commands
                 
             GameObject newChip = Instantiate(characterTable.chipPrefab);
             newChip.SetActive(false);
-            gameCmdFactory.ButtonTableTurn(newChip, chipsContainer, characterTable, buttonData).Execute();
+            gameCmdFactory.ButtonTableTurn(this.gameObject, newChip, chipsContainer, characterTable, buttonData, characterTable.currentChipSelected).Execute();
         }
 
         public void OnPointerDown (PointerEventData eventData) 

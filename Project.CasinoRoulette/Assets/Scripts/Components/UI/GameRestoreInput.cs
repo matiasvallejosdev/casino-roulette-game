@@ -9,10 +9,11 @@ namespace Components
 {
     public class GameRestoreInput : MonoBehaviour
     {
+        public CharacterTable characterTable;
         public GameCmdFactory gameCmdFactory;
         public void OnClick() 
         {
-            gameCmdFactory.RestoreTableTurn().Execute();
+            gameCmdFactory.RestoreTableTurn(characterTable).Execute();
         }
     }
 }

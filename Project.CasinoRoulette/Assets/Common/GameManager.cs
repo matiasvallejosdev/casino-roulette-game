@@ -62,20 +62,21 @@ namespace Managers
         {
             // Initialize game components
             CheckDirectory();
-            CreateNewPlayer("Matias");
+            CreateNewPlayer();
         }
 
         void CheckDirectory()
         {
+            Debug.Log($"Directory: {URL_PATH}");
+
             // Check if the save directory exists
             if(!Directory.Exists(URL_PATH))
             {
                 Directory.CreateDirectory(URL_PATH);
             }
         }
-        private void CreateNewPlayer(string playerName) 
+        private void CreateNewPlayer() 
         {
-            // Create new player instance
             PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
             PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
         }

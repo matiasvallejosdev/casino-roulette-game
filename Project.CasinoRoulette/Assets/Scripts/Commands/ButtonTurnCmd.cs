@@ -10,22 +10,25 @@ namespace Commands
 {    
     public class ButtonTurnCmd : ICommand
     {
+        private GameObject buttonInstance;
         private GameObject chipInstance;
         private GameObject chipsContainer;
         private CharacterTable characterTable;
         private ButtonTable buttonData;
+        private Chip chipData;
 
-        public ButtonTurnCmd(GameObject chipInstance, GameObject chipsContainer, CharacterTable characterTable, ButtonTable buttonData)
+        public ButtonTurnCmd(GameObject buttonInstance, GameObject chipInstance, GameObject chipsContainer, CharacterTable characterTable, ButtonTable buttonData, Chip chipData)
         {
+            this.buttonInstance = buttonInstance;
             this.chipInstance = chipInstance;
             this.chipsContainer = chipsContainer;
             this.characterTable = characterTable;
             this.buttonData = buttonData;
+            this.chipData = chipData;
         }
 
         public void Execute()
         {
-            Chip chipData = characterTable.currentChipSelected;
             ChipGame chipGame = chipInstance.GetComponent<ChipGame>();
 
             // Detect if is all in one
@@ -49,41 +52,50 @@ namespace Commands
             }
             else
             {
+                chipGame.DestroyChip();
                 Debug.Log("Bet is not possible because the value of ficha is very high");
             }
         }    
         public void InstantiateFicha(ChipGame chipGame, Chip chipData, GameObject chipInstance, Vector2 spritePivot, Vector2 offsetPosition, bool fichasOnTop)
         {
-            Debug.Log($"Instantiate chip {chipData.chipName} in the table {characterTable.tableName}");
+            //Debug.Log($"Instantiate chip {chipData.chipName} in the table {characterTable.tableName}");
             
-            characterTable.currentTableCounter++;
+            characterTable.currentTableCount++;
 
             chipInstance.SetActive(true);
-            chipInstance.name = $"{chipData.chipName}_{characterTable.currentTableCounter.ToString()}";
+            chipInstance.name = $"{chipData.chipName}_{characterTable.currentTableCount.ToString()}";
             
             if(buttonData.isPleno)
                 chipInstance.transform.SetParent(chipsContainer.transform.GetChild(0));
             else 
                 chipInstance.transform.SetParent(chipsContainer.transform.GetChild(1));
-        
+            
+            Vector2 position = Vector2.zero;
+
             if (fichasOnTop)
             {
                 // Set position
-                Vector2 position = spritePivot + offsetPosition;
+                position = spritePivot + offsetPosition;
                 chipInstance.transform.position = position;
-
-                chipGame.StartChip(chipData, position, buttonData);
             }
             else
             {
                 // Set position
-                Vector2 position = spritePivot;
+                position = spritePivot;
                 chipInstance.transform.position = position;
 
-                chipGame.StartChip(chipData, position, buttonData);
             }
-
+            
+            chipGame.StartChip(chipData, position, buttonData);
+            
             characterTable.currentTable.Add(chipGame);
+
+            ButtonChip buttonChip = new ButtonChip(){
+                idButton = buttonInstance.name, 
+                idChip = chipData.chipkey.ToString()
+            };
+
+            characterTable.currentTableInGame.Add(buttonChip);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace Commands
 
         public void Execute()
         {
-            //Debug.Log($"New selection input in position: {chipData.name}");
             PlayerSound.Instance.gameSound.OnSound.OnNext(0);
             characterTable.currentChipSelected = chipData;
         }

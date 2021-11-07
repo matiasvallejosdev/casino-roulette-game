@@ -8,5 +8,6 @@ namespace ViewModel
     {
         public string idPlayer;
         public int playerMoney;
+        public string playerTable;
     }
 }

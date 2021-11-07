@@ -28,10 +28,10 @@ namespace Commands
         {
             PlayerSound.Instance.gameSound.OnSound.OnNext(5);
 
-            if(characterTable.currentTable.Count <= 0)
+            if(characterTable.currentTableCount <= 0)
                 return;
             
-            Debug.Log($"The game roullete is executing in {characterTable.tableName} with {characterTable.currentTableCounter} chips in table!");
+            Debug.Log($"The game roullete is executing in {characterTable.tableName} with {characterTable.currentTableCount} chips in table!");
             PlayerSound.Instance.gameSound.OnSound.OnNext(6);
 
             roundGateway.PlayTurn()
