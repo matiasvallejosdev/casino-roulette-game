@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Controllers;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Managers
 {
@@ -33,18 +34,22 @@ namespace Managers
             get{ return URL_PATH;}
         }
 
-        void Start() 
+        async void Start() 
         {
             // Persistance instance
             URL_PATH = Application.persistentDataPath + "/Saves/";
             DontDestroyOnLoad(gameObject);
 
             // Start game manager
-            StartRouletteInstance();
-            StartRouletteGame();
+            var tasks = new Task[2];
+
+            await StartRouletteInstance();
+            await StartRouletteGame();
+        
+            StartRound();
         }
 
-        private void StartRouletteInstance()
+        private async Task StartRouletteInstance()
         {   
             // Create game instance undestroyable.
             _instanceSystemPrefabs = new List<GameObject>();
@@ -57,14 +62,17 @@ namespace Managers
                 prefabsInstance = Instantiate(SystemPrefabs[i]);
                 _instanceSystemPrefabs.Add(prefabsInstance);
             }
+
+            await Task.Yield();
         }
-        private void StartRouletteGame()
+
+        private async Task StartRouletteGame()
         {
             // Initialize game components
             CheckDirectory();
-            CreateNewPlayer();
-        }
 
+            await CreateNewPlayer();
+        }
         void CheckDirectory()
         {
             Debug.Log($"Directory: {URL_PATH}");
@@ -75,10 +83,23 @@ namespace Managers
                 Directory.CreateDirectory(URL_PATH);
             }
         }
-        private void CreateNewPlayer() 
+        private async Task CreateNewPlayer() 
         {
+            string playerPath = URL_PATH+"roulettePlayer";
+
+            if(!File.Exists(playerPath))
+                PlayerRound.Instance.characterTable.OnSaveGame.OnNext(true);
+
             PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
             PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
+
+            await Task.Run(() => File.Exists(playerPath));
+        }
+        
+        private void StartRound()
+        {
+           // Initialize round components
+            PlayerRound.Instance.OnGameOpened();
         }
 
         // States controller

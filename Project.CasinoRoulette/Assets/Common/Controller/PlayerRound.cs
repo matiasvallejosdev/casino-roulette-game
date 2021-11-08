@@ -33,8 +33,6 @@ namespace Controllers
             characterTable.OnRound
                 .Subscribe(OnRoundFinish)
                 .AddTo(this);
-            
-            OnGameOpened();
         }
         
         // Events
@@ -69,7 +67,7 @@ namespace Controllers
             characterTable.currentTableInGame.Clear();
         }
         public void OnGameOpened() 
-        {
+        {    
             // Update round parameters
             characterTable.currentTableCount = 0;
             characterTable.currentTable.Clear();
@@ -103,11 +101,11 @@ namespace Controllers
                 // Only if is called from a chip
                 characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue); // Delete money
                 characterTable.currentTableCount--;
+                characterTable.currentTableInGame.RemoveAt(characterTable.currentTableInGame.Count() - 1);
             }   
 
             ficha.currentButton.SubstractCurrentOffset();
 
-            characterTable.currentTableInGame.RemoveAt(characterTable.currentTableInGame.Count() - 1);
             characterTable.currentTable.Remove(ficha);
         }   
 
