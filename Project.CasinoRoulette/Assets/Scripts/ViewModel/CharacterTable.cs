@@ -19,14 +19,14 @@ namespace ViewModel
         // Current round
         public int currentTableCount;
         public List<ChipGame> currentTable = new List<ChipGame>();
-        public List<ButtonChip> currentTableInGame = new List<ButtonChip>();
+        public List<TableChips> currentTableInGame = new List<TableChips>();
         public List<int> currentNumbers = new List<int>();
         public Chip currentChipSelected;
 
         // Last round
         [Header("Last Execution")]
         public int lastNumber;
-        public List<ButtonChip> lastTable = new List<ButtonChip>();
+        public List<TableChips> lastTable = new List<TableChips>();
 
         // Events observables
         public ISubject<ChipGame> OnDestroyChip = new Subject<ChipGame>();

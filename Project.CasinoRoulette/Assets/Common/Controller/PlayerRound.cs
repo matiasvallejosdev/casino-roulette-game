@@ -8,6 +8,8 @@ using Components;
 using Managers;
 using System.Linq;
 using System.IO;
+using System;
+using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -21,6 +23,7 @@ namespace Controllers
         public GameCmdFactory gameCmdFactory;
 
         public int _lastNumber = 0;
+        private bool _isTableActive;
 
         private void Start()
         {
@@ -33,8 +36,17 @@ namespace Controllers
             characterTable.OnRound
                 .Subscribe(OnRoundFinish)
                 .AddTo(this);
+            
+            characterTable.OnActiveButton
+                .Subscribe(OnTableActive)
+                .AddTo(this);
         }
-        
+
+        private void OnTableActive(bool isActive)
+        {
+            _isTableActive = isActive;
+        }
+
         // Events
         public void OnPayment(int value)
         {
@@ -81,7 +93,6 @@ namespace Controllers
             characterTable.lastNumber = 0;
             characterTable.lastTable.Clear();
         }
-        
         // Table Controller
         public void DestroyLastChip()
         {
@@ -101,7 +112,7 @@ namespace Controllers
                 // Only if is called from a chip
                 characterTable.characterMoney.DeleteChip(ficha.currentChipData.chipValue); // Delete money
                 characterTable.currentTableCount--;
-                characterTable.currentTableInGame.RemoveAt(characterTable.currentTableInGame.Count() - 1);
+                characterTable.currentTableInGame.RemoveAt(characterTable.currentTableInGame.Count() - 1);     
             }   
 
             ficha.currentButton.SubstractCurrentOffset();
@@ -130,7 +141,10 @@ namespace Controllers
 
         public void RestoreTable(Table table)
         {
-            foreach(ButtonChip buttonChip in table.buttonChips)
+            if(!_isTableActive)
+                return;
+
+            foreach(TableChips buttonChip in table.TableChips)
             {
                 GameObject buttonInstance = GameObject.Find(buttonChip.idButton);
                 GameObject chipInstance = Instantiate(characterTable.chipPrefab);

@@ -4,6 +4,7 @@ using UnityEngine;
 using ViewModel;
 using UniRx;
 using System;
+using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -13,6 +14,8 @@ namespace Controllers
         public AudioSource _audioSourceFx;
         public AudioSource _audioSourceMusic;
         
+        private bool _isPlayingFx = false;
+
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
@@ -54,11 +57,24 @@ namespace Controllers
             _audioSourceMusic.loop = true;
             _audioSourceMusic.Play();
         }
-        private void OnSound(int pos)
+        private async void OnSound(int pos)
         {
+            if(_isPlayingFx)
+                return;
+
+            await PlaySound(pos);
+
+            _isPlayingFx = false;
+        }
+
+        private async Task PlaySound(int pos)
+        {
+            _isPlayingFx = true;
             _audioSourceFx.clip = gameSound.soundFx[pos];
             _audioSourceFx.loop = false;
             _audioSourceFx.Play();
+
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
         }
 
         private void OnGameOpened()

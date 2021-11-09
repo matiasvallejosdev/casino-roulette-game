@@ -11,7 +11,7 @@ namespace Commands
     {
         public void Execute()
         {
-            PlayerSound.Instance.gameSound.OnSound.OnNext(0);
+            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
             PlayerRound.Instance.DestroyLastChip();
         }
     }

@@ -86,14 +86,7 @@ namespace Managers
         private async Task CreateNewPlayer() 
         {
             string playerPath = URL_PATH+"roulettePlayer";
-
-            if(!File.Exists(playerPath))
-                PlayerRound.Instance.characterTable.OnSaveGame.OnNext(true);
-
-            PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
-            PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
-
-            await Task.Run(() => File.Exists(playerPath));
+            await PlayerSystem.Instance.CreatePlayer("MatiV154", playerPath);
         }
         
         private void StartRound()

@@ -22,7 +22,7 @@ namespace Commands
         {
             Table table = new Table()
             {
-                buttonChips = characterTable.currentTableInGame
+                TableChips = characterTable.currentTableInGame
             };
 
             string json = JsonUtility.ToJson(table);

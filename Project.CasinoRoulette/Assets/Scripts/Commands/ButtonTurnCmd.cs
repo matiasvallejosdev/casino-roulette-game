@@ -90,7 +90,7 @@ namespace Commands
             
             characterTable.currentTable.Add(chipGame);
 
-            ButtonChip buttonChip = new ButtonChip(){
+            TableChips buttonChip = new TableChips(){
                 idButton = buttonInstance.name, 
                 idChip = chipData.chipkey.ToString()
             };

@@ -80,7 +80,7 @@ MonoBehaviour:
   goContainer: {fileID: 8648596727683782938}
   anchorPos: {fileID: 8648596727064370381}
   anchorSprite: {fileID: 8648596727064370378}
-  _secondToDisplay: 5
+  _secondToDisplay: 3
 --- !u!1 &8648596726392941690
 GameObject:
   m_ObjectHideFlags: 0

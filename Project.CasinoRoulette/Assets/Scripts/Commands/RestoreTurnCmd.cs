@@ -24,7 +24,7 @@ namespace Commands
             
             // Execute this only if the table is before round finished
             Table table = new Table(){
-                buttonChips = characterTable.lastTable
+                TableChips = characterTable.lastTable
             };
             PlayerRound.Instance.RestoreTable(table);
         }

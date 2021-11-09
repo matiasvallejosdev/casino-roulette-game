@@ -8,6 +8,7 @@ using UnityEngine;
 using ViewModel;
 using UniRx;
 using Managers;
+using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -29,6 +30,21 @@ namespace Controllers
             characterTable.OnSaveGame
                 .Subscribe(SaveRound)
                 .AddTo(this);
+        }
+
+        public async Task CreatePlayer(string tableName, string playerPath)
+        {
+            characterTable.tableName = tableName;
+            characterTable.characterMoney.characterMoney.Value = 10000;
+            
+            if(!File.Exists(playerPath))
+            {
+                PlayerRound.Instance.characterTable.OnSaveGame.OnNext(true);
+                PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
+                PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
+            }
+
+            await Task.Run(() => File.Exists(playerPath)); 
         }
 
         public void SaveRound(bool value) 

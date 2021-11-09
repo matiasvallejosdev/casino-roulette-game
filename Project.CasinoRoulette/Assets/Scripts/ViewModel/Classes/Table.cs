@@ -8,6 +8,6 @@ namespace ViewModel
     [Serializable]
     public class Table
     {
-        public List<ButtonChip> buttonChips = new List<ButtonChip>();
+        public List<TableChips> TableChips = new List<TableChips>();
     }
 }

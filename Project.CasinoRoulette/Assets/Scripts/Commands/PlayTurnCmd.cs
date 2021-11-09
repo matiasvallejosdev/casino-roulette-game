@@ -26,8 +26,6 @@ namespace Commands
 
         public void Execute()
         {
-            PlayerSound.Instance.gameSound.OnSound.OnNext(5);
-
             if(characterTable.currentTableCount <= 0)
                 return;
             

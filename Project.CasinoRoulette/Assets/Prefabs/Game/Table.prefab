@@ -3931,8 +3931,8 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 0.146, y: 0.07}
-  m_Spacing: {x: 0.53, y: 0.448}
+  m_CellSize: {x: 0.146, y: 0.133}
+  m_Spacing: {x: 0.53, y: 0.38}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &6351313506371851556
@@ -6109,7 +6109,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 0.02, y: 0.53}
+  m_CellSize: {x: 0.0416, y: 0.526}
   m_Spacing: {x: 0.67, y: -0.01}
   m_Constraint: 1
   m_ConstraintCount: 3

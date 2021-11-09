@@ -64,7 +64,6 @@ namespace Components
 
             yield return new WaitForSeconds(secInScreen);
 
-            PlayerSound.Instance.gameSound.OnSound.OnNext(4);
             characterTable.characterMoney.currentPayment.Value = 0;
 
             shadowAnim.SetBool("Shadow", false);
