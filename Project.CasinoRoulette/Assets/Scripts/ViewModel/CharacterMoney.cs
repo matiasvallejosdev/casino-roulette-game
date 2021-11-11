@@ -69,7 +69,7 @@ namespace ViewModel
             SubstractBet(valueFicha);
             AddCash(valueFicha);
         }
-        public void RoundFinish(int payment)
+        public void PaymentSystem(int payment)
         {      
             characterBet.Value = 0;
 

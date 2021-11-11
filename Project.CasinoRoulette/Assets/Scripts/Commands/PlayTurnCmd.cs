@@ -77,7 +77,6 @@ namespace Commands
                 .Delay(TimeSpan.FromSeconds(3))
                 .Do(_ => PlayerRound.Instance.OnPayment(PlayerPayment.Instance.PaymentValue))
                 .Do(_ => characterTable.OnWinButton.OnNext(num))
-                .Do(_ => PlayerSound.Instance.gameSound.OnSound.OnNext(4))
                 .Subscribe();
         }
     }

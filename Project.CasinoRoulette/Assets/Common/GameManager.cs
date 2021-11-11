@@ -125,7 +125,6 @@ namespace Managers
                 case GameState.RUNNING:
                     await PlayerRound.Instance.OnGameOpened();
                     PlayerSystem.Instance.LoadRound();
-                    PlayerRound.Instance.characterTable.currentChipSelected = PlayerRound.Instance.characterTable.chipData.Where(chip => chip.chipName == "Chip 10").First();
                     Time.timeScale = 1.0f;
                     break;
                 case GameState.REWARD:

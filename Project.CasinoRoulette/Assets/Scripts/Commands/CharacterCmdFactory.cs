@@ -18,5 +18,9 @@ namespace Commands
         {
             return new SaveTurnCmd(characterTable, new SaveRoundGateway());
         }        
+        public SaveCashTurnCmd SaveCash(CharacterCmdFactory characterCmdFactory, CharacterTable characterTable, int payment)
+        {
+            return new SaveCashTurnCmd(characterCmdFactory, characterTable, payment, new SaveRoundGateway());
+        }        
     }
 }

@@ -42,7 +42,7 @@ namespace Controllers
         public void OnPayment(int value)
         {
             characterTable.characterMoney.currentPayment.Value = value;
-            characterTable.characterMoney.RoundFinish(value);
+            characterTable.characterMoney.PaymentSystem(value);
         }
         public void OnRoundFinish(bool isRound)
         {

@@ -48,9 +48,9 @@ namespace Commands
         {
             return new RewardTurnCmd(rewardScene);
         }      
-        public FortuneTurnCmd FortuneTurn(RewardFortune rewardFortune, int finalPosition)
+        public FortunePaymentTurnCmd FortuneTurn(CharacterCmdFactory characterCmdFactory, CharacterTable characterTable, RewardFortune rewardFortune, int finalPosition)
         {
-            return new FortuneTurnCmd(rewardFortune, finalPosition);
+            return new FortunePaymentTurnCmd(characterCmdFactory, characterTable, rewardFortune, finalPosition);
         }      
         public FortuneRewardTurnCmd FortuneRewardTurn(RewardFortune rewardFortune)
         {

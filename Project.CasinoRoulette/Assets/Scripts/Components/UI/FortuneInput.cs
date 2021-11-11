@@ -11,19 +11,22 @@ namespace Components
 {
     public class FortuneInput : MonoBehaviour
     {
+        public CharacterCmdFactory characterCmdFactory;
         public RewardFortune rewardFortune;
         public GameCmdFactory gameCmdFactory;
+        public CharacterTable characterTable;
         public char separatorAnchor;
 
         private bool isExecute = false;
         Int32 count = 1;
     
-        void OnTriggerEnter(Collider collider)
+        void OnTriggerStay(Collider collider)
         {
-            if(!rewardFortune.isPlay && rewardFortune.hasInitialize)
+            if(!isExecute && !rewardFortune.isPlay && rewardFortune.hasInitialize)
             {
                 if(collider.CompareTag("AnchorSelectUI"))
                 {
+                    isExecute = true;
                     int pos = Convert.ToInt32(collider.name.Split(separatorAnchor)[1]);
                     FortuneWin(pos);
                 }
@@ -31,7 +34,7 @@ namespace Components
         }
         void FortuneWin(int pos)
         {
-            gameCmdFactory.FortuneTurn(rewardFortune, pos).Execute();
+            gameCmdFactory.FortuneTurn(characterCmdFactory, characterTable, rewardFortune, pos).Execute();
         }
     }
 }
