@@ -40,7 +40,7 @@ namespace Commands
             // Find if is possible bet < totalWinner
             if(characterTable.characterMoney.CheckBetValue(chipData.chipValue))
             {
-                Debug.Log("Bet is possible!");
+                //Debug.Log("Bet is possible!");
                 PlayerSound.Instance.gameSound.OnSound.OnNext(1);
 
                 // Instiate New Chip Instance

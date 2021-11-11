@@ -53,6 +53,9 @@ namespace Controllers
 
         private void OnMusic(int pos)
         {
+            if(_audioSourceMusic.isPlaying)
+                return;
+            
             _audioSourceMusic.clip = gameSound.musicFx[pos];
             _audioSourceMusic.loop = true;
             _audioSourceMusic.Play();

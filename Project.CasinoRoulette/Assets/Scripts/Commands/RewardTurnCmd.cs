@@ -24,7 +24,7 @@ namespace Commands
             PlayerSound.Instance.gameSound.OnSound.OnNext(0);
             Debug.Log($"Opening game reward to get more money!");
             GameManager.Instance.ToggleRewardSystem();
-            GameManager.Instance.LoadLevel(rewardScene);
+            GameManager.Instance.LoadScene(rewardScene);
         }
     }
 }

@@ -13,8 +13,8 @@ namespace Components
         
         public void OnClick()
         {
-            GameManager.Instance.ToggleRewardSystem();
-            GameManager.Instance.LoadLevel("Game");
+            GameManager.Instance.LoadScene("Game");
+            GameManager.Instance.ToggleGame();
         }
     }
 }

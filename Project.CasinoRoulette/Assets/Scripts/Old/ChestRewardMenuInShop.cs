@@ -85,6 +85,6 @@ public class ChestRewardMenuInShop : MonoBehaviour
         rewardButton.interactable = false;
         // Open fortune roullete
         //GameManager.Instance.UnloadLevel(GameManager.Instance.getCurrentLevel());
-        GameManager.Instance.LoadLevel(fortuneRoullete);
+        GameManager.Instance.LoadScene(fortuneRoullete);
     }
 }

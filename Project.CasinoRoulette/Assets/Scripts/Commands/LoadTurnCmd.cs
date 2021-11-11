@@ -32,7 +32,6 @@ namespace Commands
             Table table = JsonUtility.FromJson<Table>(roundData.playerTable);
             Debug.Log($"Loading current player table {roundData.playerTable}");
             PlayerRound.Instance.RestoreTable(table);
-            //Debug.Log()
         }
     }
 }

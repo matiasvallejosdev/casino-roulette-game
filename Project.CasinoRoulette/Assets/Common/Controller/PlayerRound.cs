@@ -36,15 +36,6 @@ namespace Controllers
             characterTable.OnRound
                 .Subscribe(OnRoundFinish)
                 .AddTo(this);
-            
-            characterTable.OnActiveButton
-                .Subscribe(OnTableActive)
-                .AddTo(this);
-        }
-
-        private void OnTableActive(bool isActive)
-        {
-            _isTableActive = isActive;
         }
 
         // Events
@@ -78,20 +69,25 @@ namespace Controllers
             characterTable.currentNumbers.Clear();
             characterTable.currentTableInGame.Clear();
         }
-        public void OnGameOpened() 
-        {    
+        public async Task OnGameOpened() 
+        { 
             // Update round parameters
+            characterTable.currentTableActive.Value = false; 
             characterTable.currentTableCount = 0;
             characterTable.currentTable.Clear();
-            characterTable.currentChipSelected = characterTable.chipData.Where(chip => chip.chipkey == KeyFicha.Chip10).First();
             characterTable.currentNumbers.Clear();
             characterTable.currentTableInGame.Clear();
 
-            PlayerSystem.Instance.LoadRound();
-            characterTable.OnActiveButton.OnNext(true);
 
             characterTable.lastNumber = 0;
             characterTable.lastTable.Clear();
+            
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
+            characterTable.currentTableActive.Value = true; 
+            characterTable.currentChipSelected = characterTable.chipData.Where(chip => chip.chipkey == KeyFicha.Chip10).First();
+
+            await Task.Yield();
         }
         // Table Controller
         public void DestroyLastChip()
@@ -124,6 +120,7 @@ namespace Controllers
         {
             characterTable.characterMoney.characterBet.Value = 0;
             characterTable.currentTableCount = 0;
+            characterTable.currentTableInGame.Clear();
 
             if(!destroyChips)
                 return;
@@ -133,16 +130,17 @@ namespace Controllers
                 Destroy(go.gameObject);
             }
 
-            characterTable.OnActiveButton.OnNext(true);
+            characterTable.currentTableActive.Value = true;
             characterTable.currentTable.Clear();
-            characterTable.currentTableInGame.Clear();
             characterTable.lastTable.Clear();
         }
 
         public void RestoreTable(Table table)
         {
-            if(!_isTableActive)
+            if(!characterTable.currentTableActive.Value)
                 return;
+            
+            Debug.Log($"Loading current player table with {table.TableChips.Count()} chips");
 
             foreach(TableChips buttonChip in table.TableChips)
             {

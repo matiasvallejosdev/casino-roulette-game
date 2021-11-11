@@ -52,7 +52,7 @@ namespace Commands
         {
             ResetButton();
 
-            characterTable.OnActiveButton
+            characterTable.currentTableActive
                 .Subscribe(OnActiveButton)
                 .AddTo(this);
         }

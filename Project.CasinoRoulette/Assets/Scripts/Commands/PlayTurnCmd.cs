@@ -41,7 +41,7 @@ namespace Commands
         IEnumerator RoulleteGame(int num)
         {
             characterTable.OnRound.OnNext(true); // Initialize round
-            characterTable.OnActiveButton.OnNext(false); // Desactivete table buttons
+            characterTable.currentTableActive.Value = false; // Desactivete table buttons
             gameRoullete.OnRotate.OnNext(true);
 
             yield return new WaitForSeconds(2.0f);

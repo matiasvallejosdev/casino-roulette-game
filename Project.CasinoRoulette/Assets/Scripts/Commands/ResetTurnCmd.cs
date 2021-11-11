@@ -38,12 +38,12 @@ namespace Commands
          
         IEnumerator ActivateMagnetDestroyer(float seg)
         {
-            characterTable.OnActiveButton.OnNext(false);
+            characterTable.currentTableActive.Value = false;
             yield return new WaitForSeconds(delayTime);
             magnetDestroyerDisplay.magnetDestroyer.SetActive(true);
             yield return new WaitForSeconds(seg);
             magnetDestroyerDisplay.magnetDestroyer.SetActive(false);
-            characterTable.OnActiveButton.OnNext(true);        
+            characterTable.currentTableActive.Value = true;
         }
     }
 }

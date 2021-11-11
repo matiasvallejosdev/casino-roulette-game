@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013a23b77d9117346a3939b37bb4c656, type: 3}
   m_Name: CharacterTable
   m_EditorClassIdentifier: 
-  tableName: Matias
+  tableName: MatiV154
   chipPrefab: {fileID: 5255888387336823749, guid: 01ca1795e6eb20a4bb420f376c291f70,
     type: 3}
   characterMoney: {fileID: 11400000, guid: d71fec43bee6a054a908c6af7c5ae8a6, type: 2}
@@ -34,7 +34,9 @@ MonoBehaviour:
   currentTable: []
   currentTableInGame: []
   currentNumbers: 
-  currentChipSelected: {fileID: 11400000, guid: 42eb277fa0dec6745be9c55f0e8601e7,
+  currentChipSelected: {fileID: 11400000, guid: 5841550ec8d393049a93cd4b41af8b38,
     type: 2}
-  lastNumber: 35
+  currentTableActive:
+    value: 1
+  lastNumber: 0
   lastTable: []

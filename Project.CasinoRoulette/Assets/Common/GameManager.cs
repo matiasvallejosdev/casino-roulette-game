@@ -10,22 +10,25 @@ using UnityEngine.SceneManagement;
 using Controllers;
 using System.Linq;
 using System.Threading.Tasks;
+using ViewModel;
 
 namespace Managers
 {
-    public class GameManager : Singlenton<GameManager>
+    public class GameManager : MonoBehaviour
     {
         // What the roullete game is currently
         // What the preferences of the user and the pass rounds
         // Load and unload roulletes
         // Keep track of the game state
         // Generate other persitente systems.
+        
+        public static GameManager Instance; // A static reference to the GameManager instance
 
         private protected string URL_PATH;
         public GameObject[] SystemPrefabs;
         
-        private List<GameObject> _instanceSystemPrefabs;
-        private List<AsyncOperation> _loadOperations;
+        private protected List<GameObject> _instanceSystemPrefabs;
+        private protected List<AsyncOperation> _loadOperations;
         private GameState _currentGameState = GameState.PREGAME;
         private string _currentLevelName = string.Empty;
     
@@ -34,19 +37,29 @@ namespace Managers
             get{ return URL_PATH;}
         }
 
+        void Awake()
+        {
+            if(Instance == null) // If there is no instance already
+            {
+                DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
+                Instance = this;
+            } else if(Instance != this) // If there is already an instance and it's not `this` instance
+            {
+                Destroy(gameObject); // Destroy the GameObject, this component is attached to
+            }
+        }
+
         async void Start() 
         {
             // Persistance instance
             URL_PATH = Application.persistentDataPath + "/Saves/";
-            DontDestroyOnLoad(gameObject);
 
-            // Start game manager
+            // Start game persistence
             var tasks = new Task[2];
 
             await StartRouletteInstance();
             await StartRouletteGame();
         
-            StartRound();
         }
 
         private async Task StartRouletteInstance()
@@ -56,7 +69,7 @@ namespace Managers
             _loadOperations = new List<AsyncOperation>();
 
             GameObject prefabsInstance;
-
+            
             for(int i = 0; i < SystemPrefabs.Length;i++)
             {
                 prefabsInstance = Instantiate(SystemPrefabs[i]);
@@ -68,10 +81,13 @@ namespace Managers
 
         private async Task StartRouletteGame()
         {
-            // Initialize game components
+            // Initialize save directory
             CheckDirectory();
 
             await CreateNewPlayer();
+
+            // Initialize game
+            StartRound();
         }
         void CheckDirectory()
         {
@@ -92,50 +108,69 @@ namespace Managers
         private void StartRound()
         {
            // Initialize round components
-            PlayerRound.Instance.OnGameOpened();
+            ToggleGame();
         }
 
         // States controller
-        private void UpdateState(GameState state)
+        private async void UpdateState(GameState state)
         {
             GameState previousGameState = _currentGameState;
             _currentGameState = state;
 
             switch (_currentGameState)
             {
-                case GameState.PREGAME:
-                    Time.timeScale = 1.0f;
-                    break;
-                case GameState.RUNNING:
-                    Time.timeScale = 1.0f;
-                    break;
                 case GameState.PAUSED:
                     Time.timeScale = 0.0f;
                     break;
+                case GameState.RUNNING:
+                    await PlayerRound.Instance.OnGameOpened();
+                    PlayerSystem.Instance.LoadRound();
+                    PlayerRound.Instance.characterTable.currentChipSelected = PlayerRound.Instance.characterTable.chipData.Where(chip => chip.chipName == "Chip 10").First();
+                    Time.timeScale = 1.0f;
+                    break;
                 case GameState.REWARD:
+                    PlayerRound.Instance.OnGameClosed();
                     Time.timeScale = 1.0f;
                     break;
             }
+            Debug.Log($"[GameManager] Current state game is now {_currentGameState.ToString()}");
         }
 
         // Player event
         public void TogglePauseGame()
         {
-            UpdateState(_currentGameState == GameState.RUNNING ? GameState.PAUSED : GameState.RUNNING);
+            UpdateState(GameState.PAUSED);
         }
         public void ToggleRewardSystem()
         {
-            UpdateState(_currentGameState == GameState.RUNNING ? GameState.REWARD : GameState.RUNNING);
+            UpdateState(GameState.REWARD);
+        }
+        public void ToggleGame()
+        {
+            UpdateState(GameState.RUNNING);
         }
 
         // Unity event
+        protected void OnApplicationPause()
+        {
+            if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
+                PlayerRound.Instance.OnGameClosed();
+        }
         protected void OnApplicationQuit()
         {
-            PlayerRound.Instance.OnGameClosed();
+            if(Application.platform == RuntimePlatform.WindowsEditor)
+                PlayerRound.Instance.OnGameClosed();
         }
-        protected override void OnDestroy() 
+        protected void OnDestroy() 
         {
-            base.OnDestroy();
+            if(Instance == this)
+            {
+                Instance = null;
+            }
+
+            if(_instanceSystemPrefabs == null)
+                return;
+            
             for(int i = 0; i < _instanceSystemPrefabs.Count; i++)
             {
                 Destroy(_instanceSystemPrefabs[i]);
@@ -144,41 +179,9 @@ namespace Managers
         }
 
         // Loaders
-        public void LoadLevel(string levelName)
+        public void LoadScene(string levelName)
         {
-            AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Single);
-            if (ao == null)
-            {
-                Debug.Log("[GameManager] Unable to load level" + levelName);
-                return;
-            }
-            ao.completed += OnLoadOperationComplete;
-            _loadOperations.Add(ao);
-            _currentLevelName = levelName;
-        }
-        public void UnloadLevel(string levelName)
-        {
-            AsyncOperation ao = SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(levelName));
-            if (ao == null)
-            {
-                Debug.Log("[GameManager] Unable to unload level" + levelName);
-                return;
-            }
-            ao.completed += OnUnloadOperationComplete;
-        }
-
-        // Operations before the load or unload
-        void OnLoadOperationComplete(AsyncOperation ao)
-        {
-            if (_loadOperations.Contains(ao))
-            {
-                _loadOperations.Remove(ao);
-            }
-            Debug.Log("Load complete");
-        }
-        void OnUnloadOperationComplete(AsyncOperation ao)
-        {
-            Debug.Log("Unload complete");
+            SceneManager.LoadScene(levelName);
         }
     }
 

@@ -27,6 +27,9 @@ namespace Components
 
         private void OnWin(int num)
         {
+            if(!buttonData.isPleno)
+                return;
+
             bool containNumber = buttonData.buttonValue.Contains(num);
             
             if(containNumber)
@@ -36,6 +39,9 @@ namespace Components
         }
         public void OnPressed(LongPress longPress) 
         {
+            if(!buttonData.isPleno)
+                return;
+                
             if(CheckIfIsLongPressed(longPress.values))          
                 FxPressed(longPress.isPressed);
         }

@@ -22,6 +22,7 @@ namespace ViewModel
         public List<TableChips> currentTableInGame = new List<TableChips>();
         public List<int> currentNumbers = new List<int>();
         public Chip currentChipSelected;
+        public BoolReactiveProperty currentTableActive;
 
         // Last round
         [Header("Last Execution")]
@@ -31,7 +32,6 @@ namespace ViewModel
         // Events observables
         public ISubject<ChipGame> OnDestroyChip = new Subject<ChipGame>();
 
-        public ISubject<bool> OnActiveButton = new Subject<bool>();
         public ISubject<int> OnWinButton = new Subject<int>();
         public ISubject<LongPress> OnPressedButton = new Subject<LongPress>();
 
