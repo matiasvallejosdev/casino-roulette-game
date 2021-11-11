@@ -6592,6 +6592,7 @@ GameObject:
   - component: {fileID: 1056388539}
   - component: {fileID: 1056388542}
   - component: {fileID: 1056388543}
+  - component: {fileID: 1056388540}
   m_Layer: 5
   m_Name: RewardAnchor
   m_TagString: Untagged
@@ -6620,6 +6621,21 @@ RectTransform:
   m_AnchoredPosition: {x: -397, y: -104}
   m_SizeDelta: {x: -830.92, y: 80.5788}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1056388540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056388538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4add0ab1cc7cf174d9a268cda92e9372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardFortune: {fileID: 11400000, guid: 4c33d6f98dc6923409894ac56998b482, type: 2}
+  timerLabel: {fileID: 307749791}
+  rewardButton: {fileID: 714030555}
 --- !u!222 &1056388542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11801,6 +11817,7 @@ MonoBehaviour:
   - {fileID: 6087273685066073786, guid: 09397e8f67c3c7e49ae6e0aee6311ba5, type: 3}
   - {fileID: 4767052796194386775, guid: cb516b7df5400c94c887a2506ce438c3, type: 3}
   - {fileID: 6087273685066073786, guid: b81ccd84bde4b144183d2e5838d9c491, type: 3}
+  - {fileID: 6087273685066073786, guid: 4f4628a6b60006047abb0d19e799af95, type: 3}
 --- !u!4 &2117310257
 Transform:
   m_ObjectHideFlags: 0

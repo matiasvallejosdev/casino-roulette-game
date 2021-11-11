@@ -16,4 +16,9 @@ MonoBehaviour:
   sectionCount: 18
   payment: 1027000088130000e8030000f401000010270000e803000088130000e8030000f401000010270000e803000088130000e8030000f40100001027000088130000e8030000f4010000
   isPlay: 0
-  hasInitialize: 1
+  isPayment: 0
+  rewardLabel: Let's Go!
+  rewardTimer:
+    value: 0h:00m:38s
+  isRewardPossible:
+    value: 0

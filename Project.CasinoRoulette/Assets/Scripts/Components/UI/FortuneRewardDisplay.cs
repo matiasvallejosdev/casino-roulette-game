@@ -20,7 +20,7 @@ namespace Components
 
         private void Start()
         {
-            rewardFortune.hasInitialize = false;
+            rewardFortune.isPayment = false;
             rewardFortune.isPlay = false;
 
             _totalAngle = 360 / rewardFortune.sectionCount;
@@ -38,7 +38,7 @@ namespace Components
         IEnumerator Spin()
         {
             rewardFortune.isPlay = true;
-            rewardFortune.hasInitialize = true;
+            rewardFortune.isPayment = true;
 
             _randValue = Random.Range(100, 200);
             _timeInterval = 0.0001f * Time.deltaTime * 2;

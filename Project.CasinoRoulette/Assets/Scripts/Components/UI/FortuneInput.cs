@@ -22,7 +22,7 @@ namespace Components
     
         void OnTriggerStay(Collider collider)
         {
-            if(!isExecute && !rewardFortune.isPlay && rewardFortune.hasInitialize)
+            if(!isExecute && !rewardFortune.isPlay && rewardFortune.isPayment)
             {
                 if(collider.CompareTag("AnchorSelectUI"))
                 {

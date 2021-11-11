@@ -33,6 +33,9 @@ namespace Commands
 
             characterCmdFactory.SaveCash(characterCmdFactory, characterTable, payment).Execute();
 
+            rewardFortune.isPlay = false;
+            rewardFortune.isPayment = false;
+
             GameManager.Instance.LoadScene("Game");
             GameManager.Instance.ToggleGame();
         }

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Commands;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +14,15 @@ namespace Components
     {
         public RewardFortune rewardFortune;
         public GameCmdFactory gameCmdFactory;
-        
-        public Button rewardButton;
-        
-        public void OnClick()
+
+        void Start()
         {
-            rewardButton.interactable = false;
+            OnClick();
+        }
+        
+        public async void OnClick()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(3));
             gameCmdFactory.FortuneRewardTurn(rewardFortune).Execute();
         }
     }
