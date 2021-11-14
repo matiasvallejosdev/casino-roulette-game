@@ -662,3 +662,5 @@ FodyWeavers.xsd
 # Ignore by me
 Library/
 [Ll]ibrary/
+
+*.mp4
