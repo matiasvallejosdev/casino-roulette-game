@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59102095ea12f0469f099594c0a59ef, type: 3}
   m_Name: RewardFortune
   m_EditorClassIdentifier: 
+  secondsToWaitReward: 3600
+  rewardLabel: Let's Go!
   totalAngle: 20
   sectionCount: 18
   payment: 1027000088130000e8030000f401000010270000e803000088130000e8030000f401000010270000e803000088130000e8030000f40100001027000088130000e8030000f4010000
   isPlay: 0
   isPayment: 0
-  rewardLabel: Let's Go!
   rewardTimer:
-    value: 0h:00m:38s
+    value: 0h:59m:41s
   isRewardPossible:
     value: 0

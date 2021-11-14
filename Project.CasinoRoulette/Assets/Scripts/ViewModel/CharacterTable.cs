@@ -24,8 +24,8 @@ namespace ViewModel
         public Chip currentChipSelected;
         public BoolReactiveProperty currentTableActive;
 
-        // Last round
         [Header("Last Execution")]
+        // Last round
         public int lastNumber;
         public List<TableChips> lastTable = new List<TableChips>();
 

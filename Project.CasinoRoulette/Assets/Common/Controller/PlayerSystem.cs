@@ -19,6 +19,7 @@ namespace Controllers
         // Load game
 
         public CharacterTable characterTable;
+        public RewardFortune rewardFortune;
         public CharacterCmdFactory characterCmdFactory;
 
         private void Start()
@@ -42,6 +43,7 @@ namespace Controllers
                 PlayerRound.Instance.characterTable.OnSaveGame.OnNext(true);
                 PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
                 PlayerPrefs.SetFloat("SecondsToWaitReward", 120);
+                //Debug.Log(long.Parse(PlayerPrefs.GetString("LastRewardOpen")));
             }
 
             await Task.Run(() => File.Exists(playerPath)); 

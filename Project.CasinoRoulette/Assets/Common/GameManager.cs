@@ -101,7 +101,7 @@ namespace Managers
         }
         private async Task CreateNewPlayer() 
         {
-            string playerPath = URL_PATH+"roulettePlayer";
+            string playerPath = URL_PATH+"player";
             await PlayerSystem.Instance.CreatePlayer("MatiV154", playerPath);
         }
         

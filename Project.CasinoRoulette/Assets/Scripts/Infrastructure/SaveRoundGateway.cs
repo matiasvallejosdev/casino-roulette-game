@@ -13,7 +13,7 @@ namespace Infrastructure
 {
     public class SaveRoundGateway : ISaveRound
     {
-        private static protected readonly string FILE_NAME = "roulettePlayer";
+        private static protected readonly string FILE_NAME = "player";
         public Round roundData {get; set;}
 
         public IObservable<Unit> RoundSequentialSave(Round roundData)

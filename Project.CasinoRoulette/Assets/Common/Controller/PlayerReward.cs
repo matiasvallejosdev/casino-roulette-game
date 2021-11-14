@@ -25,9 +25,16 @@ namespace Controllers
         private bool _isReward = false;
 
 
-        private void Start()
+        void Start()
         {
             DontDestroyOnLoad(gameObject);
+            RewardStart();
+        }
+
+        async void RewardStart()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
             SecondsToWait = PlayerPrefs.GetFloat("SecondsToWaitReward");
             lastChestOpen = ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
 
