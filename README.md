@@ -38,7 +38,7 @@ American roulette table of a casino. The outstanding characteristics of the stac
 ## Installation
 　1. Clone a repository or download it as zip.
 ```
-    git clone https://github.com/matiasvallejosdev/ar-covid-visualizer
+    git clone https://github.com/matiasvallejosdev/casino-roulette-game
 ```
 ## Screenshoot
 Game Screenshoot on Android Device.
