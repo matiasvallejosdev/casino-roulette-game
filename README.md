@@ -18,7 +18,7 @@ American roulette table of a casino. The outstanding characteristics of the stac
     <a href="link" target="_blank">View Demo in Youtube</a> <br />
       <p align="center">
       <a href="link" rel="nofollow">
-      <img src="img-gif" alt="Demo Video" width="250">
+      <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Gif(1).gif?raw=true" alt="Demo Video" width="250">
     </a>
   </p>
     
