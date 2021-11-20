@@ -15,10 +15,10 @@
   
   <p align="center">
 American roulette table of a casino. The outstanding characteristics of the stack are the use of MVVM for its architecture with Unirx and the saving of the game through JSON. In addition, the use of SOLID casino-roulette-game <br /><br />
-    <a href="link" target="_blank">View Demo in Youtube</a> <br />
+    <a href="https://youtu.be/5RKrxPUl-cg" target="_blank">View Demo in Youtube</a> <br />
       <p align="center">
-      <a href="link" rel="nofollow">
-      <img src="img-gif" alt="Demo Video" width="250">
+      <a href="https://youtu.be/5RKrxPUl-cg" rel="nofollow">
+      <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Gif(1).gif?raw=true" alt="Demo Video" width="250">
     </a>
   </p>
     
@@ -38,7 +38,7 @@ American roulette table of a casino. The outstanding characteristics of the stac
 ## Installation
 　1. Clone a repository or download it as zip.
 ```
-    git clone https://github.com/matiasvallejosdev/ar-covid-visualizer
+    git clone https://github.com/matiasvallejosdev/casino-roulette-game
 ```
 ## Screenshoot
 Game Screenshoot on Android Device.
