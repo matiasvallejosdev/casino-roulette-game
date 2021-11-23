@@ -44,7 +44,7 @@ namespace Controllers
             characterTable.characterMoney.currentPayment.Value = value;
             characterTable.characterMoney.PaymentSystem(value);
         }
-        public void OnRoundFinish(bool isRound)
+        public async void OnRoundFinish(bool isRound)
         {
             if(isRound)
                 return;
@@ -55,6 +55,8 @@ namespace Controllers
             }
             characterTable.lastNumber = _lastNumber;
             characterTable.currentNumbers.Add(characterTable.lastNumber);
+
+            await Task.Delay(TimeSpan.FromSeconds(2));
             ResetTable(false);
         }
         public void OnGameClosed() 
