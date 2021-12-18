@@ -2,7 +2,7 @@
   
   <div align="center">
 
-  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game)
+  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/matiasvallejosdev/casino-roulette-game)](https://github.com/matiasvallejosdev/casino-roulette-game)
   [![GitHub top language](https://img.shields.io/github/languages/top/matiasvallejosdev/casino-roulette-game?color=1081c2)](https://github.com/matiasvallejosdev/casino-roulette-game/search?l=c%23)
   [![GitHub Watchers](https://img.shields.io/github/watchers/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/watchers)
   [![GitHub Repo stars](https://img.shields.io/github/stars/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/stargazers)
