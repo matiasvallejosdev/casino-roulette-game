@@ -12,11 +12,13 @@ public class LeanTweenScale : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(gameObject, _scaleXYZ, _duration).setDelay(_delay).setOnComplete(onComplete);
+        LeanTween.scale(gameObject, _scaleXYZ, _duration)
+                 .setDelay(_delay)
+                 .setOnComplete(onComplete);
     }
 
     private void onComplete()
     {
-
+        // Do on complete
     }
 }
