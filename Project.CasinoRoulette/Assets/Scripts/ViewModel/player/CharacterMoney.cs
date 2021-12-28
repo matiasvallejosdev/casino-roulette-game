@@ -9,9 +9,9 @@ namespace ViewModel
     [CreateAssetMenu(fileName = "New Character Money", menuName = "Scriptable/Character Money")]
     public class CharacterMoney : ScriptableObject
     {
-        public IntReactiveProperty characterBet;
-        public IntReactiveProperty characterMoney;
-        public IntReactiveProperty currentPayment;
+        public IntReactiveProperty characterBet = new IntReactiveProperty();
+        public IntReactiveProperty characterMoney = new IntReactiveProperty();
+        public IntReactiveProperty currentPayment = new IntReactiveProperty();
 
         // Operations in player money
         void AddCash(int cashWinner)
@@ -19,6 +19,7 @@ namespace ViewModel
             int aux = characterMoney.Value;
             characterMoney.Value += cashWinner;
         }
+        
         void SubstractCash(int cashLost)
         {
             if(cashLost < 0) 

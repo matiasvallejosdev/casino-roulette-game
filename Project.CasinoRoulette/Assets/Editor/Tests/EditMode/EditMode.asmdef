@@ -6,7 +6,8 @@
         "UniRx",
         "Unity.TextMeshPro",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        ""
     ],
     "includePlatforms": [
         "Editor"

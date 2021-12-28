@@ -11,12 +11,12 @@ namespace Components
 {
     public class GameMoneyDisplay : MonoBehaviour
     {
+        public CharacterTable characterTable;
         public Text moneyLabel;
         public Text betLabel;
 
-        public CharacterTable characterTable;
 
-        void Start()
+        public void Start()
         {
             characterTable.characterMoney.characterBet
                 .Subscribe(OnChangeBet)

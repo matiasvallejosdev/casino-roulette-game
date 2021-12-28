@@ -19,9 +19,9 @@ namespace Components
         public GameObject numberContainer;
         public Transform instanceContainer;
         
-        private int _onScreen;
+        private int _onScreen = 0;
 
-        void Start()
+        public void Start()
         {
             gameRoullete.OnNumber
                 .Subscribe(LastNumberDisplay)
@@ -71,13 +71,19 @@ namespace Components
 
         public void AddNumber(int value)
         {
-            GameObject num = Instantiate(numberContainer.transform.GetChild(value).gameObject);
-            num.transform.localPosition = FindNumberPosition(0);
-            num.GetComponent<LeanTweenScale>()._scaleXYZ = NumberDisplayConfig._biggerScale;
-            LastNumber lastNumber= num.AddComponent<LastNumber>();
+            GameObject num = GetNumberObject(value);           
+            LastNumber lastNumber = num.AddComponent<LastNumber>();
             lastNumber.currentPosition = 0;
             num.transform.SetParent(instanceContainer.transform);
             num.name = "last_" + _onScreen.ToString();
+        }
+        
+        private GameObject GetNumberObject(int value)
+        {
+            GameObject num = Instantiate(numberContainer.transform.GetChild(value).gameObject);
+            num.transform.localPosition = FindNumberPosition(0);
+            num.GetComponent<LeanTweenScale>()._scaleXYZ = NumberDisplayConfig._biggerScale;
+            return num;
         }
 
         private Vector3 FindNumberPosition(int onScreen)
