@@ -23,6 +23,7 @@ namespace Managers
         // Generate other persitente systems.
         
         public static GameManager Instance; // A static reference to the GameManager instance
+        public CharacterTable characterTable;
 
         private protected string URL_PATH;
         public GameObject[] SystemPrefabs;
@@ -62,7 +63,7 @@ namespace Managers
         
         }
 
-        private async Task StartRouletteInstance()
+        public async Task StartRouletteInstance()
         {   
             // Create game instance undestroyable.
             _instanceSystemPrefabs = new List<GameObject>();
@@ -102,7 +103,7 @@ namespace Managers
         private async Task CreateNewPlayer() 
         {
             string playerPath = URL_PATH+"player";
-            await PlayerSystem.Instance.CreatePlayer("MatiV154", playerPath);
+            await Player.CreatePlayer(characterTable, "MatiV154", playerPath);
         }
         
         private void StartRound()
@@ -123,12 +124,13 @@ namespace Managers
                     Time.timeScale = 0.0f;
                     break;
                 case GameState.RUNNING:
-                    await PlayerRound.Instance.OnGameOpened();
-                    PlayerSystem.Instance.LoadRound();
+                    await OnGameOpened();
+                    characterTable.OnLoadGame
+                        .OnNext(true);
                     Time.timeScale = 1.0f;
                     break;
                 case GameState.REWARD:
-                    PlayerRound.Instance.OnGameClosed();
+                    OnGameClosed();
                     Time.timeScale = 1.0f;
                     break;
             }
@@ -150,15 +152,49 @@ namespace Managers
         }
 
         // Unity event
+        public void OnGameClosed() 
+        {
+            Debug.Log("Game have been closed! Files was saved!");  
+
+            characterTable.OnSaveGame
+                .OnNext(true);
+
+            characterTable.OnResetGame
+                .OnNext(true);
+
+            characterTable.currentNumbers.Clear();
+            characterTable.currentTableInGame.Clear();
+        }
+        public async Task OnGameOpened() 
+        { 
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            // Update round parameters
+            characterTable.currentTableActive.Value = false; 
+            characterTable.currentTableCount = 0;
+            characterTable.currentTable.Clear();
+            characterTable.currentNumbers.Clear();
+            characterTable.currentTableInGame.Clear();
+
+
+            characterTable.lastNumber = 0;
+            characterTable.lastTable.Clear();
+            
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
+            characterTable.currentTableActive.Value = true; 
+            characterTable.currentChipSelected = characterTable.chipData.Where(chip => chip.chipkey == KeyFicha.Chip10).First();
+
+            await Task.Yield();
+        }
         protected void OnApplicationPause()
         {
             if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
-                PlayerRound.Instance.OnGameClosed();
+                OnGameClosed();
         }
         protected void OnApplicationQuit()
         {
             if(Application.platform == RuntimePlatform.WindowsEditor)
-                PlayerRound.Instance.OnGameClosed();
+                OnGameClosed();
         }
         protected void OnDestroy() 
         {

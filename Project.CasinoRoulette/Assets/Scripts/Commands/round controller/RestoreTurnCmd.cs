@@ -27,7 +27,8 @@ namespace Commands
             Table table = new Table(){
                 TableChips = characterTable.lastTable
             };
-            PlayerRound.Instance.RestoreTable(table);
+
+            characterTable.OnRestoreTable.OnNext(table);
         }
     }
 }

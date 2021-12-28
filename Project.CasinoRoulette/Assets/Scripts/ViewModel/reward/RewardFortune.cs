@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using Components;
+using System;
 
 namespace ViewModel
 {
@@ -22,5 +23,10 @@ namespace ViewModel
 
         // Observables
         public ISubject<bool> OnFortune = new Subject<bool>();
+
+        public void OpenReward()
+        {
+            PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
+        }
     }
 }

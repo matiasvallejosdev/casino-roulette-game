@@ -22,7 +22,7 @@ namespace Commands
         }      
         public PlayTurnCmd PlayTurn(CharacterTable characterTable, GameRoullete gameRoullete)
         {
-            return new PlayTurnCmd(GameManager.Instance, characterTable, gameRoullete, new PlayRoundGateway());
+            return new PlayTurnCmd(GameManager.Instance, characterTable, gameRoullete, new PlayRoundGateway(), new PaymnentGateway());
         }
 
         // Table events
@@ -34,9 +34,9 @@ namespace Commands
         {
             return new ResetTurnCmd(magnetDestroyerDisplay, characterTable, delayTime);
         }      
-        public UndoTurnCmd UndoTableTurn()
+        public UndoTurnCmd UndoTableTurn(CharacterTable characterTable)
         {
-            return new UndoTurnCmd();
+            return new UndoTurnCmd(characterTable);
         }      
         public RestoreTurnCmd RestoreTableTurn(CharacterTable characterTable)
         {

@@ -22,7 +22,7 @@ namespace Commands
         public void Execute()
         {
             rewardFortune.OnFortune.OnNext(true);
-            PlayerReward.Instance.OpenReward();
+            rewardFortune.OpenReward();
         }
     }
 }

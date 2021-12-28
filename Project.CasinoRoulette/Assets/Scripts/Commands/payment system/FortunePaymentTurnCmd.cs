@@ -7,6 +7,7 @@ using Controllers;
 using Infrastructure;
 using System;
 using Managers;
+using System.Threading.Tasks;
 
 namespace Commands
 {
@@ -29,14 +30,20 @@ namespace Commands
         {
             int payment = (int)rewardFortune.payment[finalPosition];
             Debug.Log($"You win: ${payment}");
-            characterTable.characterMoney.currentPayment.Value = payment;
 
             characterCmdFactory.SaveCash(characterCmdFactory, characterTable, payment).Execute();
 
             rewardFortune.isPlay = false;
             rewardFortune.isPayment = false;
 
+            OpenScene(payment);
+        }
+        public async void OpenScene(int payment)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
             GameManager.Instance.LoadScene("Game");
+            characterTable.characterMoney.currentPayment.Value = payment;
+            await Task.Delay(TimeSpan.FromSeconds(2));
             GameManager.Instance.ToggleGame();
         }
     }

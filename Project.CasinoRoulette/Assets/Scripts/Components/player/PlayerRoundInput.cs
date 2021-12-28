@@ -11,39 +11,40 @@ using System.IO;
 using System;
 using System.Threading.Tasks;
 
-namespace Controllers
+namespace Components
 {
-    public class PlayerRound : Singlenton<PlayerRound>
+    public class PlayerRoundInput : MonoBehaviour
     {
         // Player round controller
         // Control table
         // Control iteractions
         public CharacterTable characterTable;
-        public GameRoullete gameRoullete;
         public GameCmdFactory gameCmdFactory;
-
-        public int _lastNumber = 0;
-        private bool _isTableActive;
 
         private void Start()
         {
-            DontDestroyOnLoad(gameObject);
-
             characterTable.OnDestroyChip
                 .Subscribe(DestroyChipTable)
+                .AddTo(this);
+
+            characterTable.OnDestroyLastChip
+                .Subscribe(DestroyLastChip)
                 .AddTo(this);
             
             characterTable.OnRound
                 .Subscribe(OnRoundFinish)
                 .AddTo(this);
+            
+            characterTable.OnResetGame
+                .Subscribe(ResetTable)
+                .AddTo(this);
+
+            characterTable.OnRestoreTable
+                .Subscribe(RestoreTable)
+                .AddTo(this);
         }
 
         // Events
-        public void OnPayment(int value)
-        {
-            characterTable.characterMoney.currentPayment.Value = value;
-            characterTable.characterMoney.PaymentSystem(value);
-        }
         public async void OnRoundFinish(bool isRound)
         {
             if(isRound)
@@ -53,46 +54,16 @@ namespace Controllers
             {
                 characterTable.lastTable.Add(item);   
             }
-            characterTable.lastNumber = _lastNumber;
+
+            //characterTable.lastNumber = _lastNumber;
             characterTable.currentNumbers.Add(characterTable.lastNumber);
 
             await Task.Delay(TimeSpan.FromSeconds(2));
             ResetTable(false);
         }
-        public void OnGameClosed() 
-        {
-            Debug.Log("Game have been closed! Files was saved!");  
-
-            PlayerSystem.Instance.characterTable.OnSaveGame
-                .OnNext(true);
-
-            ResetTable(true);
-
-            characterTable.currentNumbers.Clear();
-            characterTable.currentTableInGame.Clear();
-        }
-        public async Task OnGameOpened() 
-        { 
-            // Update round parameters
-            characterTable.currentTableActive.Value = false; 
-            characterTable.currentTableCount = 0;
-            characterTable.currentTable.Clear();
-            characterTable.currentNumbers.Clear();
-            characterTable.currentTableInGame.Clear();
-
-
-            characterTable.lastNumber = 0;
-            characterTable.lastTable.Clear();
-            
-            await Task.Delay(TimeSpan.FromSeconds(2));
-
-            characterTable.currentTableActive.Value = true; 
-            characterTable.currentChipSelected = characterTable.chipData.Where(chip => chip.chipkey == KeyFicha.Chip10).First();
-
-            await Task.Yield();
-        }
+        
         // Table Controller
-        public void DestroyLastChip()
+        public void DestroyLastChip(bool value)
         {
             if(characterTable.currentTableCount > 0)
             {

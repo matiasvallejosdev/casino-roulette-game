@@ -31,11 +31,15 @@ namespace ViewModel
 
         // Events observables
         public ISubject<ChipGame> OnDestroyChip = new Subject<ChipGame>();
+        public ISubject<bool> OnDestroyLastChip = new Subject<bool>();
 
         public ISubject<int> OnWinButton = new Subject<int>();
         public ISubject<LongPress> OnPressedButton = new Subject<LongPress>();
 
+        public ISubject<Table> OnRestoreTable = new Subject<Table>();
         public ISubject<bool> OnSaveGame = new Subject<bool>();
+        public ISubject<bool> OnLoadGame = new Subject<bool>();
+        public ISubject<bool> OnResetGame = new Subject<bool>();
         public ISubject<bool> OnRound = new Subject<bool>();
     }
 }

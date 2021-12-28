@@ -35,6 +35,7 @@ namespace Components
             if(isFortune)
                 StartCoroutine(Spin());
         }
+        
         IEnumerator Spin()
         {
             rewardFortune.isPlay = true;

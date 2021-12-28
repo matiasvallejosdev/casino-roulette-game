@@ -15,13 +15,15 @@ namespace Commands
         private CharacterTable characterTable;
         private GameRoullete gameRoullete;
         private IRound roundGateway;
+        private IPayment paymentGateway;
 
-        public PlayTurnCmd(MonoBehaviour monoBehaviour, CharacterTable characterTable, GameRoullete gameRoullete, IRound roundGateway)
+        public PlayTurnCmd(MonoBehaviour monoBehaviour, CharacterTable characterTable, GameRoullete gameRoullete, IRound roundGateway, IPayment paymentGateway)
         {
             this.monoBehaviour = monoBehaviour;
             this.characterTable = characterTable;
             this.gameRoullete = gameRoullete;
             this.roundGateway = roundGateway;
+            this.paymentGateway = paymentGateway;
         }
 
         public void Execute()
@@ -34,7 +36,7 @@ namespace Commands
 
             roundGateway.PlayTurn()
                 .Do(_ => monoBehaviour.StartCoroutine(RoulleteGame(roundGateway.randomNumber)))
-                .Do(_ => PlayerRound.Instance._lastNumber = roundGateway.randomNumber)
+                .Do(_ => characterTable.lastNumber = roundGateway.randomNumber)
                 .Subscribe();
                 
         }
@@ -73,11 +75,17 @@ namespace Commands
             characterTable.OnRound.OnNext(false); 
 
             // Intialize the payment system and display the news values
-            PlayerPayment.Instance.PaymentSystem(characterTable)
+            paymentGateway.PaymentSystem(characterTable)
                 .Delay(TimeSpan.FromSeconds(3))
-                .Do(_ => PlayerRound.Instance.OnPayment(PlayerPayment.Instance.PaymentValue))
+                .Do(_ => OnPayment(paymentGateway.PaymentValue))
                 .Do(_ => characterTable.OnWinButton.OnNext(num))
                 .Subscribe();
+        }
+
+        public void OnPayment(int value)
+        {
+            characterTable.characterMoney.currentPayment.Value = value;
+            characterTable.characterMoney.PaymentSystem(value);
         }
     }
 }

@@ -9,10 +9,17 @@ namespace Commands
 {    
     public class UndoTurnCmd : ICommand
     {
+        private CharacterTable characterTable;
+
+        public UndoTurnCmd(CharacterTable characterTable)
+        {
+            this.characterTable = characterTable;
+        }
+
         public void Execute()
         {
             PlayerSound.Instance.gameSound.OnSound.OnNext(2);
-            PlayerRound.Instance.DestroyLastChip();
+            characterTable.OnDestroyLastChip.OnNext(true);
         }
     }
 }

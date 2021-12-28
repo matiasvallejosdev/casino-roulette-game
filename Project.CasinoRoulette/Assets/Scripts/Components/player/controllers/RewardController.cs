@@ -10,9 +10,9 @@ using UniRx;
 using Managers;
 using System.Threading.Tasks;
 
-namespace Controllers
+namespace Components
 {
-    public class PlayerReward : Singlenton<PlayerReward>
+    public class RewardController : MonoBehaviour
     {
         // Player Reward System
         // Control the states of reward fortune
@@ -20,14 +20,8 @@ namespace Controllers
         public RewardFortune rewardFortune;
         private float SecondsToWait { get; set; }
 
-        //[SerializeField] private Text rewardTimer = null;
-        private ulong lastChestOpen;
-        private bool _isReward = false;
-
-
         void Start()
         {
-            DontDestroyOnLoad(gameObject);
             RewardStart();
         }
 
@@ -36,25 +30,25 @@ namespace Controllers
             await Task.Delay(TimeSpan.FromSeconds(2));
 
             SecondsToWait = PlayerPrefs.GetFloat("SecondsToWaitReward");
-            lastChestOpen = ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
+            var lastChestOpen = ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
 
             rewardFortune.isPlay = false;
 
-            IsRewardReady();
+            RewardHandler.IsRewardReady(rewardFortune, SecondsToWait);
         }
 
         void Update()
         {
-            IsRewardReady();
+            RewardHandler.IsRewardReady(rewardFortune, SecondsToWait);
 
             if (!rewardFortune.isRewardPossible.Value)
             {
-                if (IsRewardReady())
+                if (RewardHandler.IsRewardReady(rewardFortune, SecondsToWait))
                 {            
                     return;
                 }
                 // Set the timer
-                ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
+                ulong diff = ((ulong)DateTime.Now.Ticks - RewardHandler.LastChestOpen());
                 ulong m = diff / TimeSpan.TicksPerSecond;
                 float secondsLeft = (float)(SecondsToWait - m);
                 string t = "";
@@ -70,10 +64,17 @@ namespace Controllers
                 rewardFortune.rewardTimer.Value = t;
             }
         }
+    }
 
-        private bool IsRewardReady()
+    public static class RewardHandler
+    {
+        public static ulong LastChestOpen()
         {
-            lastChestOpen = ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
+            return ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
+        }
+        public static bool IsRewardReady(RewardFortune rewardFortune, float SecondsToWait)
+        {
+            var lastChestOpen = LastChestOpen();
 
             ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
             ulong m = diff / TimeSpan.TicksPerSecond;
@@ -91,11 +92,6 @@ namespace Controllers
                 rewardFortune.isRewardPossible.Value = false;
                 return false;
             }
-        }
-
-        public void OpenReward()
-        {
-            PlayerPrefs.SetString("LastRewardOpen", DateTime.Now.Ticks.ToString());
         }
     }
 }

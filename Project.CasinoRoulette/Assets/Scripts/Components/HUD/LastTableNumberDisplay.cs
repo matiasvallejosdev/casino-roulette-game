@@ -14,15 +14,11 @@ namespace Components
         public CharacterTable characterTable;
         public GameRoullete gameRoullete;
 
-        public GameObject numberContainer;
         public GameObject[] anchorNumbers;
 
-        public Transform _container;
-        public int _biggerPosition;
-        public int _smallerPosition;
-        public Vector3 _smallerScale;
-        public Vector3 _biggerScale;
-
+        public GameObject numberContainer;
+        public Transform instanceContainer;
+        
         private int _onScreen;
 
         void Start()
@@ -36,7 +32,7 @@ namespace Components
 
         private void LastNumberDisplay(int value)
         {       
-            if(_onScreen >= (_smallerPosition + _biggerPosition))
+            if(_onScreen >= (NumberDisplayConfig._smallerPosition + NumberDisplayConfig._biggerPosition))
             {
                 Reset();
             } 
@@ -53,7 +49,7 @@ namespace Components
         {
             _onScreen = 0;
             characterTable.currentNumbers.Clear();
-            foreach(Transform go in _container.transform.GetComponentInChildren<Transform>())
+            foreach(Transform go in instanceContainer.transform.GetComponentInChildren<Transform>())
             {
                 Destroy(go.gameObject);
             }
@@ -64,12 +60,12 @@ namespace Components
             if(_onScreen == 0)
                 return;
             
-            LastNumber[] numbersOnScreen = _container.GetComponentsInChildren<LastNumber>();
+            LastNumber[] numbersOnScreen = instanceContainer.GetComponentsInChildren<LastNumber>();
             foreach(LastNumber t in numbersOnScreen)
             {
                 t.currentPosition++;
                 t.gameObject.transform.position = FindNumberPosition(t.currentPosition);
-                t.transform.localScale = t.currentPosition >= _biggerPosition ? _smallerScale : _biggerScale;
+                t.transform.localScale = t.currentPosition >= NumberDisplayConfig._biggerPosition ? NumberDisplayConfig._smallerScale : NumberDisplayConfig._biggerScale;
             }
         }
 
@@ -77,10 +73,10 @@ namespace Components
         {
             GameObject num = Instantiate(numberContainer.transform.GetChild(value).gameObject);
             num.transform.localPosition = FindNumberPosition(0);
-            num.GetComponent<LeanTweenScale>()._scaleXYZ = _biggerScale;
+            num.GetComponent<LeanTweenScale>()._scaleXYZ = NumberDisplayConfig._biggerScale;
             LastNumber lastNumber= num.AddComponent<LastNumber>();
             lastNumber.currentPosition = 0;
-            num.transform.SetParent(_container.transform);
+            num.transform.SetParent(instanceContainer.transform);
             num.name = "last_" + _onScreen.ToString();
         }
 
@@ -89,5 +85,13 @@ namespace Components
             Vector3 pos = anchorNumbers[onScreen].GetComponent<SpriteRenderer>().bounds.center;
             return pos;
         }
+    }
+
+    public static class NumberDisplayConfig
+    {
+        public const int _biggerPosition = 5;
+        public const int _smallerPosition = 7;
+        public readonly static Vector3 _smallerScale = new Vector3(0.5f,0.5f,0.5f);
+        public readonly static Vector3 _biggerScale = new Vector3(0.75f, 0.75f, 0.75f);
     }
 }
