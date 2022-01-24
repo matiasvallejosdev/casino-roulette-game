@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 014be7710a9e9074d93d215150de2095
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Casino
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 19f9158fa31a37e449f9e096066277f4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

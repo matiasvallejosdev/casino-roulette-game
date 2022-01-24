@@ -1,0 +1,5 @@
+{
+  "displayName":"Movie Recorder Sample",
+  "description": "This example shows how to set up a movie recording session via script.",
+  "createSeparatePackage": false
+}

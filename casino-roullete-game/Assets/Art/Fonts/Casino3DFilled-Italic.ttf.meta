@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 09911b78ecb863d48ba66c9ce324a773
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Casino 3D Filled
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 63a72f1fba2da774eb4366c9ac0993c4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

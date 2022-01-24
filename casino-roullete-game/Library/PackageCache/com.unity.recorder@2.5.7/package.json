@@ -1,0 +1,54 @@
+{
+  "name": "com.unity.recorder",
+  "displayName": "Unity Recorder",
+  "version": "2.5.7",
+  "unity": "2019.4",
+  "unityRelease": "1f1",
+  "dependencies": {
+    "com.unity.timeline": "1.0.0"
+  },
+  "description": "The Unity Recorder allows you to capture and save data from the Unity Editor during Play Mode: animations, videos, images, audio, and more.",
+  "keywords": [
+    "unity",
+    "recorder",
+    "recording",
+    "capture",
+    "video",
+    "animation",
+    "clip",
+    "images"
+  ],
+  "relatedPackages": {
+    "com.unity.recorder.tests": "2.5.7"
+  },
+  "upmCi": {
+    "footprint": "dc9cd88ded3dada1ccc6c833f002057699df0511"
+  },
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/com.unity.recorder.git",
+    "type": "git",
+    "revision": "a59deb20019b176e95dd8efa2f9b41b8e4a0bb96"
+  },
+  "samples": [
+    {
+      "displayName": "Screenshot Capture Sample",
+      "description": "This example shows how to set up a recording session via script.",
+      "path": "Samples~/CaptureScreenShot"
+    },
+    {
+      "displayName": "Movie Recorder Sample",
+      "description": "This example shows how to set up a movie recording session via script.",
+      "path": "Samples~/MovieRecorder"
+    },
+    {
+      "displayName": "Multiple Recordings Sample",
+      "description": "This example shows how to set up a multiple recording session via script.",
+      "path": "Samples~/MultipleRecordings"
+    },
+    {
+      "displayName": "Recorder Editor Sample",
+      "description": "This example shows how to add \"Start Recording\" and \"Stop Recording\" menu items .",
+      "path": "Samples~/RecorderEditor"
+    }
+  ]
+}

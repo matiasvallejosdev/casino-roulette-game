@@ -1,0 +1,16 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Media
+{
+    public class RefHandle<T> : System.IDisposable where T : class
+    {
+        public bool IsCreated { get; }
+        public T Target { get; set; }
+        public RefHandle() {}
+        public RefHandle(T target) {}
+        public virtual void Dispose();
+        public void Dispose(bool disposing);
+        protected virtual void Finalize();
+    }
+}

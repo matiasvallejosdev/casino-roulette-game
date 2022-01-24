@@ -1,0 +1,503 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace UnityEditor.Recorder
+{
+    [UnityEditor.Recorder.RecorderSettings(typeof(UnityEditor.Recorder.AnimationRecorder), @"Animation Clip", @"animation_recorder")] public class AnimationRecorderSettings : UnityEditor.Recorder.RecorderSettings
+    {
+        public UnityEditor.Recorder.Input.AnimationInputSettings AnimationInputSettings { get; set; }
+        protected virtual string Extension { get; }
+        public virtual System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
+        public virtual bool IsPlatformSupported { get; }
+        public AnimationRecorderSettings() {}
+        public virtual void OnAfterDuplicate();
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    public abstract class BaseRenderTextureInput : UnityEditor.Recorder.RecorderInput
+    {
+        public int OutputHeight { get; protected set; }
+        protected UnityEngine.RenderTexture OutputRenderTexture { get; set; }
+        public int OutputWidth { get; protected set; }
+        protected UnityEngine.Texture2D ReadbackTexture { get; set; }
+        protected BaseRenderTextureInput() {}
+        protected virtual void Dispose(bool disposing);
+        protected void ReleaseBuffer();
+    }
+
+    public abstract class BaseTextureRecorder<T> : UnityEditor.Recorder.GenericRecorder<T> where T : UnityEditor.Recorder.RecorderSettings
+    {
+        protected bool UseAsyncGPUReadback;
+        protected abstract UnityEngine.TextureFormat ReadbackTextureFormat { get; }
+        protected BaseTextureRecorder() {}
+        protected virtual bool BeginRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void DisposeEncoder();
+        protected virtual void EndRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void RecordFrame(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void WriteFrame(UnityEngine.Rendering.AsyncGPUReadbackRequest r);
+        protected abstract void WriteFrame(UnityEngine.Texture2D t);
+    }
+
+    public static class BindingManager
+    {
+        public static void Duplicate(string id, string newId);
+        public static UnityEngine.Object Get(string id);
+        public static void Set(string id, UnityEngine.Object obj);
+    }
+
+    public static class DefaultWildcard
+    {
+        public static readonly string Date;
+        public static readonly string Extension;
+        public static readonly string Frame;
+        public static readonly string Product;
+        public static readonly string Project;
+        public static readonly string Recorder;
+        public static readonly string Resolution;
+        public static readonly string Scene;
+        public static readonly string Take;
+        public static readonly string Time;
+        public static string GeneratePattern(string tag);
+    }
+
+    public class FileNameGenerator
+    {
+        public string FileName { get; set; }
+        public bool ForceAssetsFolder { get; set; }
+        public string Leaf { get; set; }
+        public UnityEditor.Recorder.OutputPath.Root Root { get; set; }
+        public void AddWildcard(string tag, System.Func<UnityEditor.Recorder.RecordingSession, string> resolver);
+        public string BuildAbsolutePath(UnityEditor.Recorder.RecordingSession session);
+        public void CreateDirectory(UnityEditor.Recorder.RecordingSession session);
+        public static string SanitizePath(string fullPath);
+    }
+
+    public enum FrameRatePlayback
+    {
+        public const UnityEditor.Recorder.FrameRatePlayback Constant = 0;
+        public int value__;
+        public const UnityEditor.Recorder.FrameRatePlayback Variable = 1;
+    }
+
+    public abstract class GenericRecorder<T> : UnityEditor.Recorder.Recorder where T : UnityEditor.Recorder.RecorderSettings
+    {
+        public T Settings { get; set; }
+        protected GenericRecorder() {}
+    }
+
+    [UnityEditor.Recorder.RecorderSettings(typeof(UnityEditor.Recorder.GIFRecorder), @"GIF Animation", @"imagesequence_16")] public class GIFRecorderSettings : UnityEditor.Recorder.FrameCapturer.BaseFCRecorderSettings
+    {
+        protected virtual string Extension { get; }
+        public int KeyframeInterval { get; set; }
+        public int MaxTasks { get; set; }
+        public int NumColors { get; set; }
+        public GIFRecorderSettings() {}
+    }
+
+    public class ImageInputSelector : UnityEditor.Recorder.InputSettingsSelector
+    {
+        [UnityEngine.SerializeField] public UnityEditor.Recorder.Input.Camera360InputSettings camera360InputSettings;
+        [UnityEngine.SerializeField] public UnityEditor.Recorder.Input.CameraInputSettings cameraInputSettings;
+        [UnityEngine.SerializeField] public UnityEditor.Recorder.Input.GameViewInputSettings gameViewInputSettings;
+        [UnityEngine.SerializeField] public UnityEditor.Recorder.Input.RenderTextureInputSettings renderTextureInputSettings;
+        [UnityEngine.SerializeField] public UnityEditor.Recorder.Input.RenderTextureSamplerSettings renderTextureSamplerSettings;
+        public UnityEditor.Recorder.Input.ImageInputSettings ImageInputSettings { get; set; }
+        public ImageInputSelector() {}
+    }
+
+    [UnityEditor.Recorder.RecorderSettings(typeof(UnityEditor.Recorder.ImageRecorder), @"Image Sequence", @"imagesequence_16")] public class ImageRecorderSettings : UnityEditor.Recorder.RecorderSettings
+    {
+        public bool CaptureAlpha { get; set; }
+        public bool CaptureHDR { get; }
+        protected virtual string Extension { get; }
+        public UnityEditor.Recorder.Input.ImageInputSettings imageInputSettings { get; set; }
+        public virtual System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
+        public UnityEditor.Recorder.ImageRecorderSettings.ImageRecorderOutputFormat OutputFormat { get; set; }
+        public ImageRecorderSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+        public enum ImageRecorderOutputFormat
+        {
+            public const UnityEditor.Recorder.ImageRecorderSettings.ImageRecorderOutputFormat EXR = 2;
+            public const UnityEditor.Recorder.ImageRecorderSettings.ImageRecorderOutputFormat JPEG = 1;
+            public const UnityEditor.Recorder.ImageRecorderSettings.ImageRecorderOutputFormat PNG = 0;
+            public int value__;
+        }
+    }
+
+    [System.Flags] public enum ImageSource
+    {
+        public const UnityEditor.Recorder.ImageSource ActiveCamera = 1;
+        public const UnityEditor.Recorder.ImageSource MainCamera = 2;
+        public const UnityEditor.Recorder.ImageSource TaggedCamera = 4;
+        public int value__;
+    }
+
+    public abstract class InputSettingsSelector
+    {
+        public UnityEditor.Recorder.RecorderInputSettings Selected { get; protected set; }
+        protected InputSettingsSelector() {}
+    }
+
+    [UnityEditor.Recorder.RecorderSettings(typeof(UnityEditor.Recorder.MovieRecorder), @"Movie", @"movie_16")] public class MovieRecorderSettings : UnityEditor.Recorder.RecorderSettings
+    {
+        public UnityEditor.Recorder.Input.AudioInputSettings AudioInputSettings { get; }
+        public bool CaptureAlpha { get; set; }
+        protected virtual string Extension { get; }
+        public UnityEditor.Recorder.Input.ImageInputSettings ImageInputSettings { get; set; }
+        public virtual System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
+        public UnityEditor.Recorder.MovieRecorderSettings.VideoRecorderOutputFormat OutputFormat { get; set; }
+        public UnityEditor.VideoBitrateMode VideoBitRateMode { get; set; }
+        public MovieRecorderSettings() {}
+        public void GetPresetsForEncoder(int indexEncoder, out System.Collections.Generic.List<string> presetNames, out System.Collections.Generic.List<string> presetOptions);
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+        public enum VideoRecorderOutputFormat
+        {
+            public const UnityEditor.Recorder.MovieRecorderSettings.VideoRecorderOutputFormat MOV = 2;
+            public const UnityEditor.Recorder.MovieRecorderSettings.VideoRecorderOutputFormat MP4 = 0;
+            public int value__;
+            public const UnityEditor.Recorder.MovieRecorderSettings.VideoRecorderOutputFormat WebM = 1;
+        }
+    }
+
+    public class OutputPath
+    {
+        public OutputPath() {}
+        public enum Root
+        {
+            public const UnityEditor.Recorder.OutputPath.Root Absolute = 5;
+            public const UnityEditor.Recorder.OutputPath.Root AssetsFolder = 1;
+            public const UnityEditor.Recorder.OutputPath.Root PersistentData = 3;
+            public const UnityEditor.Recorder.OutputPath.Root Project = 0;
+            public const UnityEditor.Recorder.OutputPath.Root StreamingAssets = 2;
+            public const UnityEditor.Recorder.OutputPath.Root TemporaryCache = 4;
+            public int value__;
+        }
+    }
+
+    public abstract class Recorder : UnityEngine.ScriptableObject
+    {
+        protected System.Collections.Generic.List<UnityEditor.Recorder.RecorderInput> m_Inputs;
+        protected int RecordedFramesCount { get; }
+        public bool Recording { get; protected set; }
+        protected Recorder() {}
+        protected virtual bool BeginRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void EndRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void PrepareNewFrame(UnityEditor.Recorder.RecordingSession ctx);
+        protected abstract void RecordFrame(UnityEditor.Recorder.RecordingSession ctx);
+        protected virtual void Reset();
+        protected virtual void SessionCreated(UnityEditor.Recorder.RecordingSession session);
+        protected virtual bool SkipFrame(UnityEditor.Recorder.RecordingSession ctx);
+    }
+
+    public class RecorderController
+    {
+        public UnityEditor.Recorder.RecorderControllerSettings Settings { get; }
+        public RecorderController(UnityEditor.Recorder.RecorderControllerSettings settings) {}
+        public bool IsRecording();
+        public void PrepareRecording();
+        public bool StartRecording();
+        public void StopRecording();
+    }
+
+    public class RecorderControllerSettings : UnityEngine.ScriptableObject
+    {
+        public bool CapFrameRate { get; set; }
+        public float FrameRate { get; set; }
+        public UnityEditor.Recorder.FrameRatePlayback FrameRatePlayback { get; set; }
+        public System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderSettings> RecorderSettings { get; }
+        public RecorderControllerSettings() {}
+        public void AddRecorderSettings(UnityEditor.Recorder.RecorderSettings recorder);
+        public static UnityEditor.Recorder.RecorderControllerSettings GetGlobalSettings();
+        public static UnityEditor.Recorder.RecorderControllerSettings LoadOrCreate(string path);
+        public void RemoveRecorder(UnityEditor.Recorder.RecorderSettings recorder);
+        public void Save();
+        public void SetRecordModeToFrameInterval(int startFrame, int endFrame);
+        public void SetRecordModeToManual();
+        public void SetRecordModeToSingleFrame(int frameNumber);
+        public void SetRecordModeToTimeInterval(float startTime, float endTime);
+    }
+
+    public class RecorderControllerSettingsPreset : UnityEngine.ScriptableObject
+    {
+        public RecorderControllerSettingsPreset() {}
+        public void ApplyTo(UnityEditor.Recorder.RecorderControllerSettings prefs);
+        public static void SaveAtPath(UnityEditor.Recorder.RecorderControllerSettings model, string path);
+    }
+
+    public abstract class RecorderEditor : UnityEditor.Editor
+    {
+        protected RecorderEditor() {}
+        protected virtual void AOVGUI();
+        protected static void DrawSeparator();
+        protected virtual void ExtraOptionsGUI();
+        protected virtual void FileTypeAndFormatGUI();
+        protected virtual void ImageRenderOptionsGUI();
+        protected virtual void NameAndPathGUI();
+        protected virtual void OnEnable();
+        protected virtual void OnEncodingGui();
+        public virtual void OnInspectorGUI();
+        protected virtual void OnValidateSettingsGUI();
+    }
+
+    public class RecorderInput : System.IDisposable
+    {
+        public UnityEditor.Recorder.RecorderInputSettings settings { get; set; }
+        public RecorderInput() {}
+        protected virtual void BeginRecording(UnityEditor.Recorder.RecordingSession session);
+        public virtual void Dispose();
+        protected virtual void Dispose(bool disposing);
+        protected virtual void EndRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void Finalize();
+        protected virtual void FrameDone(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void NewFrameReady(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void NewFrameStarting(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void SessionCreated(UnityEditor.Recorder.RecordingSession session);
+    }
+
+    public abstract class RecorderInputSettings
+    {
+        protected abstract System.Type InputType { get; }
+        protected RecorderInputSettings() {}
+        protected abstract bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    public static class RecorderOptions
+    {
+        public static bool ShowLegacyRecorders { get; set; }
+        public static bool ShowRecorderGameObject { get; set; }
+        public static bool VerboseMode { get; set; }
+    }
+
+    public abstract class RecorderSettings : UnityEngine.ScriptableObject
+    {
+        public bool CapFrameRate { get; set; }
+        public bool Enabled { get; set; }
+        public int EndFrame { get; set; }
+        public float EndTime { get; set; }
+        protected abstract string Extension { get; }
+        public UnityEditor.Recorder.FileNameGenerator FileNameGenerator { get; }
+        public float FrameRate { get; set; }
+        public UnityEditor.Recorder.FrameRatePlayback FrameRatePlayback { get; set; }
+        public abstract System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
+        public virtual bool IsPlatformSupported { get; }
+        public string OutputFile { get; set; }
+        public UnityEditor.Recorder.RecordMode RecordMode { get; set; }
+        public int StartFrame { get; set; }
+        public float StartTime { get; set; }
+        public int Take { get; set; }
+        protected RecorderSettings() {}
+        protected virtual bool HasErrors();
+        public virtual void OnAfterDuplicate();
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    [System.AttributeUsage(4, Inherited = false)] public class RecorderSettingsAttribute : System.Attribute
+    {
+        public RecorderSettingsAttribute(System.Type recorderType, string displayName) {}
+        public RecorderSettingsAttribute(System.Type recorderType, string displayName, string iconName) {}
+    }
+
+    public class RecorderWindow : UnityEditor.EditorWindow
+    {
+        public const string MenuRoot = Window/General/Recorder/;
+        public const int MenuRootIndex = 1000;
+        public RecorderWindow() {}
+        public void ApplyPreset(UnityEditor.Recorder.RecorderControllerSettingsPreset preset);
+        public bool IsRecording();
+        public void SetRecorderControllerSettings(UnityEditor.Recorder.RecorderControllerSettings settings);
+        public void StartRecording();
+        public void StopRecording();
+    }
+
+    public class RecordingSession : System.IDisposable
+    {
+        public UnityEditor.Recorder.Recorder recorder;
+        public int frameIndex { get; }
+        public float recorderTime { get; }
+        public UnityEditor.Recorder.RecorderSettings settings { get; }
+        public RecordingSession() {}
+        public virtual void Dispose();
+    }
+
+    public enum RecordMode
+    {
+        public const UnityEditor.Recorder.RecordMode FrameInterval = 2;
+        public const UnityEditor.Recorder.RecordMode Manual = 0;
+        public const UnityEditor.Recorder.RecordMode SingleFrame = 1;
+        public const UnityEditor.Recorder.RecordMode TimeInterval = 3;
+        public int value__;
+    }
+
+    public static class UnityHelpers
+    {
+        public static void Destroy(UnityEngine.Object obj, bool allowDestroyingAssets = False);
+    }
+}
+
+namespace UnityEditor.Recorder.FrameCapturer
+{
+    public abstract class BaseFCRecorderSettings : UnityEditor.Recorder.RecorderSettings
+    {
+        public UnityEditor.Recorder.Input.ImageInputSettings imageInputSettings { get; set; }
+        public virtual System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
+        public virtual bool IsPlatformSupported { get; }
+        protected BaseFCRecorderSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+}
+
+namespace UnityEditor.Recorder.Input
+{
+    public class AnimationInput : UnityEditor.Recorder.RecorderInput
+    {
+        public UnityEditor.Animations.GameObjectRecorder GameObjectRecorder { get; }
+        public AnimationInput() {}
+        protected virtual void BeginRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void NewFrameReady(UnityEditor.Recorder.RecordingSession session);
+    }
+
+    [System.ComponentModel.DisplayName(@"Animation")] public class AnimationInputSettings : UnityEditor.Recorder.RecorderInputSettings
+    {
+        public bool ClampedTangents { get; set; }
+        public UnityEngine.GameObject gameObject { get; set; }
+        protected virtual System.Type InputType { get; }
+        public bool Recursive { get; set; }
+        public UnityEditor.Recorder.Input.AnimationInputSettings.CurveSimplificationOptions SimplyCurves { get; set; }
+        public AnimationInputSettings() {}
+        public void AddComponentToRecord(System.Type componentType);
+        public void ClearExposedReference();
+        public void DuplicateExposedReference();
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+        public enum CurveSimplificationOptions
+        {
+            public const UnityEditor.Recorder.Input.AnimationInputSettings.CurveSimplificationOptions Disabled = 2;
+            public const UnityEditor.Recorder.Input.AnimationInputSettings.CurveSimplificationOptions Lossless = 1;
+            public const UnityEditor.Recorder.Input.AnimationInputSettings.CurveSimplificationOptions Lossy = 0;
+            public int value__;
+        }
+    }
+
+    [System.ComponentModel.DisplayName(@"Audio")] public class AudioInputSettings : UnityEditor.Recorder.RecorderInputSettings
+    {
+        protected virtual System.Type InputType { get; }
+        public bool PreserveAudio { get; set; }
+        public AudioInputSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    [System.ComponentModel.DisplayName(@"360 View")] public class Camera360InputSettings : UnityEditor.Recorder.Input.ImageInputSettings
+    {
+        public string CameraTag { get; set; }
+        public bool FlipFinalOutput { get; set; }
+        protected virtual System.Type InputType { get; }
+        public int MapSize { get; set; }
+        public virtual int OutputHeight { get; set; }
+        public virtual int OutputWidth { get; set; }
+        public bool RenderStereo { get; set; }
+        public UnityEditor.Recorder.ImageSource Source { get; set; }
+        public float StereoSeparation { get; set; }
+        public Camera360InputSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    public class CameraInput : UnityEditor.Recorder.BaseRenderTextureInput
+    {
+        protected UnityEngine.Camera TargetCamera { get; set; }
+        public CameraInput() {}
+        protected virtual void BeginRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void Dispose(bool disposing);
+        protected virtual void NewFrameReady(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void NewFrameStarting(UnityEditor.Recorder.RecordingSession session);
+    }
+
+    [System.ComponentModel.DisplayName(@"Targeted Camera")] public class CameraInputSettings : UnityEditor.Recorder.Input.StandardImageInputSettings
+    {
+        public string CameraTag { get; set; }
+        public bool CaptureUI { get; set; }
+        public bool FlipFinalOutput { get; set; }
+        protected virtual System.Type InputType { get; }
+        public UnityEditor.Recorder.ImageSource Source { get; set; }
+        public CameraInputSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    [System.ComponentModel.DisplayName(@"Game View")] public class GameViewInputSettings : UnityEditor.Recorder.Input.StandardImageInputSettings
+    {
+        public bool FlipFinalOutput { get; set; }
+        protected virtual System.Type InputType { get; }
+        public virtual bool SupportsTransparent { get; }
+        public GameViewInputSettings() {}
+    }
+
+    public abstract class ImageInputSettings : UnityEditor.Recorder.RecorderInputSettings
+    {
+        public abstract int OutputHeight { get; set; }
+        public abstract int OutputWidth { get; set; }
+        public bool RecordTransparency { get; set; }
+        public virtual bool SupportsTransparent { get; }
+        protected ImageInputSettings() {}
+    }
+
+    [System.ComponentModel.DisplayName(@"Render Texture Asset")] public class RenderTextureInputSettings : UnityEditor.Recorder.Input.ImageInputSettings
+    {
+        public bool FlipFinalOutput { get; set; }
+        protected virtual System.Type InputType { get; }
+        public virtual int OutputHeight { get; set; }
+        public virtual int OutputWidth { get; set; }
+        public UnityEngine.RenderTexture RenderTexture { get; set; }
+        public RenderTextureInputSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    [System.ComponentModel.DisplayName(@"Texture Sampling")] public class RenderTextureSamplerSettings : UnityEditor.Recorder.Input.ImageInputSettings
+    {
+        public string CameraTag { get; set; }
+        public UnityEngine.ColorSpace ColorSpace { get; set; }
+        public bool FlipFinalOutput { get; set; }
+        protected virtual System.Type InputType { get; }
+        public virtual int OutputHeight { get; set; }
+        public virtual int OutputWidth { get; set; }
+        public int RenderHeight { get; set; }
+        public int RenderWidth { get; set; }
+        public UnityEditor.Recorder.Input.SuperSamplingCount SuperSampling { get; set; }
+        public RenderTextureSamplerSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    public abstract class StandardImageInputSettings : UnityEditor.Recorder.Input.ImageInputSettings
+    {
+        public virtual int OutputHeight { get; set; }
+        public virtual int OutputWidth { get; set; }
+        protected StandardImageInputSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    public enum SuperSamplingCount
+    {
+        public int value__;
+        public const UnityEditor.Recorder.Input.SuperSamplingCount X1 = 1;
+        public const UnityEditor.Recorder.Input.SuperSamplingCount X16 = 16;
+        public const UnityEditor.Recorder.Input.SuperSamplingCount X2 = 2;
+        public const UnityEditor.Recorder.Input.SuperSamplingCount X4 = 4;
+        public const UnityEditor.Recorder.Input.SuperSamplingCount X8 = 8;
+    }
+}
+
+namespace UnityEditor.Recorder.Timeline
+{
+    [System.ComponentModel.DisplayName(@"Recorder Clip")] public class RecorderClip : UnityEngine.Playables.PlayableAsset, UnityEngine.ISerializationCallbackReceiver, UnityEngine.Timeline.ITimelineClipAsset
+    {
+        [UnityEngine.SerializeField] public UnityEditor.Recorder.RecorderSettings settings;
+        public virtual UnityEngine.Timeline.ClipCaps clipCaps { get; }
+        public RecorderClip() {}
+        public virtual UnityEngine.Playables.Playable CreatePlayable(UnityEngine.Playables.PlayableGraph graph, UnityEngine.GameObject owner);
+        public virtual void OnAfterDeserialize();
+        public virtual void OnBeforeSerialize();
+        public void OnDestroy();
+    }
+
+    [UnityEngine.Timeline.TrackClipType(typeof(UnityEditor.Recorder.Timeline.RecorderClip))] [UnityEngine.Timeline.TrackColor(0, 0.53, 0.08)] public class RecorderTrack : UnityEngine.Timeline.TrackAsset
+    {
+        public RecorderTrack() {}
+    }
+}

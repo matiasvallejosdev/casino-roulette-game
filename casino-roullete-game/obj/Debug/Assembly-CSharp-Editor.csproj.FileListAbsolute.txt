@@ -1,0 +1,2 @@
+C:\Users\matia\Desktop\GitHub\casinoRoulleteGame\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
+C:\Users\matia\Desktop\GitHub\casinoRoulleteGame\obj\Debug\Assembly-CSharp-Editor.csproj.CoreCompileInputs.cache

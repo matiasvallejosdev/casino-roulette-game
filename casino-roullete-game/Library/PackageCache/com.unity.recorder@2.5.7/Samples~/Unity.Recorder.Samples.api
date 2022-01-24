@@ -1,0 +1,22 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace UnityEngine.Recorder.Examples
+{
+    public class CaptureScreenShotExample : UnityEngine.MonoBehaviour
+    {
+        public CaptureScreenShotExample() {}
+    }
+
+    public class MovieRecorderExample : UnityEngine.MonoBehaviour
+    {
+        public bool m_RecordAudio;
+        public System.IO.FileInfo OutputFile { get; }
+        public MovieRecorderExample() {}
+    }
+
+    public class MultipleRecordingsExample : UnityEngine.MonoBehaviour
+    {
+        public MultipleRecordingsExample() {}
+    }
+}

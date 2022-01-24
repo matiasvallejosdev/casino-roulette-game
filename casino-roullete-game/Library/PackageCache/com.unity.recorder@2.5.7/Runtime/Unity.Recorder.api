@@ -1,0 +1,16 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace UnityEngine.Recorder
+{
+    [UnityEngine.ExecuteInEditMode] public class RecorderBindings : UnityEngine.MonoBehaviour
+    {
+        public RecorderBindings() {}
+        public void DuplicateBinding(string src, string dst);
+        public UnityEngine.Object GetBindingValue(string id);
+        public bool HasBindingValue(string id);
+        public bool IsEmpty();
+        public void RemoveBinding(string id);
+        public void SetBindingValue(string id, UnityEngine.Object value);
+    }
+}
