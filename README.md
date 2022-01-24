@@ -18,7 +18,7 @@ American roulette table of a casino. The outstanding characteristics of the stac
     <a href="https://youtu.be/5RKrxPUl-cg" target="_blank">View Demo in Youtube</a> <br />
       <p align="center">
       <a href="https://youtu.be/5RKrxPUl-cg" rel="nofollow">
-      <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Gif(1).gif?raw=true" alt="Demo Video" width="250">
+      <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Gif(1).gif?raw=true" alt="Demo Video" width="250">
     </a>
   </p>
     
@@ -45,35 +45,35 @@ Game Screenshoot on Android Device.
 <p>
   <p>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(7).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(7).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(4).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(4).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(3).jpg?raw=true" width="200">
-    </a>
-  </p>
-  <p>
-    <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(2).jpg?raw=true" width="200">
-    </a>
-    <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(5).jpg?raw=true" width="200">
-    </a>
-    <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(6).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(3).jpg?raw=true" width="200">
     </a>
   </p>
   <p>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(1).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(2).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(8).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(5).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(9).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(6).jpg?raw=true" width="200">
+    </a>
+  </p>
+  <p>
+    <a rel="nofollow">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(1).jpg?raw=true" width="200">
+    </a>
+    <a rel="nofollow">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(8).jpg?raw=true" width="200">
+    </a>
+    <a rel="nofollow">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(9).jpg?raw=true" width="200">
     </a>
   </p>
 
