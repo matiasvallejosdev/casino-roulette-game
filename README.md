@@ -1,11 +1,11 @@
-<h1 align="center"> Casino Roullete Game </h1>
+<h1 align="center"> Casino Roulette Game </h1>
   
   <div align="center">
 
   [![GitHub release (latest by date)](https://img.shields.io/github/v/release/matiasvallejosdev/casino-roulette-game)](https://github.com/matiasvallejosdev/casino-roulette-game)
   [![GitHub top language](https://img.shields.io/github/languages/top/matiasvallejosdev/casino-roulette-game?color=1081c2)](https://github.com/matiasvallejosdev/casino-roulette-game/search?l=c%23)
   [![GitHub Watchers](https://img.shields.io/github/watchers/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/watchers)
-  [![GitHub Repo stars](https://img.shields.io/github/stars/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/stargazers)
+  [![GitHub Repo stars](https://img.shields.io/github/stars/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/star)
   [![GitHub Forks](https://img.shields.io/github/forks/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/network/members)
   <br />
   [![Unity Badge](http://img.shields.io/badge/-Unity3D_2020.3.5f1-000?logo=unity&link=https://unity.com/)](https://unity.com/)
@@ -14,11 +14,12 @@
   </div>
   
   <p align="center">
-American roulette table of a casino. The outstanding characteristics of the stack are the use of MVVM for its architecture with Unirx and the saving of the game through JSON. In addition, the use of SOLID casino-roulette-game <br /><br />
+This repository contains an American casino roulette table simulation for Android devices developed in Unity3D. The project was created with an MVVM architecture with UniRx reactive programming. The video game includes persistent saving through JSON files and a time reward system with the possibility of adding ads.
+ <br /><br />
     <a href="https://youtu.be/5RKrxPUl-cg" target="_blank">View Demo in Youtube</a> <br />
       <p align="center">
       <a href="https://youtu.be/5RKrxPUl-cg" rel="nofollow">
-      <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Gif(1).gif?raw=true" alt="Demo Video" width="250">
+      <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Gif(1).gif?raw=true" alt="Demo Video" width="250">
     </a>
   </p>
     
@@ -45,35 +46,35 @@ Game Screenshoot on Android Device.
 <p>
   <p>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(7).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(7).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(4).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(4).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(3).jpg?raw=true" width="200">
-    </a>
-  </p>
-  <p>
-    <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(2).jpg?raw=true" width="200">
-    </a>
-    <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(5).jpg?raw=true" width="200">
-    </a>
-    <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(6).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(3).jpg?raw=true" width="200">
     </a>
   </p>
   <p>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(1).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(2).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(8).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(5).jpg?raw=true" width="200">
     </a>
     <a rel="nofollow">
-    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/Project.Docs/Screenshoot%20(9).jpg?raw=true" width="200">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(6).jpg?raw=true" width="200">
+    </a>
+  </p>
+  <p>
+    <a rel="nofollow">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(1).jpg?raw=true" width="200">
+    </a>
+    <a rel="nofollow">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(8).jpg?raw=true" width="200">
+    </a>
+    <a rel="nofollow">
+    <img src="https://github.com/matiasvallejosdev/casino-roulette-game/blob/master/docs/Screenshoot%20(9).jpg?raw=true" width="200">
     </a>
   </p>
 
