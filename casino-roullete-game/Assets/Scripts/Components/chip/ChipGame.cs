@@ -10,24 +10,20 @@ namespace Components
 {
     public class ChipGame : MonoBehaviour
     {
-        [SerializeField] private CharacterTable characterTable;
-        [SerializeField] private SpriteRenderer spriteRenderer;
-        public Chip currentChipData {get; private set;}
-        public Vector2 currentPosition {get; private set;}
-        public ButtonTable currentButton {get; private set;}
+        public Transform chipsContainer;
+        public SpriteRenderer spriteRenderer;
+        public CharacterTable characterTable;
+        public IChipRuntime _chipRuntime;
 
-        public void StartChip(Chip chipData, Vector2 position, ButtonTable buttonPressed)
+        void Awake()
         {
-            this.currentChipData = chipData;
-            this.currentPosition = position;
-            this.currentButton = buttonPressed;
-
-            spriteRenderer.sprite = chipData.chipSprite;
+            chipsContainer = GameObject.Find("ChipsContainer").GetComponent<Transform>();
+            _chipRuntime = GetComponent<IChipRuntime>();
         }
-
+        
         public bool HasNumber(int num)
         {
-            return currentButton.buttonValue.Contains(num);
+            return _chipRuntime.currentButton.buttonValue.Contains(num);
         }
 
         public void DestroyChip()
@@ -37,20 +33,13 @@ namespace Components
 
         void OnDestroy()
         {
-            if(currentChipData == null)
+            if(_chipRuntime.currentChipData == null)
                 return;
 
             characterTable.OnDestroyChip
                 .OnNext(this);
             
-            try
-            {
-                PlayerSound.Instance.gameSound.OnSound.OnNext(2);
-            }
-            catch
-            {
-                return;
-            }
+            PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[4]);
         }
     }
 }

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 718801376934269736}
   - component: {fileID: 5255888387336823746}
   - component: {fileID: 8453059800705662724}
+  - component: {fileID: 3445803385902407167}
   m_Layer: 0
-  m_Name: ChipTable
+  m_Name: Chip
   m_TagString: Chip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,5 +145,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27697171b2ee2a34cbdb4e2af3ef76e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
   spriteRenderer: {fileID: 5255888387336823750}
+  characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
+--- !u!114 &3445803385902407167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255888387336823749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f804f4eba33cc324fada52248d227d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

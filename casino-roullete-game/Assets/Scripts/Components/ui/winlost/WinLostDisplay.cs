@@ -62,7 +62,7 @@ namespace Components
             else
             {valueLabel.color = new Color(255f, 131f, 132f, 1f);}
 
-            PlayerSound.Instance.gameSound.OnSound.OnNext(4);
+            PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[1]);
             yield return new WaitForSeconds(secInScreen);
 
             characterTable.characterMoney.currentPayment.Value = 0;

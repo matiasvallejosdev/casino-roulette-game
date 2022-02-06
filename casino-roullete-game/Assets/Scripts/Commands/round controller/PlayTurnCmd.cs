@@ -32,7 +32,7 @@ namespace Commands
                 return;
             
             Debug.Log($"The game roullete is executing in {characterTable.tableName} with {characterTable.currentTableCount} chips in table!");
-            PlayerSound.Instance.gameSound.OnSound.OnNext(6);
+            PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[7]);
 
             roundGateway.PlayTurn()
                 .Do(_ => monoBehaviour.StartCoroutine(RoulleteGame(roundGateway.randomNumber)))
@@ -50,7 +50,7 @@ namespace Commands
             gameRoullete.currentSpeed = 75f;
             yield return new WaitForSeconds(1.0f);
             gameRoullete.currentSpeed = 145f;
-            PlayerSound.Instance.gameSound.OnSound.OnNext(8);
+            PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[9]);
             yield return new WaitForSeconds(0.5f);
             gameRoullete.currentSpeed = 240f;
             yield return new WaitForSeconds(1.2f);

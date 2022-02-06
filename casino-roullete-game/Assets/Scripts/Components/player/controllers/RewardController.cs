@@ -16,9 +16,15 @@ namespace Components
     {
         // Player Reward System
         // Control the states of reward fortune
+        public RewardFortune rewardFortuneData;
 
-        public RewardFortune rewardFortune;
-        private float SecondsToWait { get; set; }
+        private float secondsToWait;
+        private IRewardTimer _rewardTimer;
+
+        void Awake()
+        {
+            _rewardTimer = GetComponent<RewardHandler>();
+        }
 
         void Start()
         {
@@ -29,68 +35,25 @@ namespace Components
         {
             await Task.Delay(TimeSpan.FromSeconds(2));
 
-            SecondsToWait = PlayerPrefs.GetFloat("SecondsToWaitReward");
+            secondsToWait = PlayerPrefs.GetFloat("SecondsToWaitReward");
             var lastChestOpen = ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
 
-            rewardFortune.isPlay = false;
+            rewardFortuneData.isPlay = false;
 
-            RewardHandler.IsRewardReady(rewardFortune, SecondsToWait);
+            _rewardTimer.IsRewardReady(rewardFortuneData, secondsToWait);
         }
 
         void Update()
         {
-            RewardHandler.IsRewardReady(rewardFortune, SecondsToWait);
+            _rewardTimer.IsRewardReady(rewardFortuneData, secondsToWait);
 
-            if (!rewardFortune.isRewardPossible.Value)
+            if (!rewardFortuneData.isRewardPossible.Value)
             {
-                if (RewardHandler.IsRewardReady(rewardFortune, SecondsToWait))
-                {            
+                if (_rewardTimer.IsRewardReady(rewardFortuneData, secondsToWait))
+                {
                     return;
                 }
-                // Set the timer
-                ulong diff = ((ulong)DateTime.Now.Ticks - RewardHandler.LastChestOpen());
-                ulong m = diff / TimeSpan.TicksPerSecond;
-                float secondsLeft = (float)(SecondsToWait - m);
-                string t = "";
-
-                // Hours
-                t += ((int)secondsLeft / 3600).ToString() + "h:";
-                secondsLeft -= ((int)secondsLeft / 3600) * 3600;
-                // Minutes
-                t += ((int)secondsLeft / 60).ToString("00") + "m:";
-                // Seconds
-                t += (secondsLeft % 60).ToString("00") + "s";
-
-                rewardFortune.rewardTimer.Value = t;
-            }
-        }
-    }
-
-    public static class RewardHandler
-    {
-        public static ulong LastChestOpen()
-        {
-            return ulong.Parse(PlayerPrefs.GetString("LastRewardOpen"));
-        }
-        public static bool IsRewardReady(RewardFortune rewardFortune, float SecondsToWait)
-        {
-            var lastChestOpen = LastChestOpen();
-
-            ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
-            ulong m = diff / TimeSpan.TicksPerSecond;
-
-            float secondsLeft = (float)(SecondsToWait - m);
-
-            if (secondsLeft < 0)
-            {
-                rewardFortune.rewardTimer.Value = rewardFortune.rewardLabel;
-                rewardFortune.isRewardPossible.Value = true;
-                return true;
-            }
-            else
-            {
-                rewardFortune.isRewardPossible.Value = false;
-                return false;
+                rewardFortuneData.rewardTimer.Value = _rewardTimer.CalculateTimer(secondsToWait);
             }
         }
     }

@@ -20,7 +20,7 @@ namespace Commands
 
         public void Execute()
         {
-            PlayerSound.Instance.gameSound.OnSound.OnNext(0);
+            PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[5]);
             characterTable.currentChipSelected = chipData;
         }
     }

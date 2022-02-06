@@ -8,6 +8,7 @@ namespace ViewModel
     [CreateAssetMenu(fileName = "New Button Table", menuName = "Scriptable/Button Table")]
     public class ButtonTable : ScriptableObject
     {
+        public string buttonName;
         public int[] buttonValue;
         public KeyButton buttonKey;
         public bool isPleno;
@@ -16,11 +17,14 @@ namespace ViewModel
         public Vector2 currentSpritePivot;
         public Vector2 currentOffset;  
 
-        public Vector2 AddCurrentOffset()
+        public Vector2 GetOffset()
         {
+            Vector2 offset = currentOffset;
+
             Vector2 v = new Vector2(0.01f,0.038f);
             currentOffset = currentOffset + v;
-            return currentOffset;
+            
+            return offset;
         }
         public Vector2 SubstractCurrentOffset()
         {

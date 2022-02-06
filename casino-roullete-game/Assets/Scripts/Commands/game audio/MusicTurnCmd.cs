@@ -13,20 +13,15 @@ namespace Commands
     {
         private GameSound gameSound;
         private bool isOn;
-        private float value;
 
-        public MusicTurnCmd(GameSound gameSound, bool isOn, float value)
+        public MusicTurnCmd(GameSound gameSound, bool isOn)
         {
             this.gameSound = gameSound;
             this.isOn = isOn;
-            this.value = value;
         }
 
         public void Execute()
         {
-            if(value > 0)
-                gameSound.musicVolume = value;
-
             gameSound.isMusicOn.Value = isOn;
         }
     }

@@ -52,8 +52,8 @@ namespace Infrastructure
         {
             int earnedPayment = 0;
 
-            IEnumerable<ChipGame> plenos =  chips.Where(chip => chip.currentButton.isPleno);
-            IEnumerable<ChipGame> middles =  chips.Where(chip => !chip.currentButton.isPleno);
+            IEnumerable<ChipGame> plenos =  chips.Where(chip => chip._chipRuntime.currentButton.isPleno);
+            IEnumerable<ChipGame> middles =  chips.Where(chip => !chip._chipRuntime.currentButton.isPleno);
 
             int paymentPleno = GetPaymentChips(plenos.ToArray());
             int paymentMiddle = GetPaymentChips(middles.ToArray());
@@ -69,7 +69,7 @@ namespace Infrastructure
 
             foreach(ChipGame chip in chips)
             {
-                int value = chip.currentChipData.chipValue;
+                int value = chip._chipRuntime.currentChipData.chipValue;
                 total = total + value;
             }
 
@@ -82,7 +82,7 @@ namespace Infrastructure
             int total = 0;
             foreach (ChipGame chip in chips)
             {
-                int value = EquationRoullete.EquationPayment(chip.currentButton.buttonValue.Count(), chip.currentChipData.chipValue);
+                int value = EquationRoullete.EquationPayment(chip._chipRuntime.currentButton.buttonValue.Count(), chip._chipRuntime.currentChipData.chipValue);
                 total = total + value;
             }
             return total;

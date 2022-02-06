@@ -12,9 +12,9 @@ namespace Commands
     public class GameCmdFactory : ScriptableObject
     {   
         // Game roullete events      
-        public ButtonTurnCmd ButtonTableTurn(GameObject buttonInstance, GameObject chipInstance, GameObject chipsContainer, CharacterTable characterTable, ButtonTable buttonData, Chip chipData)
+        public ButtonTurnCmd ButtonTableTurn(CharacterTable characterTable, GameObject chipInstance, ButtonTable buttonData)
         {
-            return new ButtonTurnCmd(buttonInstance, chipInstance, chipsContainer, characterTable, buttonData, chipData);
+            return new ButtonTurnCmd(characterTable, chipInstance, buttonData);
         }    
         public ChipSelectTurnCmd ChipSelect(CharacterTable characterTable, Chip arrayValue)
         {
@@ -26,9 +26,9 @@ namespace Commands
         }
 
         // Table events
-        public MusicTurnCmd MusicTurnCmd(GameSound gameSound, bool isOn, float value = 0)
+        public MusicTurnCmd MusicTurnCmd(GameSound gameSound, bool isOn)
         {
-            return new MusicTurnCmd(gameSound, isOn, value);
+            return new MusicTurnCmd(gameSound, isOn);
         }    
         public ResetTurnCmd ResetTableTurn(MagnetDestroyerDisplay magnetDestroyerDisplay, CharacterTable characterTable, int delayTime = 0)
         {

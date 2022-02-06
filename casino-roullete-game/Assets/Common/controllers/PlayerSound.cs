@@ -43,49 +43,26 @@ namespace Controllers
         private void OnMusicIs(bool value)
         {
             _audioSourceMusic.mute = !value;
-            _audioSourceMusic.volume = gameSound.musicVolume;
         }
         private void OnFxIs(bool value)
         {
             _audioSourceFx.mute = !value;
-            _audioSourceFx.volume = gameSound.fxVolume;
         }
 
-        private void OnMusic(int pos)
+        private void OnMusic(AudioEvent audioEvent)
         {
-            if(_audioSourceMusic.isPlaying)
-                return;
-            
-            _audioSourceMusic.clip = gameSound.musicFx[pos];
+            audioEvent.Play(_audioSourceMusic);
             _audioSourceMusic.loop = true;
-            _audioSourceMusic.Play();
         }
-        private async void OnSound(int pos)
+        private void OnSound(AudioEvent audioEvent)
         {
-            if(_isPlayingFx)
-                return;
-
-            await PlaySound(pos);
-
-            _isPlayingFx = false;
+            audioEvent.Play(_audioSourceFx);
         }
 
-        private async Task PlaySound(int pos)
+        void OnGameOpened()
         {
-            _isPlayingFx = true;
-            _audioSourceFx.clip = gameSound.soundFx[pos];
-            _audioSourceFx.loop = false;
-            _audioSourceFx.Play();
-
-            await Task.Delay(TimeSpan.FromMilliseconds(200));
-        }
-
-        private void OnGameOpened()
-        {
-            gameSound.isMusicOn.Value = true;
             gameSound.isFxOn.Value = true;
-
-            gameSound.OnMusic.OnNext(0);
+            gameSound.OnMusic.OnNext(gameSound.audioReferences[0]);
         }
     }
 }

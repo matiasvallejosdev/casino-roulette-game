@@ -13,10 +13,13 @@ GameObject:
   - component: {fileID: 4829351850859975172}
   - component: {fileID: 4705962744074163708}
   - component: {fileID: 334401579025965854}
+  - component: {fileID: 2525589023311870915}
+  - component: {fileID: 834588478752055289}
   - component: {fileID: 9194825869094601145}
+  - component: {fileID: 2280728350776296006}
   - component: {fileID: 6600448673299681579}
   m_Layer: 0
-  m_Name: ButtonTable
+  m_Name: Button
   m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,13 +138,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ab9fbf34545fc41b062439ce01f80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameCmdFactory: {fileID: 11400000, guid: f7ba5b05108593e45a6a994947132d78, type: 2}
   characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
   buttonData: {fileID: 0}
-  chipsContainer: {fileID: 0}
+--- !u!114 &2525589023311870915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573781864618821487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fda08606df78ab4b98ee29c65515bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   centerPivot: {fileID: 0}
-  holdDuration: 0.13
-  button: {fileID: 4705962744074163708}
+--- !u!114 &834588478752055289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573781864618821487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c201dfe0a5d384babd56daa1791ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameCmdFactory: {fileID: 11400000, guid: f7ba5b05108593e45a6a994947132d78, type: 2}
 --- !u!114 &9194825869094601145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +181,20 @@ MonoBehaviour:
   characterTable: {fileID: 11400000, guid: dcf65df1e62d063479bad21d940e398d, type: 2}
   buttonData: {fileID: 0}
   animatorButton: {fileID: 6600448673299681579}
+--- !u!114 &2280728350776296006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573781864618821487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac81685f93a20c4b9e5bf81ea2591ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0.13
+  button: {fileID: 4705962744074163708}
 --- !u!95 &6600448673299681579
 Animator:
   serializedVersion: 3

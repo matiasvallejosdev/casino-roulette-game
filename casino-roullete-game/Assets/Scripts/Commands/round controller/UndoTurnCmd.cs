@@ -18,7 +18,7 @@ namespace Commands
 
         public void Execute()
         {
-            PlayerSound.Instance.gameSound.OnSound.OnNext(2);
+            PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[4]);
             characterTable.OnDestroyLastChip.OnNext(true);
         }
     }
