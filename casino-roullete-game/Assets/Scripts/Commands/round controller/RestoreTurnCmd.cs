@@ -20,11 +20,16 @@ namespace Commands
         {
             PlayerSound.Instance.gameSound.OnSound.OnNext(PlayerSound.Instance.gameSound.audioReferences[5]);
 
-            if(characterTable.currentTableCount > 0)
+            if (characterTable.currentTableCount > 0)
                 return;
-            
-            // Execute this only if the table is before round finished
-            Table table = new Table(){
+
+            RestorePreviousRound();
+        }
+
+        private void RestorePreviousRound()
+        {
+            Table table = new Table()
+            {
                 TableChips = characterTable.lastTable
             };
 

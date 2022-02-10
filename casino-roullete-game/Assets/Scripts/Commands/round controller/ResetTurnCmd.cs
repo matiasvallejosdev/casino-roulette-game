@@ -33,10 +33,10 @@ namespace Commands
                 return;
                 
             Debug.Log(@"Destroying chips of the table!");
-            magnetDestroyerDisplay.StartCoroutine(ActivateMagnetDestroyer(magnetDestroyerDisplay.magnetTime));
+            magnetDestroyerDisplay.StartCoroutine(ResetRoundProcess(magnetDestroyerDisplay.magnetTime));
         }
          
-        IEnumerator ActivateMagnetDestroyer(float seg)
+        IEnumerator ResetRoundProcess(float seg)
         {
             characterTable.currentTableActive.Value = false;
             yield return new WaitForSeconds(delayTime);

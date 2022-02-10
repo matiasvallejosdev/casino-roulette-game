@@ -168,14 +168,13 @@ namespace Managers
         public async Task OnGameOpened() 
         { 
             await Task.Delay(TimeSpan.FromSeconds(1));
+
             // Update round parameters
             characterTable.currentTableActive.Value = false; 
             characterTable.currentTableCount = 0;
             characterTable.currentTable.Clear();
             characterTable.currentNumbers.Clear();
             characterTable.currentTableInGame.Clear();
-
-
             characterTable.lastNumber = 0;
             characterTable.lastTable.Clear();
             

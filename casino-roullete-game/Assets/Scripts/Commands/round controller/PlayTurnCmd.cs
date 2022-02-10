@@ -37,9 +37,9 @@ namespace Commands
             roundGateway.PlayTurn()
                 .Do(_ => monoBehaviour.StartCoroutine(RoulleteGame(roundGateway.randomNumber)))
                 .Do(_ => characterTable.lastNumber = roundGateway.randomNumber)
-                .Subscribe();
-                
+                .Subscribe();         
         }
+        
         IEnumerator RoulleteGame(int num)
         {
             characterTable.OnRound.OnNext(true); // Initialize round

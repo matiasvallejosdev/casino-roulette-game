@@ -20,8 +20,6 @@ namespace Components
 
         private void Start()
         {
-            characterTable.characterMoney.currentPayment.Value = 0;
-            
             characterTable.OnSaveGame
                 .Subscribe(SaveRound)
                 .AddTo(this);

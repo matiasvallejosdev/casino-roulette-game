@@ -16,7 +16,6 @@ namespace Commands
 
         public MusicTurnCmd(GameSound gameSound, bool isOn)
         {
-            this.gameSound = gameSound;
             this.isOn = isOn;
         }
 

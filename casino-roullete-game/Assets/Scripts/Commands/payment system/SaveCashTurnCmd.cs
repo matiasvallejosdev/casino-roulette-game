@@ -10,9 +10,9 @@ namespace Commands
 {    
     public class SaveCashTurnCmd : ICommand
     {
-        private readonly CharacterCmdFactory characterCmdFactory;
-        private readonly CharacterTable characterTable;
-        private readonly int payment;
+        private CharacterCmdFactory characterCmdFactory;
+        private CharacterTable characterTable;
+        private int payment;
         private ISaveRound saveRoundGateway;
 
         public SaveCashTurnCmd(CharacterCmdFactory characterCmdFactory, CharacterTable characterTable, int payment, ISaveRound saveRoundGateway)
