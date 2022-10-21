@@ -9,8 +9,6 @@
   [![GitHub Forks](https://img.shields.io/github/forks/matiasvallejosdev/casino-roulette-game?color=4cc51e)](https://github.com/matiasvallejosdev/casino-roulette-game/network/members)
   <br />
   [![Unity Badge](http://img.shields.io/badge/-Unity3D_2020.3.5f1-000?logo=unity&link=https://unity.com/)](https://unity.com/)
-  [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
-  [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
   </div>
   
   <p align="center">
